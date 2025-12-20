@@ -355,6 +355,120 @@ function CheckIcon() {
   );
 }
 
+// Legend component for arrow encoding
+function Legend() {
+  const legendStyle: React.CSSProperties = {
+    position: 'absolute',
+    bottom: '12px',
+    right: '12px',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    border: '1px solid #e5e7eb',
+    borderRadius: '8px',
+    padding: '12px 16px',
+    fontSize: '11px',
+    fontFamily: 'system-ui, -apple-system, sans-serif',
+    color: '#374151',
+    zIndex: 10,
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    maxWidth: '200px',
+  };
+
+  const sectionStyle: React.CSSProperties = {
+    marginBottom: '10px',
+  };
+
+  const lastSectionStyle: React.CSSProperties = {
+    marginBottom: '0',
+  };
+
+  const titleStyle: React.CSSProperties = {
+    fontWeight: 600,
+    marginBottom: '4px',
+    color: '#111827',
+  };
+
+  const rowStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    marginBottom: '2px',
+  };
+
+  const lineContainerStyle: React.CSSProperties = {
+    width: '24px',
+    height: '12px',
+    display: 'flex',
+    alignItems: 'center',
+  };
+
+  return (
+    <div style={legendStyle}>
+      {/* Thickness */}
+      <div style={sectionStyle}>
+        <div style={titleStyle}>Strength</div>
+        <div style={rowStyle}>
+          <div style={lineContainerStyle}>
+            <svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#64748b" strokeWidth="3.5" /></svg>
+          </div>
+          <span>Strong</span>
+        </div>
+        <div style={rowStyle}>
+          <div style={lineContainerStyle}>
+            <svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#64748b" strokeWidth="2" /></svg>
+          </div>
+          <span>Medium</span>
+        </div>
+        <div style={rowStyle}>
+          <div style={lineContainerStyle}>
+            <svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#64748b" strokeWidth="1.2" /></svg>
+          </div>
+          <span>Weak</span>
+        </div>
+      </div>
+
+      {/* Line style */}
+      <div style={sectionStyle}>
+        <div style={titleStyle}>Confidence</div>
+        <div style={rowStyle}>
+          <div style={lineContainerStyle}>
+            <svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#64748b" strokeWidth="2" /></svg>
+          </div>
+          <span>High</span>
+        </div>
+        <div style={rowStyle}>
+          <div style={lineContainerStyle}>
+            <svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#64748b" strokeWidth="2" strokeDasharray="4 2" /></svg>
+          </div>
+          <span>Medium</span>
+        </div>
+        <div style={rowStyle}>
+          <div style={lineContainerStyle}>
+            <svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#64748b" strokeWidth="2" strokeDasharray="2 2" /></svg>
+          </div>
+          <span>Low</span>
+        </div>
+      </div>
+
+      {/* Color */}
+      <div style={lastSectionStyle}>
+        <div style={titleStyle}>Effect</div>
+        <div style={rowStyle}>
+          <div style={lineContainerStyle}>
+            <svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#dc2626" strokeWidth="2" /></svg>
+          </div>
+          <span>Increases risk</span>
+        </div>
+        <div style={rowStyle}>
+          <div style={lineContainerStyle}>
+            <svg width="24" height="4"><line x1="0" y1="2" x2="24" y2="2" stroke="#16a34a" strokeWidth="2" /></svg>
+          </div>
+          <span>Decreases risk</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Fullscreen icon components
 function ExpandIcon() {
   return (
@@ -591,6 +705,7 @@ export default function CauseEffectGraph({
             >
               <Controls />
             </ReactFlow>
+            <Legend />
             <DetailsPanel node={selectedNode} onClose={() => setSelectedNode(null)} />
           </div>
         )}
