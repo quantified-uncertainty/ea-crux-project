@@ -17,8 +17,6 @@ import {
 import ELK from 'elkjs/lib/elk.bundled.js';
 import '@xyflow/react/dist/style.css';
 import './CauseEffectGraph.css';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Button } from '@/components/ui/button';
 
 const elk = new ELK();
 
@@ -286,30 +284,32 @@ function DetailsPanel({ node, onClose }: { node: Node<CauseEffectNodeData> | nul
 }
 
 
-// Data view component
+// Data view component - just renders the YAML content
 function DataView({ yaml }: { yaml: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(yaml);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  };
-
   return (
-    <div className="cause-effect-graph__data">
-      <button
-        className={`cause-effect-graph__data-copy ${copied ? 'cause-effect-graph__data-copy--copied' : ''}`}
-        onClick={handleCopy}
-      >
-        {copied ? 'Copied!' : 'Copy'}
-      </button>
-      <pre><code>{yaml}</code></pre>
+    <div style={{ height: '100%', overflow: 'auto', backgroundColor: '#f8fafc', padding: '16px' }}>
+      <pre style={{ fontSize: '13px', fontFamily: 'ui-monospace, monospace', whiteSpace: 'pre', margin: 0, color: '#1e293b' }}>
+        <code>{yaml}</code>
+      </pre>
     </div>
+  );
+}
+
+// Copy icon
+function CopyIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
   );
 }
 
@@ -355,8 +355,20 @@ export default function CauseEffectGraph({
   const [selectedNode, setSelectedNode] = useState<Node<CauseEffectNodeData> | null>(null);
   const [isLayouting, setIsLayouting] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>('graph');
+  const [copied, setCopied] = useState(false);
 
   const yamlData = toYaml(initialNodes, initialEdges);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(yamlData);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
 
   useEffect(() => {
     setIsLayouting(true);
@@ -382,26 +394,140 @@ export default function CauseEffectGraph({
 
   useEffect(() => {
     document.body.style.overflow = isFullscreen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    // Hide Starlight header and sidebar in fullscreen mode
+    const siteHeader = document.querySelector('header.header') as HTMLElement;
+    const sidebar = document.querySelector('nav.sidebar') as HTMLElement;
+    const mainContent = document.querySelector('.main-frame') as HTMLElement;
+
+    if (siteHeader) {
+      siteHeader.style.display = isFullscreen ? 'none' : '';
+    }
+    if (sidebar) {
+      sidebar.style.display = isFullscreen ? 'none' : '';
+    }
+    if (mainContent) {
+      mainContent.style.marginInlineStart = isFullscreen ? '0' : '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      if (siteHeader) siteHeader.style.display = '';
+      if (sidebar) sidebar.style.display = '';
+      if (mainContent) mainContent.style.marginInlineStart = '';
+    };
   }, [isFullscreen]);
 
   const containerClass = `cause-effect-graph ${isFullscreen ? 'cause-effect-graph--fullscreen' : ''}`;
 
+  const headerStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '8px 12px',
+    borderBottom: '1px solid #e5e7eb',
+    backgroundColor: '#f9fafb',
+    flexShrink: 0,
+  };
+
+  const segmentedControlStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#e5e7eb',
+    borderRadius: '6px',
+    padding: '3px',
+    gap: '2px',
+  };
+
+  const segmentButtonStyle = (isActive: boolean): React.CSSProperties => ({
+    all: 'unset',
+    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '28px',
+    padding: '0 12px',
+    fontSize: '13px',
+    fontFamily: 'system-ui, -apple-system, sans-serif',
+    fontWeight: 500,
+    lineHeight: 1,
+    borderRadius: '4px',
+    cursor: 'pointer',
+    backgroundColor: isActive ? '#ffffff' : 'transparent',
+    color: isActive ? '#111827' : '#6b7280',
+    boxShadow: isActive ? '0 1px 2px rgba(0,0,0,0.05)' : 'none',
+    transition: 'background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease',
+  });
+
+  const actionButtonStyle: React.CSSProperties = {
+    all: 'unset',
+    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '6px',
+    height: '34px',
+    padding: '0 12px',
+    fontSize: '13px',
+    fontFamily: 'system-ui, -apple-system, sans-serif',
+    fontWeight: 500,
+    lineHeight: 1,
+    border: '1px solid #d1d5db',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    backgroundColor: '#ffffff',
+    color: '#374151',
+  };
+
+  const buttonGroupStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+  };
+
+  const contentStyle: React.CSSProperties = {
+    flex: 1,
+    minHeight: 0,
+    position: 'relative',
+  };
+
   return (
     <div className={containerClass} style={isFullscreen ? undefined : { height }}>
-      <Tabs defaultValue="graph" className="flex flex-col h-full">
-        <div className="cause-effect-graph__header">
-          <TabsList>
-            <TabsTrigger value="graph">Graph</TabsTrigger>
-            <TabsTrigger value="data">Data (YAML)</TabsTrigger>
-          </TabsList>
-          <Button variant="secondary" size="sm" onClick={toggleFullscreen}>
-            {isFullscreen ? <ShrinkIcon /> : <ExpandIcon />}
-            {isFullscreen ? 'Exit' : 'Fullscreen'}
-          </Button>
+      {/* Header */}
+      <div style={headerStyle}>
+        {/* Segmented Control */}
+        <div style={segmentedControlStyle}>
+          <button
+            style={segmentButtonStyle(activeTab === 'graph')}
+            onClick={() => setActiveTab('graph')}
+          >
+            Graph
+          </button>
+          <button
+            style={segmentButtonStyle(activeTab === 'data')}
+            onClick={() => setActiveTab('data')}
+          >
+            Data (YAML)
+          </button>
         </div>
 
-        <TabsContent value="graph" className="flex-1 m-0 min-h-0" style={{ height: 'calc(100% - 3rem)' }}>
+        {/* Action Buttons */}
+        <div style={buttonGroupStyle}>
+          {activeTab === 'data' && (
+            <button style={actionButtonStyle} onClick={handleCopy}>
+              {copied ? <CheckIcon /> : <CopyIcon />}
+              {copied ? 'Copied!' : 'Copy'}
+            </button>
+          )}
+          <button style={actionButtonStyle} onClick={toggleFullscreen}>
+            {isFullscreen ? <ShrinkIcon /> : <ExpandIcon />}
+            {isFullscreen ? 'Exit' : 'Fullscreen'}
+          </button>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div style={contentStyle}>
+        {activeTab === 'graph' && (
           <div className="cause-effect-graph__content">
             {isLayouting && <div className="cause-effect-graph__loading">Computing layout...</div>}
             <ReactFlow
@@ -425,12 +551,9 @@ export default function CauseEffectGraph({
             </ReactFlow>
             <DetailsPanel node={selectedNode} onClose={() => setSelectedNode(null)} />
           </div>
-        </TabsContent>
-
-        <TabsContent value="data" className="flex-1 m-0 min-h-0" style={{ height: 'calc(100% - 3rem)' }}>
-          <DataView yaml={yamlData} />
-        </TabsContent>
-      </Tabs>
+        )}
+        {activeTab === 'data' && <DataView yaml={yamlData} />}
+      </div>
     </div>
   );
 }

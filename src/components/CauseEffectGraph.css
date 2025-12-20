@@ -1,11 +1,11 @@
-/* CauseEffectGraph styles using Starlight CSS variables */
+/* CauseEffectGraph container */
 
 .cause-effect-graph {
   width: 100%;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   overflow: hidden;
-  border: 1px solid var(--sl-color-hairline-light);
-  background-color: var(--sl-color-bg);
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--background));
   display: flex;
   flex-direction: column;
 }
@@ -18,24 +18,17 @@
   bottom: 0;
   height: 100vh;
   width: 100vw;
-  z-index: 9999;
+  z-index: 999999;
   border-radius: 0;
   border: none;
+  background: white;
 }
 
-/* Header bar */
-.cause-effect-graph__header {
-  flex-shrink: 0;
-  height: 3rem;
-  padding: 0 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--sl-color-bg-nav);
-  border-bottom: 1px solid var(--sl-color-hairline-light);
-  gap: 0.5rem;
+[data-theme="dark"] .cause-effect-graph--fullscreen,
+:root.dark .cause-effect-graph--fullscreen,
+.dark .cause-effect-graph--fullscreen {
+  background: #09090b;
 }
-
 
 /* Graph content area */
 .cause-effect-graph__content {
@@ -63,54 +56,6 @@
   z-index: 10;
 }
 
-/* Data view */
-.cause-effect-graph__data {
-  flex: 1;
-  overflow: auto;
-  background-color: var(--sl-color-gray-6);
-  position: relative;
-  min-height: 0;
-}
-
-.cause-effect-graph__data-copy {
-  position: sticky;
-  top: 0.75rem;
-  float: right;
-  margin-right: 0.75rem;
-  padding: 0.375rem 0.75rem;
-  font-size: var(--sl-text-xs);
-  font-weight: 500;
-  background-color: var(--sl-color-gray-5);
-  color: var(--sl-color-gray-2);
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  z-index: 10;
-  font-family: var(--__sl-font);
-}
-
-.cause-effect-graph__data-copy:hover {
-  background-color: var(--sl-color-gray-4);
-  color: var(--sl-color-text);
-}
-
-.cause-effect-graph__data-copy--copied {
-  background-color: var(--sl-color-green-low);
-  color: var(--sl-color-green-high);
-}
-
-.cause-effect-graph__data pre {
-  margin: 0;
-  padding: 1rem;
-  padding-top: 0.5rem;
-  font-size: var(--sl-text-code-sm);
-  line-height: 1.6;
-  color: var(--sl-color-gray-1);
-  font-family: var(--__sl-font-mono);
-  white-space: pre;
-  overflow: auto;
-}
 
 /* Details panel */
 .cause-effect-graph__panel {
