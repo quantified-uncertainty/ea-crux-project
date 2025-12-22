@@ -1,7 +1,7 @@
 import React from 'react';
 import './wiki.css';
 
-type EntityCategory = 'lab' | 'capability' | 'risk' | 'safety-agenda' | 'policy' | 'timeline' | 'scenario' | 'intervention';
+type EntityCategory = 'lab' | 'capability' | 'risk' | 'safety-agenda' | 'policy' | 'timeline' | 'scenario' | 'intervention' | 'crux';
 
 interface EntityCardProps {
   id: string;
@@ -19,6 +19,7 @@ const categoryPaths: Record<EntityCategory, string> = {
   timeline: '/timelines',
   scenario: '/scenarios',
   intervention: '/interventions',
+  crux: '/understanding-ai-risk/core-argument',
 };
 
 const categoryStyles: Record<EntityCategory, { label: string; bg: string; color: string }> = {
@@ -30,6 +31,7 @@ const categoryStyles: Record<EntityCategory, { label: string; bg: string; color:
   timeline: { label: 'Timeline', bg: '#dbeafe', color: '#1e40af' },
   scenario: { label: 'Scenario', bg: '#fce7f3', color: '#9d174d' },
   intervention: { label: 'Intervention', bg: '#dcfce7', color: '#166534' },
+  crux: { label: 'Key Crux', bg: '#ffedd5', color: '#c2410c' },
 };
 
 export function EntityCard({ id, category, title, description }: EntityCardProps) {

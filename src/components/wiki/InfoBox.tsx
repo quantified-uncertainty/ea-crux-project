@@ -9,7 +9,8 @@ export type EntityType =
   | 'capability'
   | 'risk'
   | 'safety-agenda'
-  | 'policy';
+  | 'policy'
+  | 'crux';
 
 interface InfoBoxProps {
   type: EntityType;
@@ -55,6 +56,7 @@ const typeLabels: Record<EntityType, { label: string; color: string }> = {
   'risk': { label: 'Risk', color: '#dc2626' },
   'safety-agenda': { label: 'Safety Agenda', color: '#7c3aed' },
   'policy': { label: 'Policy', color: '#0d9488' },
+  'crux': { label: 'Key Crux', color: '#ea580c' },
 };
 
 const severityColors: Record<string, string> = {
