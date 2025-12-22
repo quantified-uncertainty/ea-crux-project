@@ -21,38 +21,44 @@ export default defineConfig({
                   autogenerate: { directory: 'getting-started' },
               },
               {
-                  label: 'The Risk Argument',
-                  autogenerate: { directory: 'risk-argument' },
-              },
-              {
-                  label: 'Risk Models',
-                  autogenerate: { directory: 'models' },
-              },
-              {
-                  label: 'Safety Approaches',
-                  autogenerate: { directory: 'approaches' },
-              },
-              {
-                  label: 'Worldviews',
-                  autogenerate: { directory: 'worldviews' },
+                  label: 'Understanding AI Risk',
+                  items: [
+                      { label: 'Overview', slug: 'understanding-ai-risk' },
+                      { label: 'Core Argument', autogenerate: { directory: 'understanding-ai-risk/core-argument' } },
+                      { label: 'Risk Models', autogenerate: { directory: 'understanding-ai-risk/models' } },
+                      { label: 'Worldviews', autogenerate: { directory: 'understanding-ai-risk/worldviews' } },
+                  ],
               },
               {
                   label: 'Knowledge Base',
                   items: [
-                      { label: 'Labs', autogenerate: { directory: 'labs' } },
+                      { label: 'Organizations', autogenerate: { directory: 'organizations' } },
                       { label: 'Capabilities', autogenerate: { directory: 'capabilities' } },
-                      { label: 'Risks', autogenerate: { directory: 'risks' } },
-                      { label: 'Safety Agendas', autogenerate: { directory: 'safety-agendas' } },
+                      {
+                          label: 'Risks & Failure Modes',
+                          items: [
+                              { label: 'Overview', slug: 'risks' },
+                              { label: 'Accident Risks', autogenerate: { directory: 'risks/accident' } },
+                              { label: 'Misuse Risks', autogenerate: { directory: 'risks/misuse' } },
+                              { label: 'Structural Risks', autogenerate: { directory: 'risks/structural' } },
+                              { label: 'Epistemic Risks', autogenerate: { directory: 'risks/epistemic' } },
+                          ],
+                      },
+                      {
+                          label: 'Safety Approaches',
+                          items: [
+                              { label: 'Overview', slug: 'safety-approaches' },
+                              { label: 'Technical', autogenerate: { directory: 'safety-approaches/technical' } },
+                              { label: 'Governance', autogenerate: { directory: 'safety-approaches/governance' } },
+                              { label: 'Institutional', autogenerate: { directory: 'safety-approaches/institutional' } },
+                          ],
+                      },
                       { label: 'Policies', autogenerate: { directory: 'policies' } },
                   ],
               },
               {
-                  label: 'Cross-Cutting Views',
-                  items: [
-                      { label: 'Timelines', autogenerate: { directory: 'timelines' } },
-                      { label: 'Scenarios', autogenerate: { directory: 'scenarios' } },
-                      { label: 'Interventions', autogenerate: { directory: 'interventions' } },
-                  ],
+                  label: 'Scenarios & Analysis',
+                  autogenerate: { directory: 'analysis' },
               },
               {
                   label: 'Guides',

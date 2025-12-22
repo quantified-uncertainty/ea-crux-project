@@ -1,0 +1,93 @@
+---
+title: Bioweapons
+description: AI-assisted biological weapon development
+sidebar:
+  order: 1
+---
+
+import { InfoBox, EntityCard, EntityCards, Tags, Sources, Section } from '../../../../components/wiki';
+
+<InfoBox
+  type="risk"
+  title="Bioweapons Risk"
+  severity="catastrophic"
+  likelihood="Low-Medium (increasing)"
+  timeframe="Near-term"
+  customFields={[
+    { label: "Type", value: "Misuse" },
+    { label: "Key Concern", value: "Lowering barriers to development" },
+  ]}
+/>
+
+## Overview
+
+AI systems could accelerate biological weapons development by helping with pathogen design, synthesis planning, or acquisition of dangerous knowledge. The concern isn't that AI creates entirely new risks, but that it lowers barriers—making capabilities previously requiring rare expertise more accessible to bad actors.
+
+This is considered one of the most severe near-term AI risks because biological weapons can cause mass casualties and AI-assisted bioweapons could be developed by smaller groups than traditional state programs required.
+
+## How AI Could Help
+
+AI could assist at multiple stages of bioweapon development. In target identification, AI might help identify dangerous modifications to known pathogens or find novel biological agents. In synthesis planning, AI could help determine how to create dangerous biological materials. In acquisition, chatbots could provide guidance on obtaining precursor materials or laboratory equipment.
+
+Most concerningly, AI might help bridge knowledge gaps. Historically, bioweapons development required rare combinations of expertise. AI could help a motivated individual or small group compensate for missing knowledge, potentially replacing what previously required teams of specialists.
+
+## Current Evidence
+
+Studies have shown language models can provide information relevant to bioweapon development, though the significance is debated. Some research found that AI-assisted participants could find more relevant information about biological agents faster than control groups.
+
+AI labs have conducted internal evaluations of these risks. Anthropic, OpenAI, and others have tested whether their models could provide "uplift" to potential bioweapon developers—whether the AI meaningfully helps beyond what's available through internet search.
+
+Results are mixed: models clearly know dangerous information, but how much they lower barriers versus what's already available is contested. However, capabilities are clearly increasing with each model generation.
+
+## Biosecurity Context
+
+Biological threats exist on a spectrum. State programs have historically been the main concern, but the barrier to entry may be dropping. The COVID-19 pandemic demonstrated how much damage pathogens can cause and highlighted gaps in biosecurity infrastructure.
+
+DNA synthesis companies already screen orders for dangerous sequences, but screening isn't comprehensive. The combination of AI providing knowledge and decreasing costs of synthesis equipment is concerning to biosecurity experts.
+
+## Mitigations
+
+Technical measures include training models not to help with bioweapon development and filtering dangerous outputs. But these are imperfect—models can be jailbroken, fine-tuned, or open-source models may lack restrictions entirely.
+
+Broader biosecurity measures matter more: DNA synthesis screening, laboratory access controls, disease surveillance, and medical countermeasures. AI risk is one input to overall biosecurity strategy.
+
+Compute governance could limit who can train powerful models, reducing the availability of capable models to bad actors. Information security around model weights becomes important if models can provide meaningful uplift.
+
+## Debates
+
+Some argue AI biosecurity risks are overstated. Wet lab skills are the real bottleneck—knowing how to make something is different from being able to make it. The information exists in the scientific literature already.
+
+Others argue this underestimates the threat. Even marginal uplift matters if it enables attacks that wouldn't otherwise occur. And AI capabilities are improving rapidly.
+
+<Section title="Related Topics">
+  <Tags tags={[
+    "Biosecurity",
+    "Dual-Use Research",
+    "Catastrophic Risk",
+    "CBRN",
+    "AI Misuse",
+  ]} />
+</Section>
+
+<Section title="Related Entries">
+  <EntityCards>
+    <EntityCard
+      id="cyberweapons"
+      category="risk"
+      title="Cyberweapons"
+      description="Related AI-enabled weapons risk"
+    />
+    <EntityCard
+      id="anthropic"
+      category="lab"
+      title="Anthropic"
+      description="Biosecurity evaluations for AI models"
+    />
+  </EntityCards>
+</Section>
+
+<Sources sources={[
+  { title: "The Precipice", author: "Toby Ord", date: "2020" },
+  { title: "Anthropic Responsible Scaling Policy", url: "https://www.anthropic.com/news/anthropics-responsible-scaling-policy" },
+  { title: "Dual Use of Artificial Intelligence-powered Drug Discovery", url: "https://www.nature.com/articles/s42256-022-00465-9" },
+]} />

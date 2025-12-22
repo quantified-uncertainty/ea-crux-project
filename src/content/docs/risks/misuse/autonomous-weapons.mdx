@@ -1,0 +1,95 @@
+---
+title: Autonomous Weapons
+description: Lethal autonomous weapons systems (LAWS) and AI in warfare
+sidebar:
+  order: 3
+---
+
+import { InfoBox, EntityCard, EntityCards, Tags, Sources, Section } from '../../../../components/wiki';
+
+<InfoBox
+  type="risk"
+  title="Autonomous Weapons"
+  severity="high"
+  likelihood="High (already deployed)"
+  timeframe="Current"
+  customFields={[
+    { label: "Also Called", value: "LAWS, killer robots" },
+    { label: "Status", value: "Active military development" },
+  ]}
+/>
+
+## Overview
+
+Autonomous weapons systems are weapons that can select and engage targets without human intervention. AI advances are making such systems more capable and more likely to be deployed. The key concerns are: lowered barriers to war, loss of human judgment in life-or-death decisions, and potential for arms races or accidental escalation.
+
+Some autonomous weapons are already deployed; the question is how much autonomy is acceptable and what limits should exist.
+
+## Spectrum of Autonomy
+
+Weapons exist on a spectrum of human control. At one end, fully human-controlled weapons require a person to make every targeting and firing decision. At the other, fully autonomous weapons can identify, select, and engage targets without human input.
+
+In between are various levels: human-supervised systems where humans can intervene but don't have to, human-on-the-loop systems that act autonomously unless a human stops them, and narrow autonomous systems that autonomously engage specific target types (like some missile defense systems).
+
+Current military doctrine generally requires human involvement in lethal decisions, but the line between "human in the loop" and "human on the loop" is blurry in practice, especially when decision speeds exceed human reaction times.
+
+## Arguments Against Autonomous Weapons
+
+There are moral objections: life-or-death decisions should require human judgment, moral accountability, and dignity. Algorithms cannot make the contextual ethical judgments that warfare requires.
+
+Concerns about reliability include the fact that AI systems can fail in unexpected ways, especially in adversarial environments. Enemies could spoof or confuse autonomous systems. Bugs could cause unintended casualties.
+
+Escalation risks arise because autonomous systems operate faster than human decision-making, potentially accelerating conflicts beyond human control. Autonomous systems from different nations could interact unpredictably.
+
+Proliferation concerns stem from the fact that once developed, autonomous weapons technology spreads. They're potentially cheaper than human soldiers, lowering barriers to armed conflict.
+
+## Arguments For Autonomous Weapons
+
+Proponents argue autonomous systems could be more precise than humans, potentially reducing civilian casualties. They could operate in situations too dangerous for humans. Faster response times could save lives in defensive situations.
+
+Military advantage arguments note that adversaries are developing these capabilities, so unilateral restraint may not be strategic. Better to develop them with ethical constraints than cede the field to less scrupulous actors.
+
+## Current Landscape
+
+Multiple nations are developing increasingly autonomous weapons. Loitering munitions (drones that can autonomously identify and attack targets) are already deployed in conflicts. AI is integrated into targeting systems, surveillance, and command and control.
+
+International discussions on LAWS have occurred at the UN Convention on Certain Conventional Weapons, but no binding international agreement exists. Different nations have different positions on acceptable autonomy levels.
+
+## Governance Challenges
+
+Defining "autonomous weapons" precisely is difficult, complicating regulation. Verification is hard—how do you confirm what level of autonomy a system has? Dual-use AI technology can be applied to weapons without explicit weapons development.
+
+Some advocate for bans on specific categories (like fully autonomous lethal systems), while others argue for meaningful human control requirements. The technology is advancing faster than governance frameworks.
+
+<Section title="Related Topics">
+  <Tags tags={[
+    "LAWS",
+    "Military AI",
+    "Arms Control",
+    "AI Governance",
+    "Warfare",
+  ]} />
+</Section>
+
+<Section title="Related Entries">
+  <EntityCards>
+    <EntityCard
+      id="cyberweapons"
+      category="risk"
+      title="Cyberweapons"
+      description="AI in cyber warfare"
+    />
+    <EntityCard
+      id="racing-dynamics"
+      category="risk"
+      title="Racing Dynamics"
+      description="Military AI competition dynamics"
+    />
+  </EntityCards>
+</Section>
+
+<Sources sources={[
+  { title: "Campaign to Stop Killer Robots", url: "https://www.stopkillerrobots.org/" },
+  { title: "UN CCW Discussions on LAWS" },
+  { title: "Future of Life Institute on Autonomous Weapons", url: "https://futureoflife.org/cause-area/autonomous-weapons-systems/" },
+]} />

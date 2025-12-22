@@ -1,0 +1,99 @@
+---
+title: Disinformation
+description: AI-generated propaganda and influence operations at scale
+sidebar:
+  order: 4
+---
+
+import { InfoBox, EntityCard, EntityCards, Tags, Sources, Section } from '../../../../components/wiki';
+
+<InfoBox
+  type="risk"
+  title="AI Disinformation"
+  severity="high"
+  likelihood="Very High (occurring)"
+  timeframe="Current"
+  customFields={[
+    { label: "Status", value: "Actively happening" },
+    { label: "Key Change", value: "Scale and personalization" },
+  ]}
+/>
+
+## Overview
+
+AI enables disinformation at unprecedented scale and sophistication. Language models can generate convincing text, image generators can create realistic fake photos, and AI can personalize messages to individual targets. What previously required human effort for each piece of content can now be automated.
+
+This amplifies existing disinformation problems and potentially changes their fundamental character.
+
+## How AI Changes Disinformation
+
+Before AI, disinformation required humans to write content, create images, and manage campaigns. This created natural limits on scale. AI removes these limits. A single operator can generate millions of unique messages tailored to different audiences.
+
+Content quality has improved dramatically. AI-generated text is often indistinguishable from human writing. AI-generated images increasingly look real. Voice cloning can imitate specific individuals. Soon, video synthesis will reach similar quality.
+
+Personalization becomes possible. AI can analyze targets and generate content tailored to their beliefs, fears, and vulnerabilities. Rather than one message to millions, disinformation can be millions of different messages to millions of individuals.
+
+Speed advantages allow real-time generation of content in response to events, flooding information channels before accurate information can spread.
+
+## Observed Examples
+
+State actors have used AI to generate social media content in multiple documented campaigns. Text-based disinformation using language models was detected in 2023 influence operations. AI-generated profile pictures are common in fake social media accounts.
+
+Deepfakes of political figures have circulated. AI-generated news articles have appeared on content farms. Voice cloning has been used in scam calls impersonating family members.
+
+The full extent is unknown—undetected campaigns may be more successful than detected ones.
+
+## Implications
+
+For democracy, AI disinformation could undermine elections, polarize populations, and erode shared reality. If voters can't trust what they see and hear, democratic deliberation becomes impossible.
+
+For trust, even real content becomes deniable. Politicians can claim authentic recordings are deepfakes. Evidence becomes contestable. This "liar's dividend" may harm truth even when AI isn't used.
+
+For international relations, AI-generated content could be used to inflame conflicts, impersonate leaders, or create false evidence of actions that didn't occur.
+
+## Detection and Countermeasures
+
+Technical detection tries to identify AI-generated content through artifacts, statistical signatures, or watermarking. But this is an arms race—generators improve to evade detectors.
+
+Provenance systems aim to track content origins and verify authenticity, but face adoption and circumvention challenges.
+
+Media literacy helps people critically evaluate content, but faces limits when AI content is indistinguishable from human content.
+
+Platform policies can limit disinformation spread, but face challenges with scale, free speech considerations, and defining what counts as disinformation.
+
+## Open Questions
+
+Will detection keep pace with generation? Currently generation is winning. Can provenance systems gain enough adoption to matter? Can societies adapt faster than disinformation capabilities advance?
+
+<Section title="Related Topics">
+  <Tags tags={[
+    "Misinformation",
+    "Influence Operations",
+    "Information Warfare",
+    "Democracy",
+    "Deepfakes",
+  ]} />
+</Section>
+
+<Section title="Related Entries">
+  <EntityCards>
+    <EntityCard
+      id="deepfakes"
+      category="risk"
+      title="Deepfakes"
+      description="Synthetic media for deception"
+    />
+    <EntityCard
+      id="epistemic-collapse"
+      category="risk"
+      title="Epistemic Collapse"
+      description="Broader implications for truth"
+    />
+  </EntityCards>
+</Section>
+
+<Sources sources={[
+  { title: "OpenAI report on influence operations", url: "https://openai.com/research" },
+  { title: "RAND research on AI and disinformation" },
+  { title: "Stanford Internet Observatory reports" },
+]} />

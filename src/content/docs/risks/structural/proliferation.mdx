@@ -1,0 +1,113 @@
+---
+title: Proliferation
+description: Spread of dangerous AI capabilities to more actors
+sidebar:
+  order: 7
+---
+
+import { InfoBox, EntityCard, EntityCards, Tags, Sources, Section } from '../../../../components/wiki';
+
+<InfoBox
+  type="risk"
+  title="AI Proliferation"
+  severity="high"
+  likelihood="High"
+  timeframe="Current"
+  customFields={[
+    { label: "Type", value: "Structural" },
+    { label: "Status", value: "Ongoing" },
+  ]}
+/>
+
+## Overview
+
+AI proliferation is the spread of AI capabilities to more actors over time—from major labs to smaller companies, open-source communities, nation-states, and eventually individuals. As capabilities spread, more actors can cause harm, intentionally or accidentally.
+
+This is a structural risk because it's largely a function of how AI technology develops, not of any particular actor's decisions.
+
+## Why Proliferation Happens
+
+Technological diffusion is normal. Advances spread through research publications, talent movement, open-source projects, and reverse engineering. AI is no exception.
+
+Publication norms in AI research favor openness. Much capability research is published. Even when not published, ideas spread through conferences and discussions.
+
+Open-source movement: A significant portion of the AI community believes capabilities should be widely available. Models like LLaMA have been released openly, and open-source equivalents often emerge for proprietary capabilities.
+
+Commercial pressure: Companies release models to gain users, improve through feedback, and establish ecosystem dominance. API access democratizes capabilities.
+
+Computing democratization: While frontier training requires massive resources, inference is cheaper. Fine-tuning smaller models can achieve significant capabilities. Cloud compute makes power accessible.
+
+## Risk Implications
+
+Misuse becomes more likely as capabilities reach more actors, including those with harmful intent. If AI can assist with bioweapons, cyberattacks, or disinformation, proliferation means more potential bad actors have access.
+
+Accidents become more likely because more actors means more opportunities for mistakes. Not all actors will have sophisticated safety practices. The weakest link matters.
+
+Governance becomes harder when capabilities are widely distributed. You can regulate concentrated development; regulating millions of individuals is much harder.
+
+Attribution becomes difficult when many actors have similar capabilities. Who created a harmful AI output? Who's responsible?
+
+## Trade-offs
+
+Proliferation has benefits. Broad access means more people can benefit from AI. Competition prevents monopoly. Open research accelerates progress. Many eyes on code may improve safety.
+
+Concentration has risks too. A few actors controlling AI could abuse that power. Concentrated development might make safety worse if those actors are irresponsible.
+
+The tension between preventing misuse (favoring concentration) and preventing abuse of power (favoring distribution) has no easy resolution.
+
+## Interventions
+
+Publication norms could shift toward more selective sharing of dangerous capabilities. Some researchers advocate for "differential technological development"—accelerating safety-relevant work while slowing dangerous capabilities.
+
+Compute governance could limit who can train powerful models, though this doesn't prevent capability spread after training.
+
+Model weight security could prevent unauthorized access to trained models, though enforcement is difficult.
+
+Capability evaluation could identify which capabilities are dangerous enough to warrant restriction.
+
+International agreements could coordinate on proliferation limits, though verification and enforcement are challenging.
+
+## Analogies
+
+Nuclear proliferation provides some lessons: technology spreads, but speed can be influenced. Concentrated materials (enriched uranium, model weights) are a key control point. International regimes can slow but not prevent spread.
+
+But AI proliferates differently: software copies perfectly, knowledge transfers easily, and dual-use technology is everywhere. The analogy is limited.
+
+<Section title="Related Topics">
+  <Tags tags={[
+    "Open Source",
+    "AI Governance",
+    "Dual Use",
+    "Diffusion",
+    "Regulation",
+  ]} />
+</Section>
+
+<Section title="Related Entries">
+  <EntityCards>
+    <EntityCard
+      id="bioweapons"
+      category="risk"
+      title="Bioweapons"
+      description="Dangerous capability that could proliferate"
+    />
+    <EntityCard
+      id="cyberweapons"
+      category="risk"
+      title="Cyberweapons"
+      description="Another proliferation-sensitive capability"
+    />
+    <EntityCard
+      id="compute-governance"
+      category="policy"
+      title="Compute Governance"
+      description="One approach to limiting proliferation"
+    />
+  </EntityCards>
+</Section>
+
+<Sources sources={[
+  { title: "Open-sourcing highly capable foundation models", url: "https://arxiv.org/abs/2311.09227" },
+  { title: "GovAI research on AI proliferation" },
+  { title: "Future of Life Institute on AI access" },
+]} />

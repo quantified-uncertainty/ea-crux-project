@@ -1,0 +1,97 @@
+---
+title: Multipolar Trap
+description: Competitive dynamics producing collectively bad outcomes
+sidebar:
+  order: 6
+---
+
+import { InfoBox, EntityCard, EntityCards, Tags, Sources, Section } from '../../../../components/wiki';
+
+<InfoBox
+  type="risk"
+  title="Multipolar Trap"
+  severity="high"
+  likelihood="Medium-High"
+  timeframe="Current to Medium-term"
+  customFields={[
+    { label: "Type", value: "Structural" },
+    { label: "Also Called", value: "Collective action failure" },
+  ]}
+/>
+
+## Overview
+
+A multipolar trap occurs when competition between multiple actors produces outcomes that none of them want but none can escape individually. Each actor rationally pursues their own interest, but the aggregate result is collectively irrational. Applied to AI, this captures how competition between labs, companies, or nations could produce dangerous AI outcomes even when no individual actor wants that.
+
+This is related to racing dynamics but broader—it's the general structure that makes racing dynamics hard to escape.
+
+## The Structure
+
+Multiple actors compete in a shared domain. Each actor faces individual incentives that point toward some action (cutting corners on safety, deploying faster, etc.). If any actor doesn't take that action, they lose relative position. So everyone takes the action. The result is worse for everyone than if they'd all refrained.
+
+Classic examples include arms races (everyone arms, everyone is less secure), fishing depletion (everyone overfishes, fish stocks collapse), and pollution (everyone pollutes, everyone breathes dirty air).
+
+## How It Applies to AI
+
+If Lab A invests heavily in safety, it falls behind Lab B that doesn't. Lab A's options are: accept falling behind, or reduce safety investment. Neither is good. The trap is that even safety-conscious actors are pushed toward unsafe behavior.
+
+The same dynamic applies between nations. If Country X restricts AI development for safety, Country Y gains advantage. Neither wants AI catastrophe, but both feel pressure to advance as fast as possible.
+
+Individual actors can't escape unilaterally. Lab A acting safely while others don't just means Lab A loses and unsafe AI still gets developed. The problem is structural, not individual.
+
+## What Makes AI Different
+
+AI competition may have especially high stakes. The difference between first and second in AI development might be very large—possibly decisive advantages in economics, military power, and global influence.
+
+Speed of development increases pressure. When progress is rapid, even small delays feel costly. There's less time for coordination.
+
+Existential stakes mean the collective bad outcome isn't just suboptimal—it could be catastrophic. Yet the trap structure remains.
+
+## Escaping the Trap
+
+Coordination between competitors can theoretically solve multipolar traps. If all actors agree to slow down or invest in safety, no one loses relative position. This is why arms control treaties exist.
+
+External enforcement by governments or international bodies can change incentive structures. If unsafe AI development is penalized, individual incentive aligns with collective interest.
+
+Changing the game means restructuring so that safety is a competitive advantage rather than a cost. If users, investors, or regulators prefer safe AI, safety becomes individually rational.
+
+But coordination is hard. Verification is difficult. Trust is limited. Actors have incentive to defect from agreements. These challenges explain why multipolar traps are common historically.
+
+## Relationship to Other Risks
+
+Multipolar traps interact with other risks. They make racing dynamics hard to escape. They increase probability of accidents by pushing actors to cut corners. They reduce investment in alignment research. They make governance harder to implement.
+
+Understanding AI risk requires understanding not just technical problems but the game-theoretic structure that makes addressing them difficult.
+
+<Section title="Related Topics">
+  <Tags tags={[
+    "Game Theory",
+    "Coordination",
+    "Competition",
+    "AI Governance",
+    "Collective Action",
+  ]} />
+</Section>
+
+<Section title="Related Entries">
+  <EntityCards>
+    <EntityCard
+      id="racing-dynamics"
+      category="risk"
+      title="Racing Dynamics"
+      description="Specific instance of multipolar trap"
+    />
+    <EntityCard
+      id="concentration-of-power"
+      category="risk"
+      title="Concentration of Power"
+      description="Alternative: escape through monopoly"
+    />
+  </EntityCards>
+</Section>
+
+<Sources sources={[
+  { title: "Meditations on Moloch", url: "https://slatestarcodex.com/2014/07/30/meditations-on-moloch/", author: "Scott Alexander" },
+  { title: "Racing to the Precipice", author: "Armstrong et al." },
+  { title: "The Logic of Collective Action", author: "Mancur Olson" },
+]} />

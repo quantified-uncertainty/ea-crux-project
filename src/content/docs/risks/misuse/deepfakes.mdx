@@ -1,0 +1,93 @@
+---
+title: Deepfakes
+description: AI-generated synthetic media for impersonation and fabrication
+sidebar:
+  order: 5
+---
+
+import { InfoBox, EntityCard, EntityCards, Tags, Sources, Section } from '../../../../components/wiki';
+
+<InfoBox
+  type="risk"
+  title="Deepfakes"
+  severity="medium-high"
+  likelihood="Very High (occurring)"
+  timeframe="Current"
+  customFields={[
+    { label: "Status", value: "Widespread" },
+    { label: "Key Risk", value: "Authenticity crisis" },
+  ]}
+/>
+
+## Overview
+
+Deepfakes are AI-generated synthetic media—typically video or audio—that realistically depict people saying or doing things they never did. The technology has rapidly advanced from obviously fake to nearly indistinguishable from reality, creating both direct harms (fraud, harassment, defamation) and systemic harms (erosion of trust in authentic evidence).
+
+The term originally referred specifically to face-swapping in videos but now encompasses any synthetic media designed to deceive.
+
+## Technical Capabilities
+
+Face swapping replaces one person's face with another's in video footage. Modern systems can do this in real-time with minimal artifacts. Voice cloning synthesizes speech in a target's voice from just seconds of audio samples. Full body synthesis generates complete video of people from scratch.
+
+Quality has improved dramatically. In 2017, deepfakes were obviously artificial. By 2024, detection often requires specialized tools. The trajectory suggests synthetic media will be effectively indistinguishable from authentic media.
+
+Real-time generation means deepfakes can now be created during video calls, enabling new forms of impersonation fraud.
+
+## Categories of Harm
+
+Non-consensual intimate imagery is currently the most common harmful use. Individuals' faces are placed onto pornographic content without consent, causing significant psychological harm and reputational damage. This disproportionately affects women.
+
+Fraud and scams use voice cloning or video deepfakes to impersonate individuals, often in financial schemes. Cases have included fake executives authorizing transfers and fake family members requesting money.
+
+Political manipulation uses deepfakes of politicians to spread false statements, create fake scandals, or undermine elections. While high-profile political deepfakes have been caught quickly, more subtle uses may go undetected.
+
+Evidence fabrication could place innocent people at crime scenes or create false evidence of actions that didn't occur, threatening justice systems.
+
+## The Liar's Dividend
+
+Perhaps more insidious than fake content is the "liar's dividend"—the ability to dismiss real content as fake. When any video could be synthetic, people can deny authentic recordings by claiming they're deepfakes.
+
+This already happens. Politicians have claimed real recordings were fabricated. This defense will become more plausible as synthetic media quality improves, potentially making all video evidence deniable.
+
+## Detection and Countermeasures
+
+Detection tools analyze videos for artifacts, inconsistencies, and statistical signatures of AI generation. But detection is an arms race that generation is currently winning. As generators improve, they specifically optimize to evade detection methods.
+
+Content authentication systems aim to establish provenance—cryptographically signing content at creation to verify it wasn't manipulated. The C2PA (Coalition for Content Provenance and Authenticity) is developing standards. But adoption challenges remain.
+
+Platform policies can remove detected deepfakes, but scale makes comprehensive moderation difficult.
+
+Legal approaches include laws against non-consensual deepfakes (now enacted in several jurisdictions) and applying existing fraud and defamation laws to deepfake contexts.
+
+<Section title="Related Topics">
+  <Tags tags={[
+    "Synthetic Media",
+    "Identity",
+    "Authentication",
+    "Digital Trust",
+    "AI Misuse",
+  ]} />
+</Section>
+
+<Section title="Related Entries">
+  <EntityCards>
+    <EntityCard
+      id="disinformation"
+      category="risk"
+      title="Disinformation"
+      description="Deepfakes as disinformation tool"
+    />
+    <EntityCard
+      id="trust-erosion"
+      category="risk"
+      title="Trust Erosion"
+      description="Systemic effects on evidence and trust"
+    />
+  </EntityCards>
+</Section>
+
+<Sources sources={[
+  { title: "Deepfakes and the New Disinformation War", url: "https://www.foreignaffairs.com/" },
+  { title: "C2PA content authenticity standards", url: "https://c2pa.org/" },
+  { title: "Sensity AI Deepfake reports" },
+]} />

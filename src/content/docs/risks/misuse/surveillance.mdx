@@ -1,0 +1,97 @@
+---
+title: Mass Surveillance
+description: AI-enabled monitoring and tracking at population scale
+sidebar:
+  order: 6
+---
+
+import { InfoBox, EntityCard, EntityCards, Tags, Sources, Section } from '../../../../components/wiki';
+
+<InfoBox
+  type="risk"
+  title="AI Mass Surveillance"
+  severity="high"
+  likelihood="Very High (occurring)"
+  timeframe="Current"
+  customFields={[
+    { label: "Status", value: "Deployed in multiple countries" },
+    { label: "Key Change", value: "Automation of analysis" },
+  ]}
+/>
+
+## Overview
+
+AI dramatically expands surveillance capabilities. Previously, collecting data was easy but analysis was the bottleneck—human analysts could only review so much. AI removes this constraint. Facial recognition can identify individuals in crowds. Natural language processing can monitor communications at scale. Pattern analysis can track behavior across data sources.
+
+This shifts surveillance from targeted (watching specific suspects) to mass (watching everyone and finding suspects).
+
+## Technical Capabilities
+
+Facial recognition can identify individuals in real-time across camera networks. Modern systems work at scale with high accuracy, though performance varies across demographics. Gait recognition identifies people by how they walk, even when faces are obscured.
+
+Communications monitoring uses AI to process text, voice, and video at scale. Systems can flag keywords, analyze sentiment, identify relationships, and detect patterns across billions of communications.
+
+Behavior analysis tracks patterns of movement, purchases, associations, and online activity. AI can identify anomalies, predict behavior, and infer private information from seemingly innocuous data.
+
+Predictive policing attempts to forecast where crimes will occur or who will commit them, though accuracy and bias are contested.
+
+## Current Deployment
+
+China has built the most extensive AI surveillance infrastructure, including widespread facial recognition, social credit systems, and monitoring of ethnic minorities in Xinjiang. These systems are also being exported to other countries.
+
+Democratic countries use AI surveillance too, though typically with more legal constraints. Facial recognition is deployed by law enforcement in many Western countries. Communications monitoring occurs under various legal frameworks.
+
+The private sector collects vast data that can be accessed by governments. The line between commercial data collection and state surveillance is often blurry.
+
+## Risks and Harms
+
+Privacy erosion occurs as AI makes it possible to track and record everything people do. The assumption of anonymity in public spaces disappears. Private life becomes observable.
+
+Chilling effects mean that when people know they're watched, they behave differently. Self-censorship increases. Political organizing becomes risky. Conformity pressure rises.
+
+Power asymmetries grow as those with surveillance capabilities can see everything about others while remaining opaque themselves. This undermines democratic accountability and enables abuse.
+
+Discrimination results when surveillance systems work less well for marginalized groups or when surveillance is disproportionately targeted at them.
+
+Authoritarianism becomes more stable when AI surveillance makes organizing resistance nearly impossible, potentially enabling durable autocracies.
+
+## Governance Challenges
+
+Regulation often lags technology. AI surveillance capabilities expand faster than legal frameworks adapt. Different jurisdictions have very different approaches, from GDPR restrictions to minimal limits.
+
+Dual-use technology means the same AI that enables surveillance also has legitimate uses, complicating restrictions.
+
+Private-public boundaries blur when governments access commercial data, or when private companies exercise surveillance power directly.
+
+<Section title="Related Topics">
+  <Tags tags={[
+    "Privacy",
+    "Facial Recognition",
+    "Authoritarianism",
+    "Digital Rights",
+    "AI Governance",
+  ]} />
+</Section>
+
+<Section title="Related Entries">
+  <EntityCards>
+    <EntityCard
+      id="authoritarian-tools"
+      category="risk"
+      title="Authoritarian Tools"
+      description="AI enabling political control"
+    />
+    <EntityCard
+      id="concentration-of-power"
+      category="risk"
+      title="Concentration of Power"
+      description="Power asymmetries from AI"
+    />
+  </EntityCards>
+</Section>
+
+<Sources sources={[
+  { title: "AI and Surveillance: How China's 'Skynet' Works", url: "https://www.bbc.com/" },
+  { title: "AI Global Surveillance (AIGS) Index", url: "https://carnegieendowment.org/" },
+  { title: "Electronic Frontier Foundation on facial recognition", url: "https://www.eff.org/" },
+]} />
