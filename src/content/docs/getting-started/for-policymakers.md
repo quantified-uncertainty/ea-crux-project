@@ -137,7 +137,7 @@ AI undermining our ability to distinguish true from false.
 - Enforcement through fines and market restrictions
 
 **United Kingdom:**
-- [UK AI Safety Institute](/knowledge-base/policies/uk-aisi/) (AISI) - Government research institute
+- [UK AI Safety Institute](/knowledge-base/organizations/government/uk-aisi/) (AISI) - Government research institute
 - Focus on frontier AI safety research and evaluations
 - "Pro-innovation" approach with light regulation
 - Hosted AI Safety Summits (Bletchley Park, Seoul)
@@ -211,7 +211,7 @@ Based on case studies and expert analysis, these approaches show promise:
 - Can evaluations keep pace with capabilities?
 - Risk of regulatory capture
 
-**Read**: [Evaluations approach](/knowledge-base/safety-approaches/technical/evals/) and [UK AISI](/knowledge-base/policies/uk-aisi/)
+**Read**: [Evaluations approach](/knowledge-base/safety-approaches/technical/evals/) and [UK AISI](/knowledge-base/organizations/government/uk-aisi/)
 
 #### 3. Licensing and Registration
 
@@ -478,7 +478,7 @@ Based on your specific policy focus:
 
 1. [Accident Risks](/knowledge-base/risks/accident/) - What to test for (1 hour)
 2. [Evaluations Approach](/knowledge-base/safety-approaches/technical/evals/) - How testing works (30 min)
-3. [UK AISI](/knowledge-base/policies/uk-aisi/) - Government evaluation example (20 min)
+3. [UK AISI](/knowledge-base/organizations/government/uk-aisi/) - Government evaluation example (20 min)
 4. [Organizations](/knowledge-base/organizations/) - Who's developing evaluation frameworks (1 hour)
 
 ### If You're Working on Economic/Labor Policy
@@ -605,7 +605,7 @@ Depending on your specific role:
 **If you're setting standards:**
 1. Understand [what to evaluate](/knowledge-base/safety-approaches/technical/evals/)
 2. Learn about [specific risks](/knowledge-base/risks/) to test for
-3. Review [UK AISI](/knowledge-base/policies/uk-aisi/) as government evaluation model
+3. Review [UK AISI](/knowledge-base/organizations/government/uk-aisi/) as government evaluation model
 4. Engage technical experts on measurement
 5. Design adaptive standards that evolve with capabilities
 
