@@ -231,16 +231,16 @@ We've tried to be transparent about these limitations. If you're skeptical of th
 Different readers will want different paths through the material:
 
 **If you're completely new to AI safety:**
-Start with the [FAQ](/knowledge-base/resources/faq/) to get basic orientation, then work through the [Core Argument](/understanding-ai-risk/core-argument/) section systematically.
+Start with the [FAQ](/getting-started/faq/) to get basic orientation, then work through the [Core Argument](/understanding-ai-risk/core-argument/) section systematically.
 
 **If you're deciding whether to work on AI safety:**
-Explore [Interventions](/knowledge-base/interventions/) to understand what kinds of work exist, check out [Organizations](/knowledge-base/organizations/) to see who's hiring, and read about [different worldviews](/understanding-ai-risk/worldviews/) to understand the range of perspectives.
+Explore [Interventions](/knowledge-base/responses/) to understand what kinds of work exist, check out [Organizations](/knowledge-base/organizations/) to see who's hiring, and read about [different worldviews](/understanding-ai-risk/worldviews/) to understand the range of perspectives.
 
 **If you're a technical researcher:**
-Dive into [Safety Approaches](/knowledge-base/safety-approaches/technical/) to understand current research directions, review [Research Agendas](/knowledge-base/research-agendas/) for comparisons, and explore specific [Risk & Failure Modes](/knowledge-base/risks/) that motivate different approaches.
+Dive into [Safety Approaches](/knowledge-base/responses/technical/) to understand current research directions, review [Research Agendas](/knowledge-base/responses/technical/research-agendas/) for comparisons, and explore specific [Risk & Failure Modes](/knowledge-base/risks/) that motivate different approaches.
 
 **If you're a policymaker or governance professional:**
-Start with [Governance Approaches](/knowledge-base/safety-approaches/governance/), review [Case Studies](/analysis/case-studies/) from other technologies, and examine [Policies](/knowledge-base/policies/) currently being developed.
+Start with [Governance Approaches](/knowledge-base/responses/governance/), and review [Case Studies](/analysis/case-studies/) from other technologies.
 
 **If you're forming your own views:**
 Use the [Critical Uncertainties](/understanding-ai-risk/models/critical-uncertainties/) page to identify key questions, explore [Key Debates](/understanding-ai-risk/debates/) to see arguments on different sides, and examine how different [Worldviews](/understanding-ai-risk/worldviews/) weight the evidence.
@@ -291,7 +291,7 @@ That's why this field exists. That's why this wiki exists. And that's why, if yo
 Ready to dive deeper? Here are the recommended next steps:
 
 **For newcomers:**
-1. Read the [FAQ](/knowledge-base/resources/faq/) for quick answers to common questions
+1. Read the [FAQ](/getting-started/faq/) for quick answers to common questions
 2. Work through the [Core Argument](/understanding-ai-risk/core-argument/) to understand the basic case
 3. Explore [Key Risks](/knowledge-base/risks/) to see specific failure modes
 4. Check out [Historical Scenarios](/analysis/scenarios/) to make it concrete
@@ -303,10 +303,9 @@ Ready to dive deeper? Here are the recommended next steps:
 4. Consider [Critical Uncertainties](/understanding-ai-risk/models/critical-uncertainties/) that drive disagreements
 
 **For those ready to contribute:**
-1. Explore [Interventions](/knowledge-base/interventions/) to see what kinds of work exist
+1. Explore [Responses](/knowledge-base/responses/) to see what kinds of work exist
 2. Check out [Organizations](/knowledge-base/organizations/) to understand who's working on what
-3. Review [Career Paths](/knowledge-base/resources/careers/) if you're considering working in the field
-4. Read about [Funding](/knowledge-base/resources/funding/) if you're starting a project
+3. Read about [Funders](/knowledge-base/funders/) if you're starting a project
 
 The rest of this "Getting Started" section provides curated reading paths for different audiences:
 - [For Newcomers](/getting-started/for-newcomers/) - If you're completely new to AI safety

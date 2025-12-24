@@ -1,0 +1,45 @@
+---
+/**
+ * Custom PageFrame that auto-injects PageStatus from frontmatter
+ *
+ * This overrides Starlight's default PageFrame to add the PageStatus
+ * component at the top of content pages when quality/llmSummary/etc
+ * are defined in frontmatter.
+ */
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/PageFrame.astro';
+import { PageStatus } from '../wiki/PageStatus';
+
+// Extract frontmatter from the entry data
+const { entry } = Astro.props;
+const frontmatter = entry?.data || {};
+
+// Check if this is a knowledge-base page with editorial metadata
+const hasEditorialMeta = frontmatter.quality || frontmatter.llmSummary || frontmatter.todo;
+const isKnowledgeBasePage = Astro.url.pathname.includes('/knowledge-base/');
+const showPageStatus = hasEditorialMeta && isKnowledgeBasePage;
+---
+
+<Default {...Astro.props}>
+  <slot name="header" slot="header" />
+  <slot name="sidebar" slot="sidebar" />
+  {showPageStatus && (
+    <div class="page-status-wrapper">
+      <PageStatus
+        client:load
+        quality={frontmatter.quality}
+        llmSummary={frontmatter.llmSummary}
+        lastEdited={frontmatter.lastEdited}
+        todo={frontmatter.todo}
+        devOnly={true}
+      />
+    </div>
+  )}
+  <slot />
+</Default>
+
+<style>
+  .page-status-wrapper {
+    margin-bottom: 1rem;
+  }
+</style>

@@ -24,6 +24,8 @@ export const backlinks: Record<string, Array<{ id: string; type: string; title: 
   (database as any).backlinks || {};
 export const tagIndex: Record<string, Array<{ id: string; type: string; title: string }>> =
   (database as any).tagIndex || {};
+export const pathRegistry: Record<string, string> =
+  (database as any).pathRegistry || {};
 export const stats: {
   totalEntities: number;
   byType: Record<string, number>;
@@ -565,29 +567,67 @@ export function getRisksForTable(): RiskTableRow[] {
 }
 
 /**
- * Generate href for an entity based on its ID and type
+ * Get the URL path for an entity by its ID
+ * Uses the path registry (built from actual file locations) for accurate paths
+ * Falls back to type-based inference if not found in registry
  */
-export function getEntityHref(id: string, type: string): string {
+export function getEntityPath(id: string): string | null {
+  // First check the path registry (most accurate)
+  if (pathRegistry[id]) {
+    return pathRegistry[id];
+  }
+  return null;
+}
+
+/**
+ * Generate href for an entity based on its ID and type
+ * Uses path registry first, falls back to type-based mapping
+ */
+export function getEntityHref(id: string, type?: string): string {
+  // First try the path registry (accurate, based on actual files)
+  const registryPath = pathRegistry[id];
+  if (registryPath) {
+    return registryPath;
+  }
+
+  // Fall back to type-based mapping for entities not in content files
   const pathMapping: Record<string, string> = {
-    'risk': '/knowledge-base/risks/',
+    'risk': '/knowledge-base/risks/accident/',
+    'risk-factor': '/knowledge-base/risk-factors/',
     'capability': '/knowledge-base/capabilities/',
     'safety-agenda': '/knowledge-base/responses/technical/',
     'policy': '/knowledge-base/responses/governance/',
-    'lab': '/knowledge-base/organizations/',
-    'lab-frontier': '/knowledge-base/organizations/',
-    'lab-research': '/knowledge-base/organizations/',
-    'lab-startup': '/knowledge-base/organizations/',
-    'lab-academic': '/knowledge-base/organizations/',
+    'organization': '/knowledge-base/organizations/',
+    'lab': '/knowledge-base/organizations/labs/',
+    'lab-frontier': '/knowledge-base/organizations/labs/',
+    'lab-research': '/knowledge-base/organizations/safety-orgs/',
+    'lab-startup': '/knowledge-base/organizations/labs/',
+    'lab-academic': '/knowledge-base/organizations/safety-orgs/',
     'researcher': '/knowledge-base/people/',
-    'crux': '/knowledge-base/key-uncertainties/',
+    'crux': '/knowledge-base/cruxes/',
     'scenario': '/analysis/scenarios/',
     'resource': '/resources/',
     'funder': '/knowledge-base/funders/',
     'intervention': '/knowledge-base/responses/',
+    'historical': '/knowledge-base/history/',
   };
 
-  const basePath = pathMapping[type] || '/knowledge-base/';
+  const basePath = pathMapping[type || ''] || '/knowledge-base/';
   return `${basePath}${id}/`;
+}
+
+/**
+ * Get entity info including resolved path
+ * Returns null if entity not found
+ */
+export function getEntityWithPath(id: string): (Entity & { href: string }) | null {
+  const entity = getEntityById(id);
+  if (!entity) return null;
+
+  return {
+    ...entity,
+    href: getEntityHref(id, entity.type),
+  };
 }
 
 /**

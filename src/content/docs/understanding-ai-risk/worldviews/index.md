@@ -9,10 +9,10 @@ People's views on AI safety tend to cluster into recognizable worldviews. Each w
 
 | Worldview | Core Belief | P(doom) | Priority Approaches |
 |-----------|-------------|---------|---------------------|
-| [AI Doomer](/worldviews/doomer) | Alignment is very hard; timelines short | 30-90% | Pause, agent foundations, governance |
-| [Optimistic Alignment](/worldviews/optimistic) | Alignment is tractable engineering | <5% | RLHF, evals, lab culture |
-| [Governance-Focused](/worldviews/governance-focused) | Technical solutions need policy support | 10-30% | Policy, compute governance, coordination |
-| [Long-Timelines Technical](/worldviews/long-timelines) | We have time for careful research | 5-20% | Interpretability, agent foundations |
+| [AI Doomer](/understanding-ai-risk/worldviews/doomer/) | Alignment is very hard; timelines short | 30-90% | Pause, agent foundations, governance |
+| [Optimistic Alignment](/understanding-ai-risk/worldviews/optimistic/) | Alignment is tractable engineering | <5% | RLHF, evals, lab culture |
+| [Governance-Focused](/understanding-ai-risk/worldviews/governance-focused/) | Technical solutions need policy support | 10-30% | Policy, compute governance, coordination |
+| [Long-Timelines Technical](/understanding-ai-risk/worldviews/long-timelines/) | We have time for careful research | 5-20% | Interpretability, agent foundations |
 
 ## How Worldviews Form
 

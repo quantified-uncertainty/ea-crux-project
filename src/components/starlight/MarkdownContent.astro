@@ -1,0 +1,34 @@
+---
+/**
+ * Custom MarkdownContent that auto-injects PageStatus from frontmatter
+ *
+ * This overrides Starlight's default MarkdownContent to add the PageStatus
+ * component at the top of content pages when quality/llmSummary/etc
+ * are defined in frontmatter.
+ */
+import '../../../node_modules/@astrojs/starlight/style/markdown.css';
+import { PageStatus } from '../wiki/PageStatus';
+
+// Get frontmatter from the route context
+const { entry } = Astro.locals.starlightRoute;
+const frontmatter = entry?.data || {};
+
+// Check if this is a knowledge-base page with editorial metadata
+const hasEditorialMeta = frontmatter.quality || frontmatter.llmSummary || frontmatter.todo;
+const isKnowledgeBasePage = Astro.url.pathname.includes('/knowledge-base/');
+const showPageStatus = hasEditorialMeta && isKnowledgeBasePage;
+---
+
+<div class="sl-markdown-content">
+  {showPageStatus && (
+    <PageStatus
+      client:load
+      quality={frontmatter.quality}
+      llmSummary={frontmatter.llmSummary}
+      lastEdited={frontmatter.lastEdited}
+      todo={frontmatter.todo}
+      devOnly={true}
+    />
+  )}
+  <slot />
+</div>

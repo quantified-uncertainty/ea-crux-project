@@ -11,12 +11,12 @@ These models offer different lenses for analyzing AI existential risk. Each emph
 
 | Model | Core Thesis | Key Variables | Best For |
 |-------|-------------|---------------|----------|
-| [Capability-Alignment Race](/models/capability-alignment-race) | Risk emerges from the gap between capability progress and safety readiness | Compute, interpretability, governance, deployment pressure | Technical researchers, policy analysts |
-| [Multi-Actor Strategic Landscape](/models/multi-actor-landscape) | Risk depends on which actors develop TAI and their incentive structures | US-China competition, transparency, first-mover advantage | Geopolitical analysts, governance researchers |
-| [Technical Pathway Decomposition](/models/technical-pathways) | Different architectures create distinct risk profiles | Scaling, agency, safety techniques, dangerous capabilities | ML researchers, technical safety teams |
-| [Societal Response & Adaptation](/models/societal-response) | Humanity's collective response determines outcomes more than technical factors | Public concern, institutional capacity, coordination mechanisms | Policy researchers, social scientists |
-| [Feedback Loop & Cascade](/models/feedback-loops) | Risk emerges from reinforcing feedback loops that accelerate through thresholds | Investment cycles, threshold crossings, cascade dynamics | Systems thinkers, risk analysts |
-| [Critical Uncertainties](/models/critical-uncertainties) | Focus on high-leverage, genuinely uncertain, empirically resolvable variables | Compute, algorithms, governance, capability thresholds | Forecasters, quantitative analysts |
+| [Capability-Alignment Race](/understanding-ai-risk/models/capability-alignment-race/) | Risk emerges from the gap between capability progress and safety readiness | Compute, interpretability, governance, deployment pressure | Technical researchers, policy analysts |
+| [Multi-Actor Strategic Landscape](/understanding-ai-risk/models/multi-actor-landscape/) | Risk depends on which actors develop TAI and their incentive structures | US-China competition, transparency, first-mover advantage | Geopolitical analysts, governance researchers |
+| [Technical Pathway Decomposition](/understanding-ai-risk/models/technical-pathways/) | Different architectures create distinct risk profiles | Scaling, agency, safety techniques, dangerous capabilities | ML researchers, technical safety teams |
+| [Societal Response & Adaptation](/understanding-ai-risk/models/societal-response/) | Humanity's collective response determines outcomes more than technical factors | Public concern, institutional capacity, coordination mechanisms | Policy researchers, social scientists |
+| [Feedback Loop & Cascade](/understanding-ai-risk/models/feedback-loops/) | Risk emerges from reinforcing feedback loops that accelerate through thresholds | Investment cycles, threshold crossings, cascade dynamics | Systems thinkers, risk analysts |
+| [Critical Uncertainties](/understanding-ai-risk/models/critical-uncertainties/) | Focus on high-leverage, genuinely uncertain, empirically resolvable variables | Compute, algorithms, governance, capability thresholds | Forecasters, quantitative analysts |
 
 ## Model Comparison
 

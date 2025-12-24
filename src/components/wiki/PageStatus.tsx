@@ -6,15 +6,19 @@
  * - LLM summary (short explanation)
  * - Last edited date
  * - Optional todo/notes
+ *
+ * Supports dev-only mode: only shows when ?dev=true in URL or in development
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface PageStatusProps {
   quality?: 1 | 2 | 3 | 4 | 5;
   llmSummary?: string;
   lastEdited?: string;
   todo?: string;
+  /** If true, only show in dev mode (URL has ?dev=true) */
+  devOnly?: boolean;
 }
 
 const qualityLabels: Record<number, string> = {
@@ -41,9 +45,51 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
-export function PageStatus({ quality, llmSummary, lastEdited, todo }: PageStatusProps) {
+function useDevMode(): boolean {
+  const [isDevMode, setIsDevMode] = useState(false);
+
+  useEffect(() => {
+    // Check URL param
+    const params = new URLSearchParams(window.location.search);
+    const devParam = params.get('dev');
+    // Check localStorage for persistent dev mode
+    const storedDev = localStorage.getItem('pageStatusDevMode');
+
+    let devModeActive = false;
+
+    if (devParam === 'true') {
+      devModeActive = true;
+      localStorage.setItem('pageStatusDevMode', 'true');
+    } else if (devParam === 'false') {
+      devModeActive = false;
+      localStorage.removeItem('pageStatusDevMode');
+    } else if (storedDev === 'true') {
+      devModeActive = true;
+    }
+
+    setIsDevMode(devModeActive);
+
+    // Update root class for sidebar badges and other dev-mode styles
+    if (devModeActive) {
+      document.documentElement.classList.add('page-status-dev-mode');
+    } else {
+      document.documentElement.classList.remove('page-status-dev-mode');
+    }
+  }, []);
+
+  return isDevMode;
+}
+
+export function PageStatus({ quality, llmSummary, lastEdited, todo, devOnly = false }: PageStatusProps) {
+  const isDevMode = useDevMode();
+
   // Don't render if no metadata provided
   if (!quality && !llmSummary && !lastEdited && !todo) {
+    return null;
+  }
+
+  // In devOnly mode, only render if dev mode is active
+  if (devOnly && !isDevMode) {
     return null;
   }
 

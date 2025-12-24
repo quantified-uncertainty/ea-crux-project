@@ -13,6 +13,10 @@ export default defineConfig({
       starlight({
           title: 'EA Crux Project',
           customCss: ['./src/styles/global.css'],
+          components: {
+              // Auto-inject PageStatus from frontmatter
+              MarkdownContent: './src/components/starlight/MarkdownContent.astro',
+          },
           tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
           social: [
               { icon: 'github', label: 'GitHub', href: 'https://github.com/quantified-uncertainty/ea-crux-project' },

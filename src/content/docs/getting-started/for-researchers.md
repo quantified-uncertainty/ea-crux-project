@@ -43,7 +43,7 @@ This is fundamentally harder and may require different approaches than current M
 Before going further, read these two foundational pieces:
 
 1. **[Alignment Difficulty](/understanding-ai-risk/core-argument/alignment-difficulty/)** (20 min) - Why alignment is technically hard
-2. **[Research Agendas Comparison](/knowledge-base/research-agendas/)** (30 min) - Overview of different technical approaches
+2. **[Research Agendas Comparison](/knowledge-base/responses/technical/research-agendas/)** (30 min) - Overview of different technical approaches
 
 This will give you enough context to evaluate whether the technical challenges are interesting to you.
 
@@ -97,7 +97,7 @@ The field has several main research directions:
 - Background in neuroscience or reverse-engineering helpful
 - Creative hypothesis generation valuable
 
-**Read**: [Interpretability approach overview](/knowledge-base/safety-approaches/technical/interpretability/)
+**Read**: [Interpretability approach overview](/knowledge-base/responses/technical/interpretability/)
 
 #### 2. Scalable Oversight
 
@@ -124,7 +124,7 @@ The field has several main research directions:
 - Human-computer interaction background valuable
 - Game theory or mechanism design relevant
 
-**Read**: [Scalable Oversight overview](/knowledge-base/safety-approaches/technical/scalable-oversight/)
+**Read**: [Scalable Oversight overview](/knowledge-base/responses/technical/scalable-oversight/)
 
 #### 3. AI Control
 
@@ -150,7 +150,7 @@ The field has several main research directions:
 - Systems engineering skills valuable
 - Red-teaming experience useful
 
-**Read**: [AI Control approach](/knowledge-base/safety-approaches/technical/ai-control/)
+**Read**: [AI Control approach](/knowledge-base/responses/technical/ai-control/)
 
 #### 4. Agent Foundations / Theory
 
@@ -177,7 +177,7 @@ The field has several main research directions:
 - Comfort with abstraction and philosophy
 - Ability to identify conceptual confusions
 
-**Read**: [Agent Foundations overview](/knowledge-base/safety-approaches/technical/agent-foundations/)
+**Read**: [Agent Foundations overview](/knowledge-base/responses/technical/agent-foundations/)
 
 #### 5. Evaluation & Measurement
 
@@ -203,7 +203,7 @@ The field has several main research directions:
 - Security/red-teaming background
 - Creative adversarial thinking
 
-**Read**: [Evals approach](/knowledge-base/safety-approaches/technical/evals/)
+**Read**: [Evals approach](/knowledge-base/responses/technical/evals/)
 
 ### Comparing Research Bets
 
@@ -457,8 +457,6 @@ This is a real tension. Arguments on both sides:
 - Better to have safety advocates inside than outside
 - Can make marginal safety improvements in practice
 
-**Read the debate**: [Working at AI Labs debate](/understanding-ai-risk/debates/working-at-labs/) (if it exists)
-
 **Consider**: Your personal theory of change and risk model should drive this decision.
 
 ### "Is this even scientifically tractable?"
@@ -504,7 +502,7 @@ Maybe! AI safety isn't the right choice for everyone.
 - You're much more productive in other technical areas
 - You think other x-risks are more pressing
 
-**Read**: [Interventions overview](/knowledge-base/interventions/) to compare different contribution paths.
+**Read**: [Interventions overview](/knowledge-base/responses/) to compare different contribution paths.
 
 ## Research Culture and Norms
 
@@ -579,7 +577,7 @@ If no, even if the problem is important, you may have higher impact elsewhere.
 Depending on your level of interest:
 
 **If you're just exploring:**
-1. Read [Research Agendas comparison](/knowledge-base/research-agendas/)
+1. Read [Research Agendas comparison](/knowledge-base/responses/technical/research-agendas/)
 2. Pick one approach and read 3-5 key papers
 3. Try a small project in that area
 4. Evaluate your interest and fit
@@ -617,4 +615,4 @@ The field needs:
 
 Make your own assessment. Engage critically. And if you decide to contribute, we're glad to have you.
 
-**Ready to explore?** Start with the [Research Agendas comparison](/knowledge-base/research-agendas/) and go from there.
+**Ready to explore?** Start with the [Research Agendas comparison](/knowledge-base/responses/technical/research-agendas/) and go from there.

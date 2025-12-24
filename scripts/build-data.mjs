@@ -8,11 +8,12 @@
  * Usage: node scripts/build-data.mjs
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join } from 'path';
+import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync, statSync } from 'fs';
+import { join, basename, relative } from 'path';
 import { parse } from 'yaml';
 
 const DATA_DIR = 'src/data';
+const CONTENT_DIR = 'src/content/docs';
 const OUTPUT_FILE = 'src/data/database.json';
 
 // Files to combine
@@ -109,6 +110,57 @@ function buildTagIndex(entities) {
   }
 
   return sortedIndex;
+}
+
+/**
+ * Build path registry by scanning all MDX/MD files
+ * Maps entity IDs (from filenames) to their URL paths
+ */
+function buildPathRegistry() {
+  const registry = {};
+
+  function scanDirectory(dir, urlPrefix = '') {
+    if (!existsSync(dir)) return;
+
+    const entries = readdirSync(dir);
+
+    for (const entry of entries) {
+      const fullPath = join(dir, entry);
+      const stat = statSync(fullPath);
+
+      if (stat.isDirectory()) {
+        // Recurse into subdirectory
+        scanDirectory(fullPath, `${urlPrefix}/${entry}`);
+      } else if (entry.endsWith('.mdx') || entry.endsWith('.md')) {
+        // Extract ID from filename (remove extension)
+        const id = basename(entry, entry.endsWith('.mdx') ? '.mdx' : '.md');
+
+        // Skip index files - they use the directory path
+        if (id === 'index') {
+          // The directory itself is the URL
+          registry[`__index__${urlPrefix}`] = `${urlPrefix}/`;
+        } else {
+          // Build the URL path
+          const urlPath = `${urlPrefix}/${id}/`;
+          registry[id] = urlPath;
+        }
+      }
+    }
+  }
+
+  // Scan the knowledge-base directory
+  scanDirectory(join(CONTENT_DIR, 'knowledge-base'), '/knowledge-base');
+
+  // Also scan other top-level content directories
+  const topLevelDirs = ['understanding-ai-risk', 'analysis', 'getting-started'];
+  for (const topDir of topLevelDirs) {
+    const dirPath = join(CONTENT_DIR, topDir);
+    if (existsSync(dirPath)) {
+      scanDirectory(dirPath, `/${topDir}`);
+    }
+  }
+
+  return registry;
 }
 
 /**
@@ -219,6 +271,11 @@ function main() {
   database.stats = stats;
   console.log(`  stats: computed`);
 
+  // Build path registry from content files
+  const pathRegistry = buildPathRegistry();
+  database.pathRegistry = pathRegistry;
+  console.log(`  pathRegistry: ${Object.keys(pathRegistry).length} paths mapped`);
+
   // Write combined JSON
   writeFileSync(OUTPUT_FILE, JSON.stringify(database, null, 2));
   console.log(`\n✓ Written: ${OUTPUT_FILE}`);
@@ -233,9 +290,10 @@ function main() {
   writeFileSync(join(DATA_DIR, 'backlinks.json'), JSON.stringify(backlinks, null, 2));
   writeFileSync(join(DATA_DIR, 'tagIndex.json'), JSON.stringify(tagIndex, null, 2));
   writeFileSync(join(DATA_DIR, 'stats.json'), JSON.stringify(stats, null, 2));
+  writeFileSync(join(DATA_DIR, 'pathRegistry.json'), JSON.stringify(pathRegistry, null, 2));
 
   console.log('✓ Written individual JSON files');
-  console.log('✓ Written derived data files (backlinks, tagIndex, stats)');
+  console.log('✓ Written derived data files (backlinks, tagIndex, stats, pathRegistry)');
 
   // Print summary stats
   console.log('\n--- Summary ---');

@@ -517,18 +517,18 @@ Based on your specific policy focus:
 ### Research and Advisory
 
 **Safety-focused:**
-- [ARC (Alignment Research Center)](/knowledge-base/organizations/arc/) - Evaluations and research
-- [MIRI (Machine Intelligence Research Institute)](/knowledge-base/organizations/miri/) - Theoretical safety
-- [Centre for the Governance of AI (GovAI)](/knowledge-base/organizations/govai/) - Policy research
+- [ARC (Alignment Research Center)](/knowledge-base/organizations/safety-orgs/arc/) - Evaluations and research
+- [MIRI (Machine Intelligence Research Institute)](/knowledge-base/organizations/safety-orgs/miri/) - Theoretical safety
+- [Centre for the Governance of AI (GovAI)](/knowledge-base/organizations/safety-orgs/govai/) - Policy research
 
 **Frontier Labs:**
-- [Anthropic](/knowledge-base/organizations/anthropic/) - "Safety-focused" commercial lab
-- [OpenAI](/knowledge-base/organizations/openai/) - Commercial lab with safety team
-- [DeepMind](/knowledge-base/organizations/deepmind/) - Google's AI lab with safety research
+- [Anthropic](/knowledge-base/organizations/labs/anthropic/) - "Safety-focused" commercial lab
+- [OpenAI](/knowledge-base/organizations/labs/openai/) - Commercial lab with safety team
+- [DeepMind](/knowledge-base/organizations/labs/deepmind/) - Google's AI lab with safety research
 
 **Academic Centers:**
-- [CAIS (Center for AI Safety)](/knowledge-base/organizations/cais/) - Field-building and research
-- [CHAI (Center for Human-Compatible AI)](/knowledge-base/organizations/chai/) - UC Berkeley
+- [CAIS (Center for AI Safety)](/knowledge-base/organizations/safety-orgs/cais/) - Field-building and research
+- [CHAI (Center for Human-Compatible AI)](/knowledge-base/organizations/safety-orgs/chai/) - UC Berkeley
 - Various university groups
 
 **Read**: Individual organization pages for their policy positions and recommendations

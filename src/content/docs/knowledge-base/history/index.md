@@ -266,7 +266,7 @@ For detailed exploration of each era:
 - [Key Publications](/knowledge-base/history/key-publications)
 
 For analysis of specific organizations mentioned in this history:
-- [MIRI](/knowledge-base/organizations/miri)
-- [DeepMind](/knowledge-base/organizations/deepmind)
-- [OpenAI](/knowledge-base/organizations/openai)
-- [Anthropic](/knowledge-base/organizations/anthropic)
+- [MIRI](/knowledge-base/organizations/safety-orgs/miri/)
+- [DeepMind](/knowledge-base/organizations/labs/deepmind/)
+- [OpenAI](/knowledge-base/organizations/labs/openai/)
+- [Anthropic](/knowledge-base/organizations/labs/anthropic/)

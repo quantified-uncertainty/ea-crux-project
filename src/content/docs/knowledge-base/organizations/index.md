@@ -182,7 +182,6 @@ This ecosystem involves:
 ## Further Reading
 
 For comprehensive understanding, read organization profiles in conjunction with:
-- [People profiles](/knowledge-base/people) - Key researchers and leaders
-- [Safety approaches](/knowledge-base/safety-approaches) - Technical agendas
-- [Risks](/knowledge-base/risks) - Threat models organizations address
-- [Policies](/knowledge-base/policies) - Governance proposals and frameworks
+- [People profiles](/knowledge-base/people/) - Key researchers and leaders
+- [Responses](/knowledge-base/responses/) - Technical and governance approaches
+- [Risks](/knowledge-base/risks/) - Threat models organizations address
