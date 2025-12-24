@@ -1,0 +1,538 @@
+---
+title: Lab Behavior & Industry
+description: Metrics tracking AI lab safety practices, transparency, and corporate governance
+sidebar:
+  order: 7
+---
+
+## Overview
+
+This page tracks measurable indicators of AI laboratory behavior, safety practices, and industry transparency. These metrics help assess whether leading AI companies are following responsible development practices and honoring their public commitments.
+
+Understanding lab behavior is critical because corporate practices directly influence AI safety outcomes. Even the best technical safety research is insufficient if labs are racing to deploy systems without adequate testing, suppressing internal safety concerns, or failing to disclose dangerous capabilities.
+
+---
+
+## 1. Voluntary Commitment Compliance Rate
+
+**Current Status (2025):** Mixed compliance, with significant variation across companies and commitment types.
+
+### Key Findings
+
+A comprehensive study from August 2025 examining companies' adherence to their White House voluntary AI commitments found:
+
+- **Average compliance:** 53% across all 16 signatory companies
+- **Top performer:** OpenAI at 83%
+- **First cohort (July 2023):** 69.0% mean compliance (7 companies including Amazon, Anthropic, Google, Inflection, Meta, Microsoft, OpenAI)
+- **Second cohort (September 2023):** 44.6% mean compliance (8 companies including Adobe, Cohere, IBM, Nvidia, Palantir, Salesforce, Scale AI, Stability AI)
+- **Third cohort (July 2024):** Apple joined
+
+### Weakest Areas
+
+- **Model weight security:** 17% average compliance (11 of 16 companies scored 0%)
+- **Third-party reporting:** 34.4% average compliance (8 companies scored 0%)
+
+### Related Commitments
+
+In May 2024, 16 AI companies joined the Frontier AI Safety Commitments, pledging to develop Responsible Scaling Policies (RSPs) by February 2025. Many companies did publish RSPs, though the quality and specificity varies significantly.
+
+### Concerning Developments
+
+In April 2025, OpenAI removed a provision from its Preparedness Framework without noting the change in the changelog, raising transparency concerns.
+
+**Data Quality:** Based on detailed public rubric scoring of disclosed company behavior. Limitations include reliance on public disclosure and potential for selective transparency.
+
+---
+
+## 2. RSP Capability Threshold Crossings
+
+**Current Status (2025):** No publicly confirmed threshold crossings requiring upgraded safeguards, though evaluation methodologies remain contested.
+
+### Anthropic's RSP Framework
+
+Anthropic pioneered the Responsible Scaling Policy approach in September 2023, establishing:
+
+- **AI Safety Levels (ASL):** Graduated safety standards inspired by Biosafety Levels (ASL-1 through ASL-3+)
+- **Capability Thresholds:** Specific AI abilities triggering stronger safeguards
+- **Required Safeguards:** Mitigations corresponding to each threshold
+
+### Key Threshold Domains
+
+Current RSP frameworks focus on:
+
+- **CBRN capabilities:** Chemical, Biological, Radiological, and Nuclear weapons assistance
+- **Autonomous AI R&D:** Ability to fully automate research work or dramatically accelerate scaling (defined as ~1000x increase in effective scaling per year)
+- **Cybersecurity capabilities:** Advanced hacking and vulnerability exploitation
+
+### Recent Changes and Concerns
+
+**Version 2 Updates:** Anthropic shifted from quantitative benchmarks to qualitative descriptions of capability levels. Critics note this reduces verifiability.
+
+**Grade decline:** According to SaferAI, Anthropic's grade dropped from 2.2 to 1.9, placing them in the "weak" category alongside OpenAI and DeepMind. The primary concern is the shift away from precisely defined thresholds.
+
+**Institute for AI Policy and Strategy recommendation:** Companies should define verifiable risk thresholds informed by "societal risk" tolerances from other industries. Current thresholds may be too lenient.
+
+### Detection Challenges
+
+Small improvements in elicitation methodology can dramatically increase scores on evaluation benchmarks. Naive elicitation strategies may significantly underreport risk profiles, potentially missing dangerous capabilities that sophisticated actors could unlock.
+
+**Data Quality:** Limited public disclosure of evaluation results. Companies control both the design and disclosure of dangerous capability evaluations, creating incentives to underreport concerning findings.
+
+---
+
+## 3. Time Between Model Training and Safety Evaluation
+
+**Current Status (2025):** Decreasing evaluation windows, with some tests compressed from months to days.
+
+### Shortened Timelines
+
+The Financial Times reported that OpenAI has been **slashing safety evaluation time**, giving testers "just a few days for evaluations that had previously been allotted weeks or months to be completed."
+
+This compression creates severe constraints on thorough safety testing, as:
+- Complex evaluations require substantial time to design and execute
+- Emergent capabilities may only become apparent through extended testing
+- Red teams need adequate access to explore edge cases and failure modes
+
+### Pre-Deployment Testing Examples
+
+**OpenAI o1 evaluation (December 2024):** US AISI and UK AISI conducted joint pre-deployment testing during a "limited period of pre-deployment access." Testing was conducted by expert engineers and scientists across three domains:
+1. Cyber capabilities
+2. Biological capabilities
+3. Software and AI development
+
+The evaluators noted that testing was "conducted in a limited time period with finite resources, which if extended could expand the scope of findings."
+
+### Evaluator Access Challenges
+
+METR and other evaluation organizations report that comprehensive risk assessments require:
+- Substantial expertise and specialized knowledge
+- Direct access to models and training data
+- More time than companies typically provide
+- Information about technical methodologies that companies often withhold
+
+### AI Safety Index Findings
+
+Researchers found that "AI companies are unlikely to make high-assurance safety cases if timelines are short." The gap between capabilities acceleration and risk management practice is widening.
+
+**Data Quality:** Limited public data on specific evaluation timelines. Most information comes from investigative journalism, evaluator reports, and company transparency documents.
+
+---
+
+## 4. External Red-Team Engagement Rate
+
+**Current Status (2025):** External red teaming is standard practice at major labs, but engagement scope and disclosure vary significantly.
+
+### Major Lab Practices
+
+**OpenAI:** Conducts pre-deployment adversarial testing by vetted external experts. External red teamers identify alignment failures, injection vectors, tool misuse paths, and safety regressions. Findings inform mitigation strategies and deployment decisions.
+
+Notable recent engagements: ControlPlane's Torin van den Bulk contributed to external red team testing on GPT-4o, Operator, o3-mini, and Deep Research, with live access to model checkpoints.
+
+**HackerOne Platform:** Provides structured AI Red Teaming (AIRT) as 15 or 30-day engagements. Over 750 AI-focused researchers contribute to engagements for frontier labs including Anthropic, Snap, and Adobe. HackerOne has tested 1,700+ AI assets across customer scopes.
+
+### Key Vulnerabilities Found
+
+From HackerOne's aggregated testing data:
+- **Cross-tenant data leakage:** Found in nearly all enterprise tests (highest concern)
+- **Prompt injection and jailbreak exploits:** Frequently bypass safety filters
+- **Unsafe outputs:** Various categories of harmful or unintended responses
+
+### Testing Metrics
+
+Industry KPIs for AI red teaming include:
+- Jailbreak success rate
+- Mean time to detect (MTTD) vulnerabilities
+- Mean time to remediate (MTTR)
+- Percentage of models with Software Bill of Materials (SBOM)
+- Return on Mitigation (RoM)
+
+### Government Framework
+
+CISA defines AI red teaming as a subset of AI Testing, Evaluation, Verification and Validation (TEVV). NIST has operationalized this through programs like Assessing Risks and Impacts of AI (ARIA) and the GenAI Challenge.
+
+### Limitations
+
+While external red teaming is increasingly common, critical gaps remain:
+- **Limited disclosure** of red team findings and remediation actions
+- **Selective engagement:** Labs choose which red teamers to work with
+- **Short engagement windows:** 15-30 days may be insufficient for complex systems
+- **Post-deployment gaps:** Less emphasis on continuous adversarial testing after launch
+
+**Data Quality:** Some public information from lab announcements and red team providers. Comprehensive engagement rates and detailed findings remain largely non-public.
+
+---
+
+## 5. Dangerous Capability Disclosure Delays
+
+**Current Status (2025):** Significant and increasing delays, with some major model releases lacking safety documentation entirely.
+
+### Google Gemini 2.5 Pro (March 2025)
+
+Google released Gemini 2.5 Pro **without a model card**, violating commitments made to the U.S. government and at international AI safety summits. The company eventually released a "simplified six-page model card" three weeks after public availability, which AI governance experts called "meager" and "worrisome."
+
+**Government Response:** 60 U.K. politicians signed an open letter accusing Google DeepMind of "a troubling breach of trust with governments and the public" and a "failure to honour" international commitments.
+
+**Google's Defense:** The company claimed Gemini 2.5 Pro was an "experimental" release, exempting it from normal documentation requirements. A more detailed report was promised "later" and appeared in late June, **months after full release**.
+
+### OpenAI Documentation Gaps
+
+- **Deep Research model:** Released without a system card, which was published weeks later
+- **GPT-4.1:** OpenAI announced it would not publish a technical safety report, arguing the model is "not a frontier model"
+
+### Broader Industry Pattern
+
+**Meta Llama 4:** Model card was similarly brief and limited in detail, drawing criticism from AI safety researchers.
+
+**Systemic Issues:** The AI Safety Index found that "AI developers control both the design and disclosure of dangerous capability evaluations, creating inherent incentives to underreport alarming results or select lenient testing conditions that avoid costly deployment delays."
+
+### Transparency Requirements
+
+While voluntary commitments emphasize transparency, actual disclosure practices show significant gaps:
+- **Limited disclosure** of evaluation methodologies
+- **Weak evidence** of systematic safety processes
+- **Uneven adoption** of robust evaluation practices
+
+### New Legal Requirements
+
+**California's Transparency in Frontier AI Act** (effective 2026) establishes:
+- Transparency requirements for large AI developers
+- Mandatory reporting of critical safety incidents to state attorney general
+- Whistleblower protections for employees reporting risks
+
+**Data Quality:** Based on public monitoring by AI governance organizations, investigative journalism, and government oversight. Actual capability evaluation results remain largely proprietary.
+
+---
+
+## 6. Pre-Deployment Safety Testing Duration
+
+**Current Status (2025):** Highly variable and generally decreasing. No standardized minimum testing period exists.
+
+### Testing Approaches
+
+Major frontier AI labs follow safety policies that include pre-deployment testing:
+- OpenAI's Preparedness Framework
+- Google DeepMind's Frontier Safety Framework
+- Anthropic's Responsible Scaling Policy
+
+Third-party evaluators (UK AISI, US AISI, Apollo Research, METR) also conduct pre-deployment assessments, though their access and time are limited.
+
+### Known Testing Examples
+
+**OpenAI o1 (December 2024):** Joint US AISI and UK AISI evaluation during a "limited period" before public release. Specific duration not disclosed publicly.
+
+**Safeguard Testing Benchmarks:** Research examples show wide variation in time requirements:
+- First vulnerability test: 10 minutes of expert red teamer time
+- Second test (novel universal jailbreak): Over 7 hours of expert effort
+
+### Industry Trends
+
+The 2025 AI Safety Index concluded that:
+- Pre-deployment testing is "likely necessary but insufficient" for responsible AI development
+- Testing is conducted with "limited time periods and finite resources"
+- "If timelines are short, AI companies are unlikely to make high-assurance safety cases"
+
+### Comparison to Other Industries
+
+Unlike pharmaceuticals (multi-year clinical trials) or aerospace (extensive certification processes), AI systems lack:
+- Standardized testing protocols
+- Minimum duration requirements
+- Independent verification mandates
+- Clear pass/fail criteria for deployment
+
+**Data Quality:** Very limited public data. Specific testing durations are rarely disclosed. Assessment based on general industry reports and occasional third-party evaluator statements.
+
+---
+
+## 7. Model Release Velocity
+
+**Current Status (2025):** Unprecedented acceleration, with major labs releasing frontier models within weeks of each other.
+
+### Release Frequency Trends
+
+**2024 Baseline:** Major labs typically released frontier models annually or semi-annually.
+
+**2025 Acceleration:** "Companies that typically released major models annually or semi-annually were now shipping frontier models within weeks of each other." Each release incorporated learnings from the previous week's competitive announcements.
+
+### November-December 2025: "Tit-for-Tat Arms Race"
+
+In just 25 days, four major AI companies launched their most powerful models:
+- **November 17:** xAI's Grok 4.1
+- **November 18:** Google's Gemini 3
+- **November 24:** Anthropic's Claude Opus 4.5
+- **December 11:** OpenAI's GPT-5.2
+
+This concentration represented "a compression of innovation never before seen in technology history." OpenAI's Sam Altman issued an internal "code red" memo after Gemini 3 topped leaderboards.
+
+### 2025 Release Summary
+
+**OpenAI:**
+- GPT-5 with improved coding and "thinking" mode
+- GPT-5.1 Codex Max (agentic coding model)
+- GPT-5.2
+- gpt-oss-120b and gpt-oss-20b (open-source models)
+- Dozens of feature launches (GPT-4o Image, standalone Sora app, group chats)
+
+**Anthropic:**
+- Claude 4 family (Opus and Sonnet)
+- Claude Opus 4.5 (November 24)
+- Claude 4.5 Haiku
+
+**Google DeepMind:**
+- Gemini 2.5 (March)
+- Gemini 3 (November)
+- Gemini 2.5 Deep Think
+- Genie 3.0 (world model)
+
+**Meta & Others:**
+- DeepSeek R1 (January 20, 2025) - major open model impact
+- Qwen 3 and various Chinese lab releases
+
+### Tracking Data
+
+- **AI Flash Report:** Tracked 43 model releases as of October 27, 2025
+- **Our World in Data:** Tracks large-scale AI systems (>10²³ FLOP training compute)
+
+### Safety Implications
+
+Rapid release velocity creates pressure that:
+- Reduces time available for safety evaluation
+- Encourages "shipping within weeks" competitive dynamics
+- Creates feedback loops of rapid iteration
+- May prioritize "shiny products" over safety culture
+
+**Data Quality:** Good tracking of major model releases through multiple sources. Precise internal development timelines remain proprietary.
+
+---
+
+## 8. Open-Source vs Closed Model Capability Gap
+
+**Current Status (2025):** Gap narrowing significantly, from ~16 months in 2024 to potential parity in some domains.
+
+### Current Gap Estimate
+
+**Epoch AI Report:** "The best open model today is on par with closed models in performance, but with a lag of about one year."
+
+**Specific Example:** Meta's Llama 3.1 405B (released July 2024) took approximately **16 months** to match the capabilities of GPT-4's first version.
+
+### Gap Narrowing Evidence
+
+**2024:** Ecosystem relied primarily on Llama 3, with Qwen2.5 and DeepSeek known to specialists.
+
+**2025:** DeepSeek and Qwen became widely adopted. DeepSeek R1 (January 20, 2025) had "immense impact" on both open model and general AI landscape. The open ecosystem "immensely accelerated in terms of capabilities, rivaling closed models on most key benchmarks."
+
+### Meta's Claims
+
+Meta described Llama 3.1 as "the first frontier-level open source AI model," claiming it "outperforms GPT-4.0 and Anthropic's Claude 3.5 on several benchmarks" in internal evaluations.
+
+### Remaining Closed Model Advantages
+
+**Highest-end performance:** GPT-4 and newer models remain more capable on complex tasks requiring deep reasoning.
+
+**Enterprise benchmarks:** On SWE-Bench Verified (real GitHub issue fixes):
+- State-of-the-art closed models (GPT-5.2-Codex, Claude Opus 4.5): 80%+
+- Top open-source models: 65%
+- This gap is described as "critical for enterprise use"
+
+### Open Model Strengths
+
+**Niche verticals:** Open-source models lead in biomedicine, law, and defense applications where institutional constraints (privacy, security, customization) matter more than raw performance.
+
+**Cost-effectiveness:** Significantly cheaper for customization and fine-tuning.
+
+**Adoption trends:** According to a16z research:
+- 41% of surveyed enterprises will increase use of open-source models
+- Another 41% will switch from closed to open if performance matches
+
+### Open Source Definition Debate
+
+Meta's Llama models don't meet the Open Source Initiative's definition, which requires sharing:
+- Model weights (Meta provides this)
+- Training data (Meta does not provide this)
+- Training code (Meta does not provide this)
+
+### Google Internal Assessment
+
+A leaked 2023 Google memo warned: "we aren't positioned to win this arms race … I'm talking, of course, about open source. Plainly put, they are lapping us."
+
+**Data Quality:** Based on benchmark comparisons, research organization analysis (Epoch AI), and industry reports. Benchmarks may not capture all relevant capability dimensions.
+
+---
+
+## 9. Lab Safety Team Turnover Rate
+
+**Current Status (2025):** Specific turnover rates not publicly disclosed, but high-profile departures suggest significant retention challenges at leading labs.
+
+### OpenAI Safety Departures (2024-2025)
+
+**May 2024 - Superalignment Team Dissolution:**
+
+**Ilya Sutskever** (Co-founder, Chief Scientist, Superalignment co-lead): Departed May 2024
+
+**Jan Leike** (Head of Alignment, Superalignment co-lead): Resigned May 2024, stating "safety culture and processes have taken a backseat to shiny products." Leike said his team was "struggling for compute" despite OpenAI's promise to allocate 20% of compute to Superalignment. He joined Anthropic.
+
+**Result:** The entire Superalignment team was disbanded, with members reassigned to other teams.
+
+**Additional 2024 Departures:**
+- Leopold Aschenbrenner (reportedly fired for leaking information)
+- Daniel Kokotajlo (resigned in April "in protest after losing confidence in the company")
+- William Saunders
+
+**September 2024 Leadership Exits:**
+- Mira Murati (CTO, 6 years at OpenAI)
+- Bob McGrew (Chief Research Officer)
+- Barret Zoph (VP of Research)
+- Hannah Wong (Chief Communications Officer)
+- Tom Cunningham (Economics Researcher)
+- Miles Brundage (Policy Research Head)
+
+**Total documented senior departures:** 25+ as of December 2024
+
+### June 2024 Open Letter
+
+Nine current and former OpenAI employees wrote an open letter criticizing the company for "recklessly racing" to build AGI. Daniel Kokotaljo spoke out despite OpenAI initially conditioning his equity (worth ~$1.7 million) on non-disparagement agreement compliance.
+
+### Anthropic
+
+Anthropic has positioned itself as a safety-focused alternative and received several high-profile hires from OpenAI, including Jan Leike. Specific turnover data not publicly available.
+
+### Industry-Wide Context
+
+General corporate AI employee retention challenges in 2025:
+- High demand for AI talent creates strong external offers
+- Burnout from rapid development pace
+- Philosophical disagreements over safety prioritization
+
+### Whistleblower Issues
+
+The 2025 AI Safety Index noted: "Public whistleblowing policies are a common best practice in safety-critical industries. Yet, among the assessed companies, only OpenAI has published its full policy, and it did so only after media reports revealed the policy's highly restrictive non-disparagement clauses."
+
+**Data Quality:** Very limited. Based on public departure announcements, investigative journalism, and open letters. Internal turnover rates for safety-specific teams are not disclosed. No denominator data (total safety team size over time) publicly available.
+
+---
+
+## 10. Whistleblower Reports from AI Labs
+
+**Current Status (2025):** Small but growing number of public whistleblower reports, primarily from OpenAI. Structural barriers remain significant.
+
+### "The OpenAI Files" (June 2025)
+
+Comprehensive report compiled by the Midas Project and Tech Oversight Project tracking issues with governance, leadership, and safety culture at OpenAI. Drew on:
+- Legal documents and complaints
+- Social media posts
+- Media reports
+- Open letters and insider accounts
+
+Described as "the most comprehensive collection to date of documented concerns with governance practices, leadership integrity, and organizational culture at OpenAI."
+
+### Notable Whistleblower Cases
+
+**Daniel Kokotajlo (2024):** Spoke publicly despite non-disparagement agreement that initially conditioned ~$1.7 million in equity on his silence. Resigned "in protest after losing confidence in the company."
+
+**Jan Leike (2024):** While not technically a whistleblower (as he departed to Anthropic), publicly criticized OpenAI on X, stating safety "took a back seat to shiny products" and the team was under-resourced.
+
+**Nine-Person Open Letter (June 2024):** Current and former OpenAI employees criticized the company for "recklessly racing" toward AGI.
+
+### Structural Barriers to Whistleblowing
+
+**Non-Disparagement Agreements:** OpenAI initially used agreements that conditioned equity vesting on non-criticism. This practice was exposed and modified after public backlash.
+
+**Whistleblower Policy Gaps:** The AI Safety Index found that only OpenAI published its full whistleblowing policy, and only after media scrutiny revealed restrictive clauses.
+
+**Industry Comparison:** Most AI labs lack public whistleblower policies comparable to safety-critical industries like aviation or nuclear power.
+
+### Cross-Lab Safety Criticism
+
+In 2025, AI safety researchers from OpenAI, Anthropic, and other organizations publicly criticized xAI's "reckless" and "completely irresponsible" safety culture following company scandals.
+
+### New Protections
+
+**California SB 53 (supported by Anthropic):** Provides whistleblower protections for employees reporting AI-related risks or safety concerns to authorities. Effective January 1, 2026.
+
+**California AI Safety Act:** Establishes protections from retaliation for reporting AI-related risks.
+
+### Cross-Lab Evaluation Initiative (2025)
+
+In early summer 2025, Anthropic and OpenAI agreed to evaluate each other's public models using in-house misalignment evaluations and released findings in parallel. While not whistleblowing per se, this represents increased transparency.
+
+### Limitations
+
+Actual number of whistleblower reports remains unknown because:
+- Many concerns may be raised internally without public disclosure
+- Non-disparagement agreements suppress some reports
+- Fear of career consequences deters whistleblowing
+- No centralized reporting or tracking mechanism exists
+
+**Data Quality:** Very limited. Based on public letters, media investigations, and individual whistleblower accounts. Represents visible tip of potentially larger iceberg of internal concerns.
+
+---
+
+## Summary of Data Availability
+
+| Metric | Data Quality | Public Availability |
+|--------|--------------|---------------------|
+| Voluntary commitment compliance | Good | Detailed 2025 study available |
+| RSP threshold crossings | Poor | Companies control disclosure |
+| Training-to-eval timeline | Poor | Mostly not disclosed |
+| External red team engagement | Moderate | Some provider data, limited findings |
+| Disclosure delays | Moderate | Tracked by watchdog organizations |
+| Pre-deployment testing duration | Poor | Rarely disclosed |
+| Model release velocity | Good | Well-tracked by multiple sources |
+| Open vs closed capability gap | Good | Regular benchmark comparisons |
+| Safety team turnover | Poor | Only high-profile departures visible |
+| Whistleblower reports | Poor | Only public cases known |
+
+---
+
+## Key Takeaways
+
+1. **Compliance varies widely:** Even leading labs struggle with certain commitments (especially model weight security and third-party reporting)
+
+2. **Evaluation timelines are shortening:** Despite increasing capabilities, safety testing windows are compressed, raising concerns about thoroughness
+
+3. **Transparency gaps persist:** Major model releases sometimes lack promised safety documentation, violating voluntary commitments
+
+4. **Release velocity is accelerating:** Competitive pressure has created unprecedented model release density, particularly in late 2025
+
+5. **Open-source catching up:** The capability gap between open and closed models is narrowing from ~16 months to potential parity in some domains
+
+6. **Safety team retention challenges:** High-profile departures, particularly from OpenAI's Superalignment team, suggest cultural or resource allocation issues
+
+7. **Limited whistleblower infrastructure:** Despite safety-critical nature of AI development, formal whistleblower protections and reporting mechanisms remain underdeveloped
+
+8. **Data quality challenges:** Most metrics suffer from limited disclosure, creating information asymmetry between labs and external stakeholders
+
+---
+
+## Sources
+
+- [Do AI Companies Make Good on Voluntary Commitments to the White House?](https://arxiv.org/abs/2508.08345) - August 2025 compliance study
+- [Anthropic's Responsible Scaling Policy](https://www.anthropic.com/responsible-scaling-policy)
+- [Anthropic's Responsible Scaling Policy Update Makes a Step Backwards](https://www.safer-ai.org/post/anthropics-responsible-scaling-policy-update-makes-a-step-backwards) - SaferAI analysis
+- [Responsible Scaling: Comparing Government Guidance and Company Policy](https://www.iaps.ai/research/responsible-scaling) - Institute for AI Policy and Strategy
+- [2025 AI Safety Index](https://futureoflife.org/ai-safety-index-summer-2025/) - Future of Life Institute
+- [AI Safety Index Winter 2025](https://futureoflife.org/ai-safety-index-winter-2025/)
+- [AI industry timelines to AGI getting shorter, but safety becoming less of a focus](https://fortune.com/2025/04/15/ai-timelines-agi-safety/)
+- [OpenAI: Red Teaming GPT-4o, Operator, o3-mini, and Deep Research](https://control-plane.io/case-studies/openai-red-teaming/) - ControlPlane
+- [Advancing red teaming with people and AI](https://openai.com/index/advancing-red-teaming-with-people-and-ai/) - OpenAI
+- [AI Red Teaming | Offensive Testing for AI Models](https://www.hackerone.com/product/ai-red-teaming) - HackerOne
+- [AI Red Teaming: Applying Software TEVV for AI Evaluations](https://www.cisa.gov/news-events/news/ai-red-teaming-applying-software-tevv-ai-evaluations) - CISA
+- [AI models can be dangerous before public deployment](https://metr.org/blog/2025-01-17-ai-models-dangerous-before-public-deployment/) - METR
+- [Pre-Deployment Evaluation of OpenAI's o1 Model](https://www.nist.gov/news-events/news/2024/12/pre-deployment-evaluation-openais-o1-model) - NIST
+- [Pre-Deployment evaluation of OpenAI's o1 model](https://www.aisi.gov.uk/blog/pre-deployment-evaluation-of-openais-o1-model) - UK AISI
+- [Google's Gemini 2.5 Pro missing key safety report in violation of promises](https://fortune.com/2025/04/09/google-gemini-2-5-pro-missing-model-card-in-apparent-violation-of-ai-safety-promises-to-us-government-international-bodies/)
+- [British lawmakers accuse Google of 'breach of trust' over delayed Gemini 2.5 Pro safety report](https://fortune.com/2025/08/29/british-lawmakers-accuse-google-deepmind-of-breach-of-trust-over-delayed-gemini-2-5-pro-safety-report/)
+- [Google is shipping Gemini models faster than its AI safety reports](https://techcrunch.com/2025/04/03/google-is-shipping-gemini-models-faster-than-its-ai-safety-reports/)
+- [2025 Open Models Year in Review](https://www.interconnects.ai/p/2025-open-models-year-in-review)
+- [AI Model Release Timeline](https://aiflashreport.com/model-releases) - AI Flash Report
+- [Timeline of AI model releases in 2024](https://simonwillison.net/2024/Dec/31/2024-ai-releases/)
+- [2025 LLM Year in Review](https://karpathy.bearblog.dev/year-in-review-2025/) - Andrej Karpathy
+- [AI Models Comparison 2025: Claude, Grok, GPT & More](https://collabnix.com/comparing-top-ai-models-in-2025-claude-grok-gpt-llama-gemini-and-deepseek-the-ultimate-guide/)
+- [The Gap Between Open and Closed AI Models Might Be Shrinking](https://time.com/7171962/open-closed-ai-models-epoch/) - Time, Epoch AI report
+- [Open vs. Closed LLMs in 2025: Strategic Tradeoffs for Enterprise AI](https://medium.com/data-science-collective/open-vs-closed-llms-in-2025-strategic-tradeoffs-for-enterprise-ai-668af30bffa0)
+- [OpenAI's recent departures force leaders to reaffirm safety commitment](https://www.axios.com/2024/05/20/openai-safety-jan-leike-sam-altman) - Axios
+- [Top OpenAI researcher resigns, saying company prioritized 'shiny products' over AI safety](https://fortune.com/2024/05/17/openai-researcher-resigns-safety/)
+- [OpenAI dissolves Superalignment AI safety team](https://www.cnbc.com/2024/05/17/openai-superalignment-sutskever-leike.html) - CNBC
+- [The OpenAI Safety Exodus: 25+ Senior Researchers Departed](https://fourweekmba.com/the-openai-safety-exodus-25-senior-researchers-departed-superalignment-team-disbanded/)
+- ["The OpenAI Files" reveals deep leadership concerns about Sam Altman and safety failures](https://fortune.com/2025/06/20/openai-files-sam-altman-leadership-concerns-safety-failures-ai-lab/)
+- [The Fight to Protect AI Whistleblowers](https://onlabor.org/the-fight-to-protect-ai-whistleblowers/)
+- [Anthropic: Compliance framework for California SB 53](https://www.anthropic.com/news/compliance-framework-SB53)

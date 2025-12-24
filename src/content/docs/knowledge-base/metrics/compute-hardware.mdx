@@ -1,0 +1,562 @@
+---
+title: Compute & Hardware
+description: Key metrics tracking GPU production, training compute, efficiency trends, and semiconductor capacity
+sidebar:
+  order: 1
+---
+
+## Overview
+
+Compute and hardware metrics are fundamental to understanding AI progress. The availability of specialized AI chips (especially GPUs), total compute used for training, and efficiency improvements determine what models can be built and how quickly capabilities advance. These metrics also inform regulatory thresholds and help forecast future AI development trajectories.
+
+---
+
+## 1. GPU Manufacturing & Distribution
+
+### Annual GPU Production (2023-2025)
+
+| Year | H100/H100-Equivalent | Total Data Center GPUs | Key Notes |
+|------|---------------------|----------------------|-----------|
+| 2022 | ~0 (A100 era) | 2.64M | Pre-H100, primarily A100s |
+| 2023 | ~0.5M | 3.76M | H100 ramp-up begins |
+| 2024 | ~2.0M | ~3.0M H100-equiv | Primarily H100 and early Hopper |
+| 2025 (proj) | 2M Hopper + 5M Blackwell | 6.5-7M | Shift to Blackwell architecture |
+
+**Data Quality**: Medium-High. Based on Epoch AI estimates, industry reports, and TSMC capacity analysis.
+
+**Sources**: [Epoch AI GPU production tracking](https://epoch.ai/data-insights/nvidia-chip-production), [Tom's Hardware H100 projections](https://www.tomshardware.com/news/nvidia-to-reportedly-triple-output-of-compute-gpus-in-2024-up-to-2-million-h100s)
+
+### Cumulative Installed Base
+
+As of mid-2024, Epoch AI estimates approximately **4 million H100-equivalent GPUs** (4e21 FLOP/s) deployed globally. This represents cumulative sales of roughly 3 million H100s between 2022-2024, accounting for depreciation.
+
+The stock of computing power from NVIDIA chips has been **doubling every 10 months** since 2019, with growth accelerating to 2.3x per year.
+
+**Major Lab Holdings (End of 2024 estimates)**:
+- OpenAI: ~250k average, ramping to 460k H100-equivalents by year-end (5% of global supply)
+- Anthropic: ~360k H100-equivalents (4% of global supply), including 400k Amazon Trainium2
+- Google: Largest holder with proprietary TPUs plus GPUs (21% of global AI compute)
+- Meta: 13% of global AI compute share
+
+**Data Quality**: Medium. Based on cost reports, capacity estimates, and informed analysis from industry observers.
+
+**Sources**: [LessWrong GPU estimates](https://www.lesswrong.com/posts/bdQhzQsHjNrQp7cNS/estimates-of-gpu-or-equivalent-resources-of-large-ai-players), [Epoch AI computing capacity](https://epoch.ai/data-insights/computing-capacity)
+
+---
+
+## 2. AI Training Compute (FLOP)
+
+### Cumulative Global Training Compute
+
+Training compute for frontier AI models has grown **4-5x per year** since 2010, with acceleration to **5x per year since 2020**.
+
+**Notable Training Runs**:
+
+| Model | Year | Training Compute | Cost Estimate | Notes |
+|-------|------|-----------------|---------------|-------|
+| GPT-3 | 2020 | ~3×10²³ FLOP | ~$5M | Foundation of modern LLMs |
+| GPT-4 | 2023 | ~1×10²⁵ FLOP | $40-100M | First model at 10²⁵ scale |
+| Gemini 1.0 Ultra | 2024 | ~2×10²⁵ FLOP | $192M | Most expensive confirmed training |
+| Llama 3.1 405B | 2024 | ~1×10²⁵ FLOP | ~$50M+ | Trained on 15T tokens |
+| Llama 4 Behemoth | 2025 | Est. >2×10²⁵ FLOP | Est. $200M+ | 30T+ token training |
+| Grok 4 | 2025 | ~5×10²⁶ FLOP | Est. $300M+ | Largest known training run |
+
+**Growth in Large-Scale Models**:
+- 2020: Only 2 models trained with >10²³ FLOP
+- 2023: Over 40 models at this scale
+- Mid-2024: Over 30 models trained at >10²⁵ FLOP (GPT-4 scale)
+- Projection: 200+ models at >10²⁶ FLOP by 2030
+
+**Regulatory Thresholds**:
+- **EU AI Act**: 10²⁵ FLOP reporting requirement
+- **US Executive Order**: 10²⁶ FLOP reporting requirement
+
+**Data Quality**: High for published models, Medium-Low for unreleased/future models.
+
+**Sources**: [Epoch AI model database](https://epoch.ai/data-insights/models-over-1e25-flop), [Our World in Data AI training](https://ourworldindata.org/grapher/artificial-intelligence-training-computation), [Epoch AI tracking](https://epoch.ai/blog/tracking-large-scale-ai-models)
+
+---
+
+## 3. Cost per FLOP (Declining Curve)
+
+### Hardware Price-Performance Trends
+
+The cost of compute has declined dramatically, **outpacing Moore's Law by ~50x** in recent years.
+
+**Key Metrics**:
+- **Overall decline (2019-2025)**: FP32 FLOP cost decreased ~74% (2025 price = 26% of 2019 price)
+- **AI training cost decline**: ~10x per year (50x faster than Moore's Law)
+- **GPU price-performance**: Doubling every 16 months on frontier chips
+
+**Historical Training Cost Examples**:
+- ResNet-50 image recognition: $1,000 (2017) → $10 (2019)
+- ImageNet 93% accuracy: Halving every 9 months (2012-2022)
+- GPT-4 equivalent model: $100M (2023) → ~$20M (Q3 2023) → ~$3M (efficiency optimized, 01.ai claim)
+
+**GPU Generation Improvements**:
+- A100 → H100: 2x price-performance in 16 months
+- Expected trend: ~1.4x per year improvement for frontier chips
+- Google TPU v5p (2025): 30% throughput improvement, 25% lower energy vs v4
+
+**Data Quality**: High for historical data, Medium for projections.
+
+**Sources**: [Epoch AI training costs](https://epoch.ai/blog/trends-in-the-dollar-training-cost-of-machine-learning-systems), [ARK Invest AI training analysis](https://www.ark-invest.com/articles/analyst-research/ai-training), [Our World in Data GPU performance](https://ourworldindata.org/grapher/gpu-price-performance)
+
+---
+
+## 4. Training Efficiency (Algorithmic Progress)
+
+Algorithmic improvements contribute as much to AI progress as increased compute.
+
+**Key Findings**:
+- **Doubling time**: Algorithms double effective compute every **9 months**
+- **Annual improvement rate**: ~3x per year in FLOP efficiency
+- **Contribution to progress**: 35% from algorithmic improvements, 65% from scale (since 2014)
+
+**Specific Benchmarks**:
+- **ImageNet classification**: 44x less compute for AlexNet-level performance (2012-2024)
+- **Language modeling**: Algorithms account for 22,000x improvement on paper (2012-2023)
+  - Actual measured innovations account for <100x
+  - Gap explained by scale-dependent efficiency improvements
+
+**Inference Cost Reduction Example**:
+- GPT-3.5-equivalent model cost: $20 per million tokens (Nov 2022) → $0.07 per million tokens (Oct 2024)
+- Total reduction: >280x in ~18 months
+
+**Recent Efficiency Breakthroughs**:
+- DeepSeek V3: GPT-4o-level performance with fraction of training compute
+- Demonstrates continued rapid algorithmic progress
+
+**Data Quality**: High. Based on rigorous academic research and reproducible benchmarks.
+
+**Sources**: [Epoch AI algorithmic progress](https://epoch.ai/blog/algorithmic-progress-in-language-models), [OpenAI efficiency research](https://openai.com/index/ai-and-efficiency/), [ArXiv algorithmic progress paper](https://arxiv.org/abs/2511.21622)
+
+---
+
+## 5. Data Center Power Consumption for AI
+
+### Current State (2024)
+
+**Global Data Centers**:
+- Total electricity consumption: **415 TWh** (1.5% of global electricity)
+- AI-specific consumption: **40 TWh** (15% of data center total, up from 2 TWh in 2017)
+- AI share of data center power: **15-24%** (servers), projected to reach 35-50% by 2030
+
+**United States**:
+- Data center consumption: **183 TWh** (4% of US total, equivalent to Pakistan's annual consumption)
+- Growth: 58 TWh (2014) → 176 TWh (2023)
+
+### Future Projections (2025-2030)
+
+**Global**:
+- 2030 projection: **945 TWh** (nearly 3% of global electricity)
+- Annual growth rate: **15% per year** (2024-2030)
+- AI data centers specifically: **4x growth** by 2030
+
+**United States**:
+- 2028 projection: **325-580 TWh** (6.7-12% of US electricity)
+- 2030 projection: **426 TWh** (133% increase from 2024)
+
+**Server Type Breakdown**:
+- Accelerated servers (AI): **30% annual growth**
+- Conventional servers: **9% annual growth**
+
+**Data Quality**: High. Based on IEA, DOE, and industry analyses.
+
+**Sources**: [IEA Energy and AI Report](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai), [Pew Research data center energy](https://www.pewresearch.org/short-reads/2025/10/24/what-we-know-about-energy-use-at-us-data-centers-amid-the-ai-boom/), [DOE data center report](https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers)
+
+---
+
+## 6. Chip Fab Capacity for AI Accelerators
+
+### TSMC (Market Leader)
+
+**Current Capacity**:
+- 5nm/3nm total: **2.2M wafers per year** (early 2024)
+- H100 2024 production: ~2M GPUs (only 5% of 5nm capacity)
+- CoWoS packaging: Doubling in 2024, doubling again in 2025
+
+**2nm Node (N2) Roadmap**:
+- Risk production: Started July 2024
+- Mass production: Late 2025 (HVM)
+- Capacity ramp: 40k wpm (2025) → 100k wpm (2026) → 200k wpm (2027)
+- Major customers: Apple (50% reserved), Nvidia (starting 2027), AMD, Qualcomm
+
+**US Expansion**:
+- Arizona Fab 1: 4nm production online (late 2024)
+- Arizona Fab 2: 3nm production starting 2027
+
+### Samsung
+
+**Current/Near-term**:
+- 3nm SF3 (GAA): Available 2025
+- 2nm SF2: Late 2025 start
+- Monthly capacity target: 21k wpm by end of 2026 (163% increase from 2024)
+
+**Long-term**:
+- Sub-2nm target: 50-100k wpm by 2028
+- Taylor, Texas fab: 93.6% complete (Q3 2024), full completion July 2026
+
+**Market Position**:
+- Gaining from TSMC capacity constraints
+- Major wins: Tesla AI chips, AMD/Google considering 2nm production
+
+### Global Foundry Market
+
+- **2024 growth**: 11% capacity increase
+- **2025 growth**: 10% capacity increase (17% for leading-edge with 2nm ramp)
+- **2026 capacity**: 12.7M wafers per month
+- **Main constraint**: Chip packaging (CoWoS) and HBM, not wafer production
+
+**Data Quality**: High. Based on company reports, industry analysis, and fab construction tracking.
+
+**Sources**: [SEMI fab capacity report](https://www.semi.org/en/news-media-press-releases/semi-press-releases/global-semiconductor-fab-capacity-projected-to-expand-6%25-in-2024-and-7%25-in-2025-semi-reports), [TrendForce Samsung 2nm](https://www.trendforce.com/news/2025/12/23/news-samsung-set-to-benefit-from-tsmcs-n-2-rule-as-amd-google-reportedly-eye-u-s-2nm-production/)
+
+---
+
+## 7. GPU Utilization Rate at Major Labs
+
+**Current Understanding (2024)**:
+- **Training vs. Inference split**: Currently ~80% training, ~20% inference
+- **Projected 2030 split**: ~30% training, ~70% inference (reversal)
+
+**Lab-Specific Data**:
+
+**OpenAI (2024)**:
+- Training compute: $3B amortized cost
+- Inference compute: $1.8B (likely understated for single-year)
+- Research compute: $1B
+- Inference is becoming **15-118x more expensive** than training over model lifetime
+
+**Historical Inference Ratios**:
+- Google (2019-2021): Inference = 60% of total ML compute (three-week snapshots)
+- Inference costs grow continuously after deployment while training is one-time
+
+**Utilization Challenges**:
+- Packaging bottlenecks (CoWoS)
+- HBM supply constraints
+- Infrastructure development lag
+
+**Data Quality**: Medium-Low. Most labs don't publish utilization rates; estimates based on cost reports.
+
+**Sources**: [Epoch AI inference allocation](https://epoch.ai/blog/optimally-allocating-compute-between-inference-and-training), [A&M training demand analysis](https://www.alvarezandmarsal.com/insights/rethinking-ai-demand-part-1-ai-data-centers-are-experiencing-surge-training-demand-what)
+
+---
+
+## 8. Inference vs. Training Compute Ratio
+
+**Current State**:
+- Industry split: **80% training, 20% inference** (2024)
+- OpenAI token generation: ~100B tokens/day = 36T tokens/year
+- Training tokens for modern LLMs: ~10T tokens
+- Token cost ratio: Training tokens ~3x more expensive than inference
+
+**Evolution**:
+- **2019-2021** (Google): 60% inference, 40% training (based on 3-week snapshots)
+- **2024** (Industry): 80% training, 20% inference (during training surge)
+- **2030** (Projected): 70% inference, 30% training (post-surge equilibrium)
+
+**Theoretical Optimal Allocation**:
+- For roughly equal value per compute in training vs. inference, the tradeoff parameter (α) must be near 1
+- For significantly different allocations (10x difference), α must be <0.1 or >10
+- Current industry behavior suggests α close to 1, hence similar magnitudes
+
+**Inference Growth Drivers**:
+- Deployment at scale requires continuous inference compute
+- One-time training cost vs. ongoing serving costs
+- By 2030, ~70% of data center AI demand projected to be inference
+
+**Data Quality**: Medium. Based on partial disclosures and theoretical models.
+
+**Sources**: [Epoch AI compute allocation theory](https://epoch.ai/blog/optimally-allocating-compute-between-inference-and-training), [Epoch AI OpenAI compute spend](https://epoch.ai/data-insights/openai-compute-spend)
+
+---
+
+## 9. GPT-4 Level Training Costs Projection
+
+### Current GPT-4 Training Costs
+
+**Initial Training (2023)**:
+- Official estimate: "More than $100M" (Sam Altman)
+- Epoch AI hardware/energy only: $40M
+- Full cost estimates: $78-192M depending on methodology
+
+**GPT-4-Equivalent Training Costs (Optimized)**:
+- Q3 2023: ~$20M (3x cheaper with efficiency improvements)
+- 01.ai claim: ~$3M using 2,000 GPUs and optimization
+
+### Cost Trend Analysis
+
+**Training Cost Growth (Frontier Models)**:
+- Historical trend: **Tripling per year** (4x compute growth, 1.3x efficiency gain)
+- If trend continues: $1B+ training runs by 2027
+- Dario Amodei (Aug 2024): "$1B models this year, $10B models by 2025"
+
+**Cost Decline (Equivalent Performance)**:
+- Algorithmic efficiency: 2x every 9 months
+- Hardware efficiency: 1.4x per year
+- Combined: ~10x cost reduction per year for equivalent capability
+
+### When Will GPT-4 Training Cost <$1M?
+
+**Optimistic Scenario** (Efficiency improvements continue):
+- 2023: $20M (optimized)
+- 2024: $2M (10x reduction)
+- 2025: $200k (10x reduction)
+- **2026: <$100k** (below $1M threshold)
+
+**Conservative Scenario** (Slower efficiency gains):
+- Assume 3x annual reduction instead of 10x
+- 2023: $20M
+- 2025: $2.2M
+- **2027: $240k** (below $1M threshold)
+
+**Important Notes**:
+- These projections are for achieving GPT-4-level performance, not frontier capabilities
+- Frontier models will continue to cost $100M-$1B+ as labs push boundaries
+- The trend is divergent: equivalent performance gets cheaper while cutting-edge gets more expensive
+
+**Data Quality**: Medium. Based on historical trends and partial cost disclosures.
+
+**Sources**: [Juma GPT-4 cost breakdown](https://juma.ai/blog/how-much-did-it-cost-to-train-gpt-4), [Fortune AI training costs](https://fortune.com/2024/04/04/ai-training-costs-how-much-is-too-much-openai-gpt-anthropic-microsoft/), [ArXiv training costs](https://arxiv.org/html/2405.21015v1)
+
+---
+
+## 10. Nvidia's AI Accelerator Market Share
+
+**Current Market Position (2024-2025)**:
+- Dominant share: **80-95%** of AI accelerator market
+- Conservative estimates: **70-86%**
+- Most commonly cited: **80-90%**
+
+**Market Size**:
+- 2023: $17.7B total data center AI chips
+  - Nvidia: 65%
+  - Intel: 22%
+  - AMD: 11%
+  - Others: <3%
+- 2025 projected: $40.79B (Nvidia ~86% = $35B)
+- 2030 projected: $165B market
+
+**Nvidia Revenue**:
+- 2024: AI-related revenue ~$35B
+- 2025 projected: $49B (39% YoY growth)
+
+**Competitive Landscape**:
+
+| Company | 2025 Market Share | Key Products | Notes |
+|---------|------------------|--------------|-------|
+| **Nvidia** | 80-90% | H100, H200, Blackwell | CUDA lock-in, dominant position |
+| **AMD** | ~8-10% | MI300 series | $5.6B projected (2025), doubling DC footprint |
+| **Intel** | ~8% | Gaudi 3 | 8.7% of training accelerators by end 2025 |
+| **Google** | Internal use | TPU v5p | $3.1B value (2025), custom deployment |
+
+**Nvidia's Competitive Advantages**:
+1. **CUDA ecosystem**: Deep software integration, high switching costs
+2. **Performance leadership**: H100/H200 industry standard
+3. **Supply relationships**: Preferential TSMC access
+4. **First-mover advantage**: Established during AI boom
+
+**Emerging Threats**:
+- Custom silicon (Google TPU, Amazon Trainium)
+- Meta considering shift from CUDA to TPU (billions in spending)
+- JAX job postings grew 340% vs. CUDA 12% (Jan 2025)
+- Inference workloads bleeding to ASICs
+
+**Data Quality**: High. Based on market research firms and financial disclosures.
+
+**Sources**: [PatentPC AI chip market stats](https://patentpc.com/blog/the-ai-chip-market-explosion-key-stats-on-nvidia-amd-and-intels-ai-dominance), [TechInsights Q1 2024](https://www.techinsights.com/blog/data-center-ai-chip-market-q1-2024-update), [CNBC Nvidia market analysis](https://www.cnbc.com/2024/06/02/nvidia-dominates-the-ai-chip-market-but-theres-rising-competition-.html)
+
+---
+
+## 11. China's Domestic AI Chip Production Capacity
+
+### Current Production Capacity (2024-2025)
+
+**SMIC (Semiconductor Manufacturing International Corporation)**:
+- Current 7nm capacity: ~30k wafers per month (wpm)
+- 2025 target: 45-50k wpm advanced nodes
+- 2026 projection: 60k wpm
+- 2027 projection: 80k wpm
+- Plans to **double 7nm capacity** in 2025 (most advanced process in mass production in China)
+
+**Huawei Ascend AI Chips**:
+
+| Metric | 2024 | 2025 (Projected) | 2026 (Projected) |
+|--------|------|-----------------|-----------------|
+| **Dies produced** | 507k (mostly 910B) | 805k-1.5M | 1.2M+ (Q4 alone) |
+| **Packaged chips** | ~200k | 200-400k | 250-400k |
+| **US DoC estimate** | - | 200k | - |
+| **Yield rate (910C)** | - | ~20% | Improving |
+
+**Production Bottlenecks**:
+
+1. **HBM (High-Bandwidth Memory)** - Critical constraint:
+   - Huawei's stockpile: 11.7M HBM stacks (7M from Samsung pre-restrictions)
+   - Stockpile depletion: Expected end of 2025
+   - CXMT domestic production: ~2.2M stacks in 2026 (supports only 250-400k chips)
+
+2. **Yield challenges**:
+   - Ascend 910C yield: ~20% (on older stockpiled equipment)
+   - Ascend 910B yield: ~50%
+   - Low yields force production cuts and order delays
+
+3. **TSMC die bank**:
+   - Huawei received 2.9M+ Ascend dies from TSMC (pre-sanctions)
+   - This stockpile enables 2024-2025 production
+   - Without die bank, production would be much lower
+
+### Future Plans
+
+**Huawei Fab Buildout**:
+- Dedicated AI chip facility: End of 2025
+- Additional sites: 2 more in 2026
+- WFE (wafer fab equipment) spending: $7.3B (2024, up 27% YoY)
+- Global ranking: 4th largest WFE customer (from zero in 2022)
+
+**Production Ramp Timeline**:
+- Q3 2024: Ascend 910B production ramp begins
+- Q1 2025: Ascend 910C mass production starts (on SMIC N+2 process)
+- 2025-2026: Continued ramp, constrained by HBM
+
+### Performance Gap
+
+**Huawei vs. Nvidia**:
+- Huawei ecosystem scaling up but **lags significantly** on efficiency and performance
+- Technology node: 7nm (Huawei/SMIC) vs. 4nm/3nm (Nvidia/TSMC)
+- Export controls successfully limiting China's access to cutting-edge AI chips
+- Gap expected to persist due to continued US restrictions
+
+**Data Quality**: Medium. Based on industry analysis, supply chain reports, and informed estimates.
+
+**Sources**: [Tom's Hardware China AI chip production](https://www.tomshardware.com/tech-industry/artificial-intelligence/chinas-chip-champions-ramp-up-production-of-ai-accelerators-at-domestic-fabs-but-hbm-and-fab-production-capacity-are-towering-bottlenecks), [SemiAnalysis Huawei production](https://newsletter.semianalysis.com/p/huawei-ascend-production-ramp), [WCCFtech Huawei capacity](https://wccftech.com/chinas-huawei-can-make-750000-advanced-ai-chips-despite-us-sanctions-says-report/)
+
+---
+
+## 12. Semiconductor Equipment Lead Times
+
+### ASML Lithography Equipment
+
+**Historical Peak Lead Times (2022)**:
+During the chip shortage peak:
+- **ArF immersion equipment**: 24 months
+- **EUV equipment**: 18 months
+- **I-line equipment**: 18 months
+- **Industry average** (all equipment): 14 months (up from 3-6 months pre-shortage)
+
+**Current State (2024-2025)**:
+- Lead times have moderated from 2022 peak but remain "incredibly long"
+- Foundries must plan capacity expansions well in advance
+- Exact current lead times not publicly disclosed
+
+**ASML Production Capacity Targets**:
+
+| Equipment Type | 2025 Target | Medium-term Target |
+|----------------|-------------|-------------------|
+| **EUV 0.33 NA** | 90 systems/year | Maintained |
+| **DUV (immersion + dry)** | 600 systems/year | Maintained |
+| **EUV High-NA (0.55 NA)** | - | ~20 systems/year |
+
+**2024 Shipments** (Actual):
+- Total lithography: 418 systems
+- EUV: 44 systems
+- DUV: 374 systems
+- Metrology/inspection: 165 systems
+
+**High-NA EUV Systems**:
+- **Cost**: $400M+ per system (vs. $200M for low-NA)
+- **First commercial deployment**: Intel TWINSCAN EXE:5200B
+- **Status**: Transition from low-NA to high-NA beginning 2024-2025
+
+### Market Concentration
+
+**ASML Market Dominance**:
+- Lithography equipment market share: **~94%** (2024)
+- Remaining 6%: Canon and Nikon
+- **Monopoly** on EUV lithography (only supplier globally)
+
+### Geopolitical Constraints
+
+**China Export Restrictions**:
+- ASML expects China customer demand to **decline significantly** in 2026 vs. 2024-2025
+- However, total 2026 net sales not expected to fall below 2025 levels (non-China growth compensates)
+
+**China's EUV Development**:
+- Reports of prototype EUV lithography machine development
+- Target: AI chip output by 2028 using domestic EUV
+- Status: Early prototype, far from production capability
+
+**Lead Time Implications**:
+- Long lead times favor incumbents with existing allocations
+- New entrants (especially geopolitically restricted) face multi-year delays
+- Supply constraints on advanced packaging (CoWoS) now more critical than lithography
+
+**Data Quality**: Medium-High. Based on ASML reports and industry analysis.
+
+**Sources**: [SMM ASML lead times](https://news.metal.com/newscontent/101557143/the-delivery-time-of-asml-arf-equipment-has-been-extended-to-2-years-the-shortage-of-semiconductor-equipment-is-increasing), [TrendForce ASML EUV analysis](https://www.trendforce.com/insights/asml-euv), [Tom's Hardware ASML capacity](https://www.tomshardware.com/news/asml-only-60-percent-of-chipmaking-tool-orders-can-be-fulfilled)
+
+---
+
+## Data Quality Summary
+
+| Metric | Data Quality | Update Frequency | Key Gaps |
+|--------|--------------|-----------------|----------|
+| **GPU Production** | Medium-High | Quarterly | Exact production numbers proprietary |
+| **Training Compute** | High (public models) | Ongoing | Unreleased model estimates uncertain |
+| **Cost per FLOP** | High | Annual | Future projections uncertain |
+| **Training Efficiency** | High | Annual | Contribution breakdown debated |
+| **Data Center Power** | High | Annual | AI-specific breakdown incomplete |
+| **Fab Capacity** | High | Quarterly | Packaging/HBM constraints harder to track |
+| **GPU Utilization** | Low | Rare | Most labs don't disclose |
+| **Inference/Training Ratio** | Medium | Rare | Industry-wide data sparse |
+| **Cost Projections** | Medium | N/A | Depends on uncertain trends |
+| **Nvidia Market Share** | High | Quarterly | Custom silicon market opaque |
+| **China Production** | Medium | Quarterly | True yields/capacity uncertain |
+| **Equipment Lead Times** | Medium | Annual | Real-time data proprietary |
+
+---
+
+## Key Uncertainties & Debate
+
+### Algorithmic Progress Measurement
+The actual contribution of algorithmic improvements vs. scale-dependent effects remains debated. Measured innovations account for <100x of the claimed 22,000x improvement, with the gap attributed to scaling effects that are harder to isolate.
+
+### Inference Compute Growth
+Whether inference will truly dominate by 2030 depends on:
+- Rate of model deployment at scale
+- Efficiency improvements in inference
+- Whether training runs continue to grow exponentially
+
+### China's Production Reality
+Estimates of China's domestic chip production vary widely (200k to 1.5M dies) due to:
+- Yield rate uncertainty
+- HBM supply constraints
+- Stockpile utilization vs. new production
+- Lack of independent verification
+
+### GPU Utilization
+Major labs don't disclose actual utilization rates, training efficiency, or infrastructure bottlenecks. The 80/20 training/inference split is an industry estimate, not measured data.
+
+---
+
+## Sources
+
+This page synthesizes data from:
+
+**Primary Sources**:
+- [Epoch AI](https://epoch.ai/) - GPU production, training compute, model database
+- [IEA Energy and AI Report](https://www.iea.org/reports/energy-and-ai/) - Data center power consumption
+- [SEMI](https://www.semi.org/) - Fab capacity and equipment
+- [Our World in Data](https://ourworldindata.org/artificial-intelligence) - Long-term trends
+- [Stanford AI Index](https://aiindex.stanford.edu/) - Comprehensive annual metrics
+
+**Industry Analysis**:
+- TechInsights, TrendForce, SemiAnalysis - Semiconductor production
+- Tom's Hardware, AnandTech - Hardware specifications and roadmaps
+- Financial disclosures from Nvidia, TSMC, ASML
+
+**Research**:
+- Academic papers on algorithmic progress and scaling laws
+- Regulatory filings and government reports (DOE, EU AI Act)
+
+Last updated: December 2024

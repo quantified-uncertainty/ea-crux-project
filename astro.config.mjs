@@ -16,6 +16,10 @@ export default defineConfig({
           components: {
               // Auto-inject PageStatus from frontmatter
               MarkdownContent: './src/components/starlight/MarkdownContent.astro',
+              // Add dev mode toggle to header
+              Header: './src/components/starlight/Header.astro',
+              // Add dev mode init script to head
+              Head: './src/components/starlight/Head.astro',
           },
           tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
           social: [

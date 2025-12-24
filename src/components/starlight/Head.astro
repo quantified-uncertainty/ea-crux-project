@@ -1,0 +1,17 @@
+---
+/**
+ * Custom Head that includes dev mode initialization script
+ */
+const { head } = Astro.locals.starlightRoute;
+---
+
+{head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
+
+<!-- Initialize dev mode before page renders to prevent flash -->
+<script is:inline>
+  (function() {
+    if (localStorage.getItem('pageStatusDevMode') === 'true') {
+      document.documentElement.classList.add('page-status-dev-mode');
+    }
+  })();
+</script>

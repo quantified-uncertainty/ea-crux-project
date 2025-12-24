@@ -1,0 +1,617 @@
+---
+title: AI Capabilities Metrics
+description: Quantitative measures of AI model performance across benchmarks, tasks, and real-world applications
+sidebar:
+  order: 2
+---
+
+## Overview
+
+This page tracks concrete, measurable indicators of AI capabilities across multiple domains. Understanding capability trajectories is critical for forecasting transformative AI timelines, anticipating safety challenges, and evaluating whether alignment techniques scale with capabilities.
+
+**Key Observation**: Most benchmarks show rapid progress from 2023-2025, with many approaching or exceeding human-level performance. However, significant gaps remain in robustness, reliability, and real-world task completion.
+
+---
+
+## 1. Language Understanding & General Knowledge
+
+### MMLU (Massive Multitask Language Understanding)
+
+MMLU consists of 15,908 multiple-choice questions spanning 57 subjects, from STEM fields to humanities.
+
+#### Trajectory Over Time
+
+| Model | Release Date | MMLU Score | Notes |
+|-------|--------------|------------|-------|
+| GPT-3 (175B) | 2020 | 43.9% | Initial baseline |
+| GPT-4 | March 2023 | 86.4% | Major leap |
+| Gemini 1.0 | Dec 2023 | 83.7% | 5-shot |
+| GPT-4 Turbo | 2024 | 86-87% | Plateau begins |
+| Claude 3.5 Sonnet | June 2024 | 88.0% | |
+| GPT-4o | May 2024 | 88.7% | |
+| Llama 3.1 405B | July 2024 | 88.0% | |
+| **OpenAI o1-preview** | **Sept 2024** | **92.3%** | **Saturation point** |
+| GPT-4.1 | April 2025 | 90.2% | |
+
+**Human Expert Baseline**: 89.8%
+
+**Key Insights**:
+- MMLU saturated in September 2024 when o1-preview exceeded human expert performance
+- 6.5% of MMLU questions contain errors (per June 2024 analysis), suggesting maximum attainable score below 100%
+- Most frontier models settled at 86-88% plateau before o1's breakthrough
+- MMLU-Pro introduced as harder variant; saturated November 2025 by Gemini 3 Pro at 90.1%
+
+**Data Quality Issues**:
+- High error rate (57% of virology questions contain errors)
+- Potential contamination in training data
+- Multiple-choice format doesn't test generation quality
+- Being phased out in favor of harder benchmarks
+
+---
+
+## 2. Coding Capabilities
+
+### HumanEval
+
+HumanEval contains 164 Python programming problems testing code generation from docstrings.
+
+#### Top Model Performance (2024-2025)
+
+| Model | HumanEval Score | EvalPlus Score | Notes |
+|-------|----------------|----------------|-------|
+| **OpenAI o1** | **96.3%** | **89%** | Current leader |
+| Claude 3.5 Sonnet | 92% | 81.7% | Strong practical performance |
+| GPT-4o | 91.0% | 87.2% | |
+| Claude 3.5 Haiku | 88.1% | — | |
+| GPT-4o Mini | 87.2% | 87.2% | |
+| Qwen2.5-Coder-32B | — | 87.2% | Open-source leader |
+| DeepSeek-V3 | — | 86.6% | |
+| GPT-4 Turbo | — | 86.6% | |
+
+**Historical Baseline** (July 2021):
+- Codex: 28.8%
+- GPT-3: 0%
+- GPT-J: 11.4%
+
+**Progress Rate**: 0% → 96% in 3 years (2021-2024)
+
+**Key Insights**:
+- Gap between base HumanEval and EvalPlus (with additional test cases) reveals robustness challenges
+- o1's reasoning capabilities provide significant advantage on coding tasks
+- Even top models show 10-15% performance drop when tested more rigorously (EvalPlus)
+
+### SWE-bench
+
+Real-world software engineering benchmark with 2,200+ actual GitHub issues from open-source repositories.
+
+#### Performance Evolution
+
+| Benchmark Version | Top Model (2024) | Score | Top Model (2025) | Score |
+|-------------------|------------------|-------|------------------|-------|
+| SWE-bench Full | Claude 2 (2023) | 1.96% | Claude 3.7 Sonnet (April 2025) | 33.83% |
+| SWE-bench Lite | — | — | Top models (Jan 2025) | ~43% |
+| SWE-bench Verified | Claude 3.5 Sonnet | 49% | CodeStory Midwit Agent | 62% |
+| SWE-bench Verified | OpenAI o3 (unverified) | ~72% | Tools + Claude 4 Opus | 70%+ |
+| SWE-bench Pro | GPT-5 | 23.26% | Claude Opus 4.1 | 22.71% |
+
+**Key Insights**:
+- 17x improvement on full benchmark from 2023 to 2025 (1.96% → 33.83%)
+- SWE-bench Verified introduced August 2024 to address solvability issues
+- Brute force approaches with multiple agents achieving best results
+- Still far from reliable software engineering automation (70% best case vs. needed 95%+)
+
+**Interpretation Challenges**:
+- Some tasks may be impossible to solve or poorly specified
+- Agent approaches vs. model-only approaches yield very different results
+- OpenAI o3 score unverified and likely used massive compute
+
+---
+
+## 3. Mathematical Reasoning
+
+### GSM8K (Grade School Math)
+
+8,500 grade-school math word problems requiring multi-step reasoning.
+
+#### Current State (2024-2025)
+
+| Model | GSM8K Score |
+|-------|-------------|
+| Claude 3.5 Sonnet | 96.4% |
+| GPT-4o | 96.1% |
+| OpenAI o1 | 96.13% |
+| DeepSeek-R1 | 96.13% |
+
+**Status**: Near saturation at ~96% (approaching practical ceiling)
+
+### MATH Dataset
+
+~12,500 high school competition math problems (AMC, AIME, etc.) covering algebra, geometry, calculus, and more.
+
+#### Current State (2024-2025)
+
+| Model | MATH Score | MATH Level 5 (Hardest) |
+|-------|------------|------------------------|
+| **OpenAI o1** | **93.12%** | — |
+| DeepSeek-R1 | 90.45% | — |
+| GPT-4o | 76.6% | — |
+| Claude 3.5 Sonnet | 71.1% | — |
+
+**Human Baseline**: Competitive high school students score 40-60% on MATH dataset
+
+**Key Insights**:
+- Reasoning models (o1, DeepSeek-R1) show massive gains over standard models
+- 20+ percentage point gap between reasoning and non-reasoning approaches
+- Most models still struggle with full mathematical proofs
+- OlympiadBench (launched late 2024): most models score less than 25% on proof tasks
+
+### Advanced Mathematics (OlympiadBench)
+
+Contains proof tasks from global math Olympiads, graded by former medalists on 7-point rubric.
+
+**Best Performance**: Gemini 2.5 Pro exceeded 5%, earning partial/full credit on 6 of 24 questions. All other top models (Claude, Grok, ChatGPT) failed to produce valid proofs.
+
+**Takeaway**: GSM8K saturation doesn't imply mathematical rigor. Massive gaps remain in formal reasoning and proof generation.
+
+---
+
+## 4. Time to Match Median Human Performance
+
+### Task Completion Time Horizons
+
+**Metric**: "50%-task-completion time horizon" - the time humans typically take to complete tasks that AI models can complete with 50% success rate.
+
+#### Progress Trajectory
+
+| Model | Release Date | 50% Time Horizon | Growth Rate |
+|-------|--------------|------------------|-------------|
+| Early models | 2019 | ~5 minutes | — |
+| GPT-4 | March 2023 | ~15 minutes | Doubling every 7 months |
+| Claude 3 Opus | March 2024 | ~25 minutes | |
+| **Claude 3.7 Sonnet** | **Early 2025** | **~50 minutes** | Accelerating (2024-2025) |
+
+**Extrapolated Projections**:
+- **Long-run trend** (7-month doubling): Month-long tasks at 50% reliability by late 2029 (80% CI: ±2 years)
+- **2024-2025 trend** (faster): Month-long tasks by 2027-2028
+
+**Human Performance Comparison** (2025):
+- o4-mini with 32-hour budget exceeds 50th percentile of human experts on average across five tasks
+- Every AI agent shows performance decrease after 35 minutes of human-equivalent time
+
+#### Domain-Specific Success Rates
+
+| Domain | Autonomous Success Rate | Notes |
+|--------|------------------------|-------|
+| Software Development | 30-40% | Clear goals and validation criteria |
+| Financial Analysis | 8.3% | Requires business context |
+| Administrative Work | 0% | Requires policy interpretation |
+
+**Key Insight**: AI performs best on tasks with clear validation criteria and struggles with work requiring broader context.
+
+---
+
+## 5. Autonomous Task Completion Rate
+
+### Agent Performance Benchmarks
+
+**Key Finding**: The length of tasks that frontier model agents can complete autonomously with 50% reliability has been doubling approximately every 7 months for the last 6 years.
+
+#### Time-Based Performance Patterns
+
+| Time Budget | AI vs. Human Performance |
+|-------------|-------------------------|
+| 2 hours | AI scores 4x higher than human experts |
+| 8 hours | Performance gap narrows |
+| 32 hours | Humans outperform AI 2:1 |
+
+**Interpretation**: AI excels at short-burst focused tasks but struggles with sustained multi-day work requiring context maintenance and adaptation.
+
+### Industry Adoption Reality
+
+- **60% of organizations** deploying AI agents (2025)
+- **39% of AI projects** fall short of expectations in both 2024 and 2025
+- Disconnect between benchmark performance and production reliability
+
+---
+
+## 6. Context Window Size Growth
+
+### Evolution of Context Windows (2023-2025)
+
+| Model Family | 2023 | 2024 | 2025 | Growth Factor |
+|--------------|------|------|------|---------------|
+| **GPT** | 8K (GPT-4) | 128K (GPT-4 Turbo) | 1M (GPT-4.1) | **125x** |
+| **Claude** | 100K (Claude 2) | 200K (Claude 3.5) | 1M (Claude 4.5 Beta) | **10x** |
+| **Gemini** | — | 1M (Gemini 1.5) | 2M (Gemini 2.5 Pro) | **2x** |
+
+#### Current State (2025)
+
+| Model | Context Window | Output Tokens | Effective Usage |
+|-------|----------------|---------------|-----------------|
+| GPT-4.1 | 1,000,000 | 128,000 | Improved long-context comprehension |
+| GPT-5 | 400,000 | 128,000 | — |
+| Claude 4.5 Sonnet | 1,000,000 | — | <5% degradation across full window |
+| Gemini 2.5 Pro | 1,000,000 | — | Multimodal across text/audio/video |
+| Gemini 3 | 1,000,000+ | — | Handles entire books/repos in single call |
+
+**Exponential Growth**: Average context window grew from 4K (2022) to 1M+ (2025) - a 250x increase in 3 years.
+
+**Reality Check**: Most models break much earlier than advertised. A model claiming 200K tokens typically becomes unreliable around 130K, with sudden performance drops rather than gradual degradation.
+
+**Safety Implication**: Larger context windows enable:
+- Better long-horizon task planning
+- Incorporating entire codebases for exploitation
+- Processing comprehensive documents for deception
+- Maintaining strategic context over extended interactions
+
+---
+
+## 7. Multimodal Capability Breadth
+
+### Modality Support by Model (2025)
+
+| Model | Text | Vision | Audio | Video | Performance Notes |
+|-------|------|--------|-------|-------|-------------------|
+| **Gemini 2.5 Pro** | ✓ | ✓ | ✓ | ✓ | Native multimodal processing |
+| GPT-4o | ✓ | ✓ | ✓ | ✓ | Real-time voice conversations |
+| Claude 3.5 Sonnet | ✓ | ✓ | ✗ | ✗ | Vision-language only |
+| Qwen 2.5 VL | ✓ | ✓ | ✓ | ✓ | 7B-72B params, 29 languages |
+
+### Multimodal Benchmarks
+
+**MMMU (Multimodal Understanding)** - College-level multi-discipline tasks:
+
+| Model | MMMU Score | Gap to Human (82.6%) |
+|-------|------------|---------------------|
+| OpenAI o1 (2024) | 78.2% | -4.4% |
+| Google Gemini (end 2023) | 59.4% | -23.2% |
+
+**Progress**: 18.8 percentage point gain in ~1 year, closing 81% of the gap to human performance.
+
+### Specialized Vision-Language Models (2025)
+
+**Reasoning VLMs**:
+- **Kimi-VL-A3B-Thinking**: Long chain-of-thought fine-tuning, processes long videos/PDFs/screenshots
+- **QVQ-72B-preview**: Pioneered multimodal reasoning capabilities
+
+**Safety Models**:
+- **ShieldGemma 2** (Google): Safety filtering for vision inputs
+- **Llama Guard 4** (Meta): Content policy compliance for multimodal systems
+
+**Key Developments**:
+- New benchmarks (MMT-Bench, MMMU-Pro) emphasize real-world complexity with point clouds, videos, multimodal text
+- Multimodal jailbreaking remains challenging defense problem
+- Audio-language models face significant safety evaluation gaps
+
+---
+
+## 8. Latency for Real-Time Applications
+
+### Time-to-First-Token (TTFT) Benchmarks
+
+| Model | TTFT (ms) | Average Response (ms) | Tokens/Second |
+|-------|-----------|----------------------|---------------|
+| **Gemini 2.0 Flash** | **180** | **650** | **200+** |
+| GPT-4o | — | 780 | ~88 |
+| GPT-4 | 589 | — | ~25 |
+| Claude Sonnet 4 | 1,300 | — | ~55 |
+| Claude Opus 4 | 1,800 | — | ~39 |
+| Mistral Medium 3 | — | — | High (optimized for speed) |
+| DeepSeek V3.1 | — | — | ~20 (consumer hardware) |
+
+### Per-Token Latency
+
+| Model | Per-Token Latency (ms) | Use Case Fit |
+|-------|----------------------|--------------|
+| GPT-4 | 21 | Fastest per-token generation |
+| Claude | 49 | Prioritizes accuracy over speed |
+| Mistral | Low | Real-time data processing |
+
+### Real-Time Application Breakdown (Voice Agents)
+
+| Component | Latency | % of Total |
+|-----------|---------|------------|
+| ASR (Speech Recognition) | ~50ms | 5% |
+| **LLM Processing** | **~670ms** | **71%** |
+| TTS (Text-to-Speech) | ~280ms | 24% |
+| **Total** | **~940ms** | **100%** |
+
+**Key Insight**: LLM processing is the primary bottleneck for real-time applications. If LLM is >60% of total latency, model choice determines feasibility.
+
+### Model Selection by Use Case
+
+- **Speed-critical** (voice, real-time): Gemini Flash, GPT-4o, Mistral
+- **Accuracy-critical** (code, analysis): Claude Opus, GPT-4
+- **Balanced**: GPT-4o, Claude Sonnet
+
+**Improvement Trend**: GPT-4o achieved 3.5x speedup over GPT-4 (~88 vs ~25 tokens/sec), demonstrating rapid optimization progress.
+
+---
+
+## 9. Reliability & Consistency on Complex Tasks
+
+### Statistical Volatility Index (SVI)
+
+SVI quantifies AI model reliability across varied tasks, prompt styles, and context ranges. Lower scores indicate higher reliability.
+
+**Components**:
+- Performance Variance: 40%
+- Prompt Sensitivity: 30%
+- Context Stability: 20%
+- Error Rate Consistency: 10%
+
+#### Top Models by Reliability Characteristics
+
+| Model | Strength | SVI Correlation with Hallucination Resistance |
+|-------|----------|----------------------------------------------|
+| Claude 3.5 Sonnet | Stability with ambiguous prompts | 0.78 |
+| GPT-4o | Reasoning depth across long chains | 0.78 |
+| Gemini 2.5 Pro | Multimodal performance consistency | 0.78 |
+
+**Comparison**: Accuracy correlation with hallucination resistance is only 0.43, making SVI a stronger reliability signal than benchmark scores.
+
+### Complex Task Benchmarks
+
+**Humanity's Last Exam (HLE)** - 2,500 questions across 100+ subjects at frontier of human knowledge:
+- Introduced 2024 as "ultimate academic exam"
+- Performance data not yet widely available
+
+**RE-Bench** - Rigorous benchmark for AI agent evaluation:
+
+| Time Budget | AI Performance vs. Human Experts |
+|-------------|----------------------------------|
+| 2 hours | AI scores 4x higher |
+| 32 hours | Humans outperform AI 2:1 |
+
+**Key Finding**: Time advantage for AI inverts as task complexity and duration increase.
+
+### Persistent Limitations
+
+Despite chain-of-thought reasoning improvements:
+- Cannot reliably solve arithmetic and planning problems **on instances larger than training data**
+- Fail competitive programming problems without massive compute (thousands of samples)
+- Logical reasoning remains fundamentally unreliable
+
+### Open vs. Closed Model Gap (Narrowing)
+
+| Date | Closed Leader | Open Leader | Performance Gap |
+|------|---------------|-------------|-----------------|
+| January 2024 | — | — | 8.04% (Chatbot Arena) |
+| February 2025 | — | — | 1.70% |
+
+**Trend**: Open-weight models have nearly closed the gap with closed-weight models within 1 year.
+
+---
+
+## 10. Novel Scientific Discovery Count by AI Systems
+
+### AlphaFold Impact (2020-2025)
+
+**Recognition**: 2024 Nobel Prize in Chemistry awarded for AlphaFold development (first AI-enabled scientific breakthrough to win Nobel)
+
+#### Usage Statistics (November 2025)
+
+| Metric | Value |
+|--------|-------|
+| Total researchers using AlphaFold | 3+ million |
+| Countries represented | 190+ |
+| Users in low/middle-income countries | 1+ million |
+| AlphaFold 2 paper citations | ~43,000 |
+| Research focused on disease | 30% |
+
+### Key Scientific Applications
+
+**Drug Discovery**:
+- Identified 2 FDA-approved drugs for repurposing against Chagas disease (7M infected, 10K deaths/year)
+- First AI-designed drug candidate entering clinical trials by end of 2025 (Isomorphic Labs)
+
+**Structural Biology**:
+- Revealed apoB100 structure (central protein in LDL/"bad cholesterol") after decades of failure
+- Provided atomic-level detail for preventative heart therapies
+- AlphaFold 3 (May 2024): Predicts structure/interactions of proteins with DNA, RNA, ligands, ions
+
+**Agriculture**:
+- Guided engineering of drought-resistant crops by revealing plant protein stress responses
+
+**Materials Science**:
+- Generative model for inorganic materials design (published Nature 2025)
+
+### AI Co-Scientist
+
+**Google AI Co-Scientist** (February 2025): Gemini-based multi-agent system that formulates and evaluates research proposals.
+
+### Quantification Challenges
+
+**Difficult to measure**:
+- Attribution (AI-assisted vs. AI-generated vs. human discoveries using AI tools)
+- Quality vs. quantity (incremental insights vs. breakthroughs)
+- Counterfactual (would humans have discovered this without AI, and when?)
+
+**Current State**: AlphaFold remains the standout success story. Most other "AI discoveries" are better characterized as AI-accelerated research rather than novel insights originating from AI systems.
+
+---
+
+## 11. AI Performance on Adversarial & Out-of-Distribution Inputs
+
+### Adversarial Robustness Leaderboards
+
+**Scale Adversarial Robustness Evaluation**: 1,000 human-written prompts designed to trigger harmful responses.
+
+**Ranking**: Models ranked by number of violations (fewer = better). Covers illegal activities, hate speech, child harm, self-harm, etc.
+
+**General Analysis Benchmarks**: Evaluates 23 state-of-the-art models using HarmBench and AdvBench frameworks (Mazeika et al., 2024; Zou et al., 2023).
+
+#### Attack Categories
+
+| Domain | Examples |
+|--------|----------|
+| Chemical/Biological Safety | Synthesis instructions for dangerous compounds |
+| Misinformation/Disinformation | False content generation |
+| Cybercrime | Hacking, malware, exploitation |
+| Illegal Activities | Fraud, theft, violence |
+| Copyright | IP infringement |
+
+### Defense Mechanisms & Performance
+
+**RobustPrompt** (Pattern Recognition Letters 2025):
+- Integrates perturbation characteristics into adversarial training
+- Improves Swin Transformer Base robustness:
+  - **+61.1%** against PGD attacks
+  - **+56.9%** against AutoAttack
+  - Across five white-box settings
+
+**Trade-offs**: Defense mechanisms often sacrifice computational efficiency and model performance.
+
+### Limitations & Challenges
+
+**Persistent Vulnerabilities**:
+- No model achieves zero violations on adversarial prompts
+- Multimodal jailbreaking remains open problem
+- Audio-language models face significant safety evaluation gaps
+- Defense mechanisms lag behind attack sophistication
+
+**Industry Applications Under Attack**:
+- Automotive systems
+- Digital healthcare
+- Electrical power and energy systems (EPES)
+- LLM-based NLP systems
+
+**Emerging Domains**: Federated learning, generative AI, edge AI present new attack surfaces and require innovative defense approaches.
+
+---
+
+## Data Quality & Limitations
+
+### General Issues Across Benchmarks
+
+| Issue | Description | Impact |
+|-------|-------------|--------|
+| **Contamination** | Training data may include test sets | Inflated scores, unclear generalization |
+| **Saturation** | Top models approaching ceiling | Benchmark loses discriminative power |
+| **Gaming** | Optimization for specific benchmark | Goodhart's Law: metric ceases to be good measure |
+| **Format Bias** | Multiple-choice vs. generation | Doesn't test production-relevant skills |
+| **Adversarial Examples** | Deliberate stress-testing | May not reflect typical usage |
+| **Version Drift** | Benchmark definitions change | Hard to compare across time |
+
+### Specific Data Quality Notes
+
+**MMLU**:
+- 6.5% error rate in ground truth
+- 57% of virology questions contain errors
+- Likely training data contamination
+
+**SWE-bench**:
+- Some tasks impossible or poorly specified
+- OpenAI o3 score unverified
+- Agent vs. model-only results not comparable
+
+**Context Windows**:
+- Advertised limits often exceed effective usage
+- Performance degradation not linear (sudden drops)
+- Benchmarks don't test full-length usage
+
+**Adversarial Robustness**:
+- Attack methods evolving faster than defenses
+- No standardized evaluation framework
+- Difficult to generalize from specific prompts
+
+**Scientific Discovery**:
+- Attribution challenges (AI-assisted vs. AI-generated)
+- Publication lag (discoveries take time to validate/publish)
+- No systematic tracking mechanism
+
+---
+
+## Forecasting Implications
+
+### Key Trends (2023-2025)
+
+1. **Rapid Benchmark Saturation**: Most major benchmarks saturated or approaching saturation within 2 years
+2. **Reasoning Breakthrough**: o1-style models show step-change improvement on math/coding
+3. **Context Explosion**: 250x growth in context windows (4K → 1M tokens)
+4. **Multimodal Maturation**: Native multimodal processing now standard in frontier models
+5. **Latency Optimization**: 3-4x speedups while maintaining quality
+6. **Robustness Gaps**: Performance degrades significantly under adversarial conditions
+7. **Long-Horizon Challenge**: AI struggles with sustained multi-day tasks despite excelling at short bursts
+
+### Extrapolation Challenges
+
+**Why extrapolating is hard**:
+- Benchmarks saturate before capabilities fully scale
+- New evaluation methods emerge as old ones saturate
+- Discontinuous jumps (e.g., o1 reasoning) break trend lines
+- Real-world performance often lags benchmark performance significantly
+
+**What to track**:
+- Migration to harder benchmarks (MMLU → MMLU-Pro, HumanEval → SWE-bench)
+- Gap between benchmark and production performance
+- Reliability/robustness metrics (SVI, adversarial performance)
+- Time horizons for autonomous task completion
+
+---
+
+## Sources
+
+### Primary Research & Data
+
+- [MMLU Benchmark Overview - Stanford CRFM](https://crfm.stanford.edu/2024/05/01/helm-mmlu.html)
+- [MMLU - Wikipedia](https://en.wikipedia.org/wiki/MMLU)
+- [MMLU-Pro Paper](https://arxiv.org/html/2406.01574v1)
+- [AI Model Benchmarks - LM Council](https://lmcouncil.ai/benchmarks)
+- [HumanEval: When Machines Learned to Code - Runloop](https://runloop.ai/blog/humaneval-when-machines-learned-to-code)
+- [Top AI Coding Models March 2025 - DEV Community](https://dev.to/apipie-ai/top-5-ai-coding-models-of-march-2025-5f04)
+- [SWE-bench Official Leaderboards](https://www.swebench.com/)
+- [SWE-bench Pro Leaderboard - Scale AI](https://scale.com/leaderboard/swe_bench_pro_public)
+- [SWE-bench Verified - OpenAI](https://openai.com/index/introducing-swe-bench-verified/)
+- [LLM Math Benchmark 2025 Results](https://binaryverseai.com/llm-math-benchmark-performance-2025/)
+- [GSM8K Leaderboard](https://llm-stats.com/benchmarks/gsm8k)
+
+### Context Windows & Architecture
+
+- [Best LLMs for Extended Context Windows](https://research.aimultiple.com/ai-context-window/)
+- [GPT-4.1 Announcement - OpenAI](https://openai.com/index/gpt-4-1/)
+- [Context Window Comparison 2025](https://www.datastudios.org/post/ai-how-large-language-models-handle-extended-context-windows-chatgpt-claude-gemini)
+
+### Scientific Discovery
+
+- [AlphaFold: Five Years of Impact - Google DeepMind](https://deepmind.google/blog/alphafold-five-years-of-impact/)
+- [AlphaFold 3 Announcement](https://blog.google/technology/ai/google-deepmind-isomorphic-alphafold-3-ai-model/)
+- [2024 Chemistry Nobel: AlphaFold - Nature](https://www.nature.com/articles/d41586-024-03214-7)
+
+### Agent Performance & Autonomy
+
+- [Measuring AI Ability to Complete Long Tasks - METR](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)
+- [Measuring AI Long Tasks - arXiv](https://arxiv.org/html/2503.14499v1)
+- [AI Agent Benchmarks 2025](https://www.evidentlyai.com/blog/ai-agent-benchmarks)
+- [Benchmarking AI Agents 2025](https://metadesignsolutions.com/benchmarking-ai-agents-in-2025-top-tools-metrics-performance-testing-strategies/)
+
+### Latency & Performance
+
+- [LLM Latency Benchmark by Use Cases](https://research.aimultiple.com/llm-latency-benchmark/)
+- [Optimizing LLM Inference for Real Time Applications](https://www.onlinescientificresearch.com/articles/optimizing-llm-inference-metrics-that-matter-for-real-time-applications.pdf)
+
+### Multimodal Capabilities
+
+- [Vision, Voice, and Beyond: Multimodal AI in 2025](https://n-ahamed36.medium.com/vision-voice-and-beyond-the-rise-of-multimodal-ai-in-2025-e056778100c9)
+- [Vision Language Models 2025 - Hugging Face](https://huggingface.co/blog/vlms-2025)
+- [Top Multimodal AI Models 2025](https://www.timesofai.com/industry-insights/top-multimodal-ai-models/)
+
+### Adversarial Robustness
+
+- [Adversarial Machine Learning Review 2025 - Springer](https://link.springer.com/article/10.1007/s10462-025-11147-4)
+- [Scale Adversarial Robustness Leaderboard](https://scale.com/leaderboard/adversarial_robustness)
+- [AI Security Benchmarks - General Analysis](https://www.generalanalysis.com/benchmarks)
+- [Anthropic AI Safety Recommendations 2025](https://alignment.anthropic.com/2025/recommended-directions/)
+
+### Human Performance Comparison
+
+- [AI vs Human Performance - Visual Capitalist](https://www.visualcapitalist.com/visualizing-ai-vs-human-performance-in-technical-tasks/)
+- [AI Now Beats Humans at Basic Tasks - Nature](https://www.nature.com/articles/d41586-024-01087-4)
+- [Test Scores AI vs Humans - Our World in Data](https://ourworldindata.org/grapher/test-scores-ai-capabilities-relative-human-performance)
+
+### Reliability & Benchmarking
+
+- [Top 50 AI Model Benchmarks 2025 - O-mega](https://o-mega.ai/articles/top-50-ai-model-evals-full-list-of-benchmarks-october-2025)
+- [2025 AI Model Benchmark Report](https://www.allaboutai.com/resources/ai-statistics/ai-models/)
+- [Technical Performance - 2025 AI Index Report](https://hai.stanford.edu/ai-index/2025-ai-index-report/technical-performance)
+- [Measuring Real-World Task Performance - OpenAI](https://openai.com/index/gdpval/)

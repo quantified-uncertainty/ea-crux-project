@@ -3171,6 +3171,15 @@
   font-size: 0.875rem;
 }
 
+/* Dev-only visibility: hidden by default, shown when dev mode is active */
+.page-status.page-status-dev-only {
+  display: none;
+}
+
+:root.page-status-dev-mode .page-status.page-status-dev-only {
+  display: block;
+}
+
 .page-status-header {
   display: flex;
   align-items: center;
