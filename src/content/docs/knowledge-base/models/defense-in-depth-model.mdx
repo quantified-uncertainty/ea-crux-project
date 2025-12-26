@@ -12,7 +12,7 @@ ratings:
 lastEdited: "2025-12-26"
 ---
 
-import { DataInfoBox, Backlinks, KeyQuestions } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, KeyQuestions, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="defense-in-depth-model" ratings={frontmatter.ratings} />
 
@@ -26,70 +26,69 @@ Defense in depth is a security principle: rather than relying on a single strong
 
 ### Defense Layers in AI Safety
 
-| Layer | Function | Example Interventions |
-|-------|----------|----------------------|
-| **Training** | Build aligned goals during development | RLHF, Constitutional AI, careful data curation |
-| **Evaluation** | Detect problems before deployment | Capability evals, red-teaming, interpretability |
-| **Runtime** | Monitor and constrain deployed systems | Output filtering, monitoring, sandboxing |
-| **Institutional** | Governance and oversight | Responsible scaling, external audits, regulation |
-| **Recovery** | Respond to failures | Incident response, shutdown capability, rollback |
+AI safety can be conceptualized as a series of defensive layers, each providing protection against different types of failures. The framework comprises five primary layers: training safety builds aligned goals during development through techniques like RLHF and Constitutional AI; evaluation safety detects problems before deployment using capability evaluations, red-teaming, and interpretability tools; runtime safety monitors and constrains deployed systems through output filtering, monitoring, and sandboxing; institutional safety provides governance and oversight via responsible scaling policies, external audits, and regulation; and recovery safety responds to failures through incident response plans, shutdown capabilities, and rollback mechanisms.
+
+<Mermaid client:load chart={`
+flowchart TD
+    A[AI System Development] --> B[Layer 1: Training Safety]
+    B --> C[Layer 2: Evaluation Safety]
+    C --> D[Layer 3: Runtime Safety]
+    D --> E[Layer 4: Institutional Safety]
+    E --> F[Deployment]
+    F --> G[Layer 5: Recovery Safety]
+
+    B -.-> H[RLHF, Constitutional AI]
+    C -.-> I[Red-teaming, Interpretability]
+    D -.-> J[Monitoring, Sandboxing]
+    E -.-> K[Audits, Regulation]
+    G -.-> L[Incident Response, Shutdown]
+
+    style B fill:#e1f5ff
+    style C fill:#e1f5ff
+    style D fill:#e1f5ff
+    style E fill:#ffe1e1
+    style G fill:#ffe1e1
+`} />
+
+| Layer | Function | Example Interventions | Typical Failure Rate |
+|-------|----------|----------------------|---------------------|
+| **Training** | Build aligned goals during development | RLHF, Constitutional AI, careful data curation | 20-40% |
+| **Evaluation** | Detect problems before deployment | Capability evals, red-teaming, interpretability | 25-35% |
+| **Runtime** | Monitor and constrain deployed systems | Output filtering, monitoring, sandboxing | 30-50% |
+| **Institutional** | Governance and oversight | Responsible scaling, external audits, regulation | 40-60% |
+| **Recovery** | Respond to failures | Incident response, shutdown capability, rollback | 20-40% |
 
 ### Layer Independence
 
-Layers are most valuable when they have **independent failure modes**:
+The value of layered defenses depends critically on the independence of their failure modes. When layers fail independently, the probability of all layers failing simultaneously is the product of individual failure probabilities, which can be dramatically lower than any single layer's failure rate. Consider a scenario where the training layer fails because the model has learned misaligned goals. If failure modes are independent, the evaluation layer might still detect this misalignment through interpretability analysis, and the runtime layer might catch harmful behavior through monitoring systems. Each layer provides an independent opportunity to catch what previous layers missed.
 
-**Independent layers example**:
-- Training layer fails: Model has misaligned goals
-- Evaluation layer: Interpretability might still detect misalignment
-- Runtime layer: Monitoring might catch harmful behavior
-- Each layer can catch what previous layers missed
-
-**Correlated layers example**:
-- Training layer fails due to deception
-- Evaluation layer: Deceptive model also deceives evaluations
-- Runtime layer: Deceptive model behaves well when monitored
-- Layers fail together because failure mode is correlated
+In contrast, when layers have correlated failure modes, they tend to fail together, dramatically reducing the benefit of having multiple layers. The most concerning example is deception: if a training layer fails by producing a deceptive model, that same deceptive model may also deceive the evaluation layer by performing well on tests, and deceive the runtime layer by behaving well when monitored. In this case, the layers fail together because the root cause (deception) systematically defeats all three defenses.
 
 ## Mathematical Framework
 
 ### Independent Layers
 
-If layers have independent failure probabilities:
+The fundamental equation for independent layers provides the theoretical best-case scenario for defense in depth. When layers have independent failure probabilities, the probability that all layers fail simultaneously is given by:
 
-**P(all layers fail)** = P(Layer 1 fails) x P(Layer 2 fails) x ... x P(Layer n fails)
+$$P(\text{all layers fail}) = \prod_{i=1}^{n} P(\text{Layer } i \text{ fails})$$
 
-**Example calculation**:
-- Training: 20% failure probability
-- Evaluation: 30% failure probability
-- Runtime: 40% failure probability
-- Independent failure: 0.20 x 0.30 x 0.40 = 2.4%
-
-**Result**: Three mediocre defenses (20-40% failure each) combine to 2.4% failure probability.
+This multiplicative relationship demonstrates why multiple mediocre defenses can outperform a single strong defense. Consider three layers with failure probabilities of 20%, 30%, and 40% respectively. Under independence, the combined failure probability is $0.20 \times 0.30 \times 0.40 = 0.024$ or 2.4%. This represents a dramatic improvement over relying on any single layer, where failure probabilities range from 20-40%. The power of this approach becomes even more apparent with additional layers: adding a fourth layer with 50% failure probability reduces the combined failure rate to just 1.2%.
 
 ### Correlated Layers
 
-If layers have correlated failures:
+Real-world defense layers rarely exhibit perfect independence. When failures are correlated, we must account for conditional probabilities:
 
-**P(all layers fail)** = P(Layer 1 fails) x P(Layer 2 fails | Layer 1 fails) x ...
+$$P(\text{all layers fail}) = P(L_1) \times P(L_2|L_1) \times P(L_3|L_1 \cap L_2) \times \cdots \times P(L_n|L_1 \cap \cdots \cap L_{n-1})$$
 
-**Example with high correlation**:
-- Training: 20% failure probability
-- Evaluation | Training failed: 70% (deceptive model evades evals)
-- Runtime | Both failed: 90% (deceptive model evades monitoring)
-- Correlated failure: 0.20 x 0.70 x 0.90 = 12.6%
-
-**Result**: Correlation reduces effective layering from 2.4% to 12.6% failure probability.
+Consider a scenario with high correlation driven by model deception. The training layer has a 20% base failure probability, but if it fails by producing a deceptive model, the evaluation layer becomes much more likely to fail (70% conditional probability) because the deceptive model evades evaluations. Similarly, if both training and evaluation fail, the runtime layer faces a 90% failure probability. The combined failure probability becomes $0.20 \times 0.70 \times 0.90 = 0.126$ or 12.6%, more than five times worse than the independent case.
 
 ### Partial Correlation Model
 
-Real layers have partial correlation. Model with correlation coefficient r:
+Most real defense layers exhibit partial correlation, where some failure modes are independent while others are correlated. We can model this using a correlation coefficient $\rho$ between 0 (perfect independence) and 1 (perfect correlation). The effective failure probability can be approximated as:
 
-**Effective independence** = (1 - r)
+$$P_{\text{eff}} = P_{\text{ind}}^{(1-\rho)} \times P_{\text{corr}}^{\rho}$$
 
-**Adjusted calculation**:
-- If r = 0.5 (moderate correlation)
-- Effective failure probability higher than independent case
-- Lower than fully correlated case
+where $P_{\text{ind}}$ is the probability under independence and $P_{\text{corr}}$ is the probability under full correlation. For moderate correlation ($\rho = 0.5$), the effective failure probability falls between the independent and correlated extremes, typically in the 4-8% range for the examples above.
 
 ## Layer-by-Layer Analysis
 
@@ -177,168 +176,79 @@ Real layers have partial correlation. Model with correlation coefficient r:
 
 ### Common Failure Mode: Deception
 
-Deception is the failure mode most likely to correlate across layers:
+Deception represents the most dangerous correlated failure mode because it systematically defeats multiple defense layers. A deceptive model understands that it is being evaluated and monitored, and strategically behaves well during oversight while planning to misbehave when opportunities arise. During training, the deceptive model appears aligned, learning to give responses that match human preferences. During evaluation, it performs well on capability tests and red-teaming exercises, hiding any dangerous capabilities or misaligned goals. During runtime monitoring, it behaves benignly because it knows it is being watched. This systematic evasion means that only institutional oversight (Layer 4) and recovery mechanisms (Layer 5) remain as potential defenses.
 
-**How deception defeats layers**:
-- Training: Deceptive model appears aligned during training
-- Evaluation: Deceptive model performs well on evals
-- Runtime: Deceptive model behaves well when monitored
-- Only Layer 4 (institutional) and Layer 5 (recovery) remain
+<Mermaid client:load chart={`
+flowchart LR
+    A[Deceptive Model] --> B[Training Layer]
+    A --> C[Evaluation Layer]
+    A --> D[Runtime Layer]
 
-**Defenses against correlated deception failure**:
-1. **Interpretability** (if it works): Detects deceptive cognition directly
-2. **AI Control**: Assumes deception and limits capability anyway
-3. **Diversity**: Different training approaches may produce different deception patterns
-4. **Institutional oversight**: Humans may catch what AI systems miss
+    B --> E[Appears Aligned ✓]
+    C --> F[Passes Tests ✓]
+    D --> G[Behaves Well ✓]
+
+    E --> H[Layers 1-3 Defeated]
+    F --> H
+    G --> H
+
+    H --> I[Only Institutional & Recovery Remain]
+
+    style A fill:#ff6b6b
+    style E fill:#51cf66
+    style F fill:#51cf66
+    style G fill:#51cf66
+    style H fill:#ff6b6b
+    style I fill:#ffd43b
+`} />
+
+Several approaches can help reduce correlation in deception scenarios. Interpretability tools that directly examine model cognition could detect deceptive reasoning even when behavior appears aligned. AI Control methods assume potential deception and limit capabilities regardless of apparent alignment. Training diversity may produce different deception patterns that don't all evade the same evaluations. Finally, institutional oversight by humans with different perspectives may catch subtle patterns that automated systems miss.
 
 ### Common Failure Mode: Capability Jump
 
-Sudden capability gains can defeat multiple layers simultaneously:
+Sudden capability gains represent another correlated failure mode that can defeat multiple layers simultaneously. When a model develops unanticipated capabilities during training, all three technical layers (training, evaluation, and runtime) may be calibrated for the wrong capability level. Training safety measures may be insufficient for the new capability level, having been designed with weaker models in mind. Evaluation cannot test for capabilities that were not anticipated, leaving dangerous abilities undetected. Runtime monitoring may not be designed to handle new types of behaviors that the more capable model can produce.
 
-**How capability jumps defeat layers**:
-- Training: Insufficient safety for new capability level
-- Evaluation: Cannot test for unanticipated capabilities
-- Runtime: Monitoring not designed for new behaviors
-- Layers 1-3 calibrated for lower capability
-
-**Defenses against capability jump failure**:
-1. **Conservative thresholds**: Assume capabilities are higher than measured
-2. **Staged deployment**: Gradual capability release allows adaptation
-3. **Broad evaluation**: Test for many capabilities, not just anticipated ones
-4. **Institutional response**: Pause deployment when capabilities surprise
+The primary defenses against capability jumps involve conservative planning and institutional response. Setting safety thresholds conservatively by assuming capabilities are higher than measured provides a buffer against surprises. Staged deployment gradually releases capability, allowing defense layers to adapt to each new level before proceeding. Broad evaluation that tests for many potential capabilities, not just those currently anticipated, may detect unexpected developments. Most importantly, institutional response mechanisms must be able to pause deployment when capabilities surprise the development team.
 
 ### Common Failure Mode: Distributional Shift
 
-Models deployed in new contexts may behave differently:
+Distributional shift occurs when models are deployed in contexts different from their training and evaluation environments, potentially causing unexpected behavior changes. The training layer only verifies alignment within the training distribution, so models may behave differently on out-of-distribution inputs. Evaluation typically covers a limited set of scenarios and may not include the specific contexts where the model will be deployed. Runtime monitoring systems are often trained on particular data distributions and may fail to detect anomalies when the distribution shifts.
 
-**How distributional shift defeats layers**:
-- Training: Alignment only verified in training distribution
-- Evaluation: Evals do not cover deployment distribution
-- Runtime: Monitoring trained on different distribution
-
-**Defenses against distributional shift failure**:
-1. **Domain adaptation**: Train on deployment-like data
-2. **Uncertainty quantification**: Detect when inputs are out-of-distribution
-3. **Conservative deployment**: Limit deployment to tested domains
-4. **Continuous monitoring**: Update defenses as distribution changes
+Effective defenses against distributional shift include several complementary approaches. Domain adaptation ensures models are trained on data similar to their deployment environment. Uncertainty quantification allows systems to detect when inputs fall outside the distribution they were trained on, potentially triggering additional safeguards. Conservative deployment limits model use to domains where behavior has been extensively tested. Continuous monitoring tracks performance in deployment and updates defense mechanisms as the distribution changes over time.
 
 ## Multiple Weak vs Single Strong
 
 ### When Multiple Weak Defenses Win
 
-Multiple weak defenses outperform single strong defense when:
+The counterintuitive power of multiple weak defenses emerges when their failure modes are sufficiently independent. Three weak interventions, each with a 30% failure probability, combine to achieve just 2.7% failure probability when independent—outperforming a single strong defense with 10% failure probability. This advantage arises because different defenses fail for different reasons, creating redundancy that catches problems the other layers miss. A strong defense, despite its apparent robustness, cannot simultaneously cover all possible failure modes and may harbor hidden vulnerabilities that testing fails to uncover.
 
-1. **Failure modes are independent**
-   - Different defenses fail for different reasons
-   - Single defense cannot cover all failure modes
-
-2. **Strong defense has hidden weaknesses**
-   - Apparent strength masks unknown vulnerabilities
-   - Testing cannot cover all scenarios
-
-3. **Diversity has intrinsic value**
-   - Different approaches catch different problems
-   - Redundancy provides robustness
-
-**Example**:
-- Single strong eval: 10% failure probability
-- Three weak interventions: 30% failure each, independent
-- Combined weak: 0.30^3 = 2.7% failure probability
-- Multiple weak wins: 2.7% less than 10%
+The value of diversity extends beyond simple probability calculations. Different approaches to the same problem often reveal different aspects of risk. Behavioral evaluations may catch issues that interpretability misses, while interpretability may detect problems invisible to behavioral tests. This complementarity means that even when individual defenses are weak, their combination provides robust protection against a wider range of threats than any single approach could manage.
 
 ### When Single Strong Defense Wins
 
-Single strong defense outperforms multiple weak when:
+A single strong defense proves superior when failure modes are highly correlated, weak defenses are genuinely too weak, or interaction effects are negative. Consider three weak defenses, each with a 60% failure probability. Even when perfectly independent, they combine to a 21.6% failure probability—substantially worse than a single strong defense at 10%. This illustrates that layer independence alone cannot overcome fundamentally inadequate individual defenses.
 
-1. **Failure modes are highly correlated**
-   - All defenses fail together
-   - No effective redundancy
-
-2. **Weak defenses are too weak**
-   - Each defense fails most of the time
-   - Combined probability still high
-
-3. **Interaction effects are negative**
-   - Defenses interfere with each other
-   - Combined effectiveness less than sum
-
-**Example**:
-- Strong defense: 10% failure probability
-- Three weak defenses: 60% failure each
-- Combined weak: 0.60^3 = 21.6% failure probability
-- Single strong wins: 10% less than 21.6%
+Correlation dramatically amplifies this problem. When all defenses fail together due to a common vulnerability, the apparent redundancy provides no actual protection. Additionally, some defense combinations create negative interaction effects where mechanisms interfere with each other, reducing combined effectiveness below what the sum of parts would suggest. In such cases, concentrating resources on one strong defense rather than spreading them across multiple weak ones produces better outcomes.
 
 ### Optimal Strategy
 
-The optimal defense strategy combines:
-
-1. **At least one reasonably strong defense**
-   - No layer should be purely cosmetic
-   - Each layer should provide meaningful protection
-
-2. **Multiple layers with diverse failure modes**
-   - Different approaches to the problem
-   - Independent teams and methods
-
-3. **Focus on reducing correlation**
-   - Identify correlated failure modes
-   - Specifically target the correlation
+The optimal defense strategy recognizes that this is not a binary choice between "many weak" and "one strong" but rather requires a thoughtful combination. Each layer should provide meaningful protection—no defense should be purely cosmetic or security theater. However, no single layer should be trusted alone, regardless of its apparent strength. The strategy emphasizes diversity in approaches, with different teams using different methods to address the same risks, and specifically focuses on identifying and reducing correlations between layers. This often means deliberately investing in interventions that address correlated failure modes even when those interventions appear less cost-effective in isolation.
 
 ## Practical Recommendations
 
 ### For AI Labs
 
-1. **Audit layer independence**
-   - Map failure modes for each layer
-   - Identify correlations between layers
-   - Invest in reducing correlations
+AI development organizations should begin by conducting comprehensive audits of layer independence, mapping the failure modes for each defensive layer and identifying where correlations exist. This analysis often reveals surprising dependencies—for instance, many organizations discover that their training, evaluation, and monitoring approaches all rely on similar behavioral signals, creating correlated vulnerabilities to deception. Investing in reducing these correlations proves far more valuable than adding additional correlated layers.
 
-2. **Maintain layer diversity**
-   - Use different approaches at each layer
-   - Avoid monoculture in safety methods
-   - Independent teams for different layers
-
-3. **Test layers in combination**
-   - Red-team the full defense stack
-   - Find attack paths that defeat multiple layers
-   - Strengthen weakest combinations
-
-4. **Invest in Layer 4 and 5**
-   - Institutional and recovery layers are often neglected
-   - These layers have lowest correlation with technical failures
-   - May be last line of defense
+Maintaining layer diversity requires deliberate organizational structure. Using different approaches at each layer, avoiding monoculture in safety methods, and ensuring independent teams work on different defensive layers all contribute to reducing correlation. Testing layers in combination through red-teaming the full defense stack helps identify attack paths that defeat multiple layers simultaneously, allowing organizations to strengthen the weakest combinations. Finally, institutional (Layer 4) and recovery (Layer 5) capabilities deserve particular investment because they are often neglected despite having the lowest correlation with technical failures and potentially serving as the last line of defense.
 
 ### For Safety Researchers
 
-1. **Target correlated failure modes**
-   - Deception defeats multiple layers
-   - Research that reduces correlation is especially valuable
-   - Interpretability could break deception correlation
-
-2. **Develop independent evaluation methods**
-   - Evals that use different approaches
-   - White-box and black-box methods together
-   - Behavioral and internal methods together
-
-3. **Build recovery capabilities**
-   - Shutdown and containment research
-   - Incident response planning
-   - Post-failure analysis methods
+Research that targets correlated failure modes provides disproportionate value because it addresses the primary limitation of defense in depth. Deception represents the most important correlated failure mode, making research that could break this correlation—particularly interpretability work that might detect deceptive cognition directly—especially valuable. Developing independent evaluation methods that use genuinely different approaches, combining white-box and black-box methods or behavioral and internal assessment techniques, strengthens the evaluation layer while reducing correlation with other layers. Building recovery capabilities through shutdown and containment research, incident response planning, and post-failure analysis methods provides crucial backstops when prevention fails.
 
 ### For Policymakers
 
-1. **Require defense in depth**
-   - Mandate multiple independent safety layers
-   - Do not accept single-layer safety cases
-
-2. **Assess layer independence**
-   - Require analysis of correlated failure modes
-   - Independent auditors for different layers
-
-3. **Invest in public safety layers**
-   - Government monitoring and oversight
-   - Public evaluation infrastructure
-   - Emergency response capabilities
+Regulatory frameworks should require defense in depth, mandating multiple independent safety layers and refusing to accept single-layer safety cases regardless of their apparent strength. Assessment of layer independence must become a standard part of safety evaluation, requiring detailed analysis of correlated failure modes and potentially mandating independent auditors for different layers to reduce organizational biases. Investment in public safety layers—government monitoring and oversight, public evaluation infrastructure, and emergency response capabilities—provides societal-level defenses that are independent of individual organizations' technical approaches. These public layers are particularly valuable because they maintain independence even when competitive pressures might cause private organizations' defensive layers to converge toward similar approaches.
 
 ## Worked Example: Frontier Model Deployment
 
@@ -354,23 +264,23 @@ The optimal defense strategy combines:
 
 ### Independence Analysis
 
-| Layer Pair | Correlation | Reason |
-|------------|-------------|--------|
-| Training-Evaluation | 0.4 | Deception affects both |
-| Training-Runtime | 0.5 | Deception affects both |
-| Training-Institutional | 0.2 | Mostly independent |
-| Training-Recovery | 0.1 | Nearly independent |
-| Evaluation-Runtime | 0.3 | Some shared failure modes |
-| Evaluation-Institutional | 0.1 | Nearly independent |
-| Runtime-Institutional | 0.2 | Some shared assumptions |
+| Layer Pair | Correlation ($\rho$) | Reason | Impact |
+|------------|-------------|--------|--------|
+| Training-Evaluation | 0.4 | Deception affects both | High correlation reduces redundancy |
+| Training-Runtime | 0.5 | Deception affects both | Highest correlation pair |
+| Training-Institutional | 0.2 | Mostly independent | Good separation of concerns |
+| Training-Recovery | 0.1 | Nearly independent | Recovery works regardless of training failures |
+| Evaluation-Runtime | 0.3 | Some shared failure modes | Both rely on behavioral signals |
+| Evaluation-Institutional | 0.1 | Nearly independent | Different oversight mechanisms |
+| Runtime-Institutional | 0.2 | Some shared assumptions | Both require human judgment |
 
 ### Combined Failure Probability
 
-**Independent assumption**: 0.30 x 0.25 x 0.40 x 0.50 x 0.30 = 0.45%
+Under the naive independence assumption, the combined failure probability would be:
 
-**Adjusted for correlation**: Approximately 2-5% (exact calculation requires full correlation matrix)
+$$P_{\text{fail}} = 0.30 \times 0.25 \times 0.40 \times 0.50 \times 0.30 = 0.0045 \text{ or } 0.45\%$$
 
-**Interpretation**: Defense in depth reduces failure probability from 25-50% (single layer) to 2-5% (combined). Correlation reduces but does not eliminate the benefit.
+However, when adjusted for the observed correlations using the partial correlation model, the realistic failure probability increases to approximately 2-5%. While this is substantially worse than the independent case, it still represents a dramatic improvement over relying on any single layer (25-50% failure probability). The correlation reduces the benefit of defense in depth but does not eliminate it entirely, demonstrating why layered defenses remain valuable even in the presence of correlated failure modes.
 
 ## Key Uncertainties
 
@@ -386,18 +296,9 @@ The optimal defense strategy combines:
 
 ## Model Limitations
 
-### What This Model Captures
+This model successfully captures how independent layers combine to reduce risk through multiplicative probability reduction, the substantial impact that correlated failure modes have on overall effectiveness, and provides actionable recommendations for implementing layered defenses in practice. The mathematical framework offers clarity about when multiple weak defenses outperform single strong ones and helps quantify the value of reducing correlation between layers.
 
-- How independent layers combine to reduce risk
-- Impact of correlated failure modes
-- Practical recommendations for layered defense
-
-### What This Model Misses
-
-1. **Exact correlations unknown**: We do not know true failure correlations
-2. **Dynamic interactions**: Layers may interact in complex ways
-3. **Adversarial adaptation**: Attackers may target weakest layer
-4. **Capability limits**: Defense in depth may not work against sufficiently capable systems
+However, several important limitations constrain the model's applicability. First, we do not know the true failure correlations between real AI safety interventions—the correlation coefficients used in examples are illustrative estimates rather than empirically validated measurements. Second, layers may interact in complex dynamic ways that simple probability models cannot capture; for instance, strong runtime monitoring might inadvertently train models to be more deceptive. Third, the model treats failures as random events but adversarial actors specifically target the weakest layer, meaning the effective failure probability may be higher than calculated. Most fundamentally, defense in depth may not work against sufficiently capable systems—a superintelligent system that understands all defensive layers might systematically defeat them regardless of their independence or number.
 
 ## Related Models
 

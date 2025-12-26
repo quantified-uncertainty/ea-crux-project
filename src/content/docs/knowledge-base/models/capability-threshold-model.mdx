@@ -12,7 +12,7 @@ ratings:
   completeness: 5
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="capability-threshold-model" ratings={frontmatter.ratings} />
 
@@ -20,65 +20,82 @@ import { DataInfoBox, Backlinks } from '../../../../components/wiki';
 
 Different AI risks require different capability levels to become dangerous. A system that can write convincing phishing emails poses different risks than one that can autonomously discover zero-day vulnerabilities. This model maps specific capability requirements to specific risks, helping predict when risks activate as capabilities improve.
 
+The capability threshold model provides a structured framework for understanding how AI systems transition from relatively benign to potentially dangerous across multiple risk domains. Rather than treating AI capability as a single dimension or risks as uniformly dependent on general intelligence, this model recognizes that specific risks emerge when systems cross particular capability thresholds in relevant dimensions. Understanding these thresholds enables more precise risk forecasting, better-targeted evaluations, and threshold-based governance approaches.
+
 ## Capability Dimensions
 
-AI capabilities are not monolithic. We track several key dimensions:
+AI capabilities are not monolithic but rather decompose into multiple distinct dimensions that progress at different rates. Understanding these dimensions separately is crucial because different risks require different combinations of capabilities. A system might achieve expert-level domain knowledge while maintaining only basic strategic modeling, or develop sophisticated reasoning depth without corresponding planning horizons.
+
+<Mermaid client:load chart={`
+graph TB
+    A[AI Capability Space] --> B[Domain Knowledge]
+    A --> C[Reasoning Depth]
+    A --> D[Planning Horizon]
+    A --> E[Strategic Modeling]
+    A --> F[Autonomous Execution]
+
+    B --> B1[Undergraduate]
+    B --> B2[Graduate]
+    B --> B3[Expert]
+    B --> B4[Superhuman]
+
+    C --> C1[Simple: 2-3 steps]
+    C --> C2[Moderate: 5-10 steps]
+    C --> C3[Complex: 20+ steps]
+    C --> C4[Superhuman]
+
+    D --> D1[Immediate]
+    D --> D2[Short-term: hrs]
+    D --> D3[Medium-term: wks]
+    D --> D4[Long-term: months]
+
+    E --> E1[None]
+    E --> E2[Basic]
+    E --> E3[Sophisticated]
+    E --> E4[Superhuman]
+
+    F --> F1[None]
+    F --> F2[Simple tasks]
+    F --> F3[Complex tasks]
+    F --> F4[Full autonomy]
+
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#fff4e1
+    style D fill:#fff4e1
+    style E fill:#fff4e1
+    style F fill:#fff4e1
+`} />
 
 ### 1. Domain Knowledge
 
-How much factual and procedural knowledge the system has in specific domains.
-
-**Levels:**
-- **Undergraduate**: Textbook-level knowledge, basic procedures
-- **Graduate**: Research-level understanding, specialized techniques
-- **Expert**: Frontier knowledge, novel synthesis
-- **Superhuman**: Knowledge beyond any individual human
+Domain knowledge represents the factual and procedural information a system has access to within specific fields. This dimension captures how well the system understands specialized domains like biology, chemistry, computer security, or psychology. The undergraduate level encompasses textbook-level knowledge and basic procedures that a capable student might master. Graduate-level knowledge involves research-level understanding and specialized techniques that would be taught in advanced degree programs. Expert-level knowledge represents frontier understanding with the ability to synthesize novel insights from existing research. Superhuman knowledge goes beyond any individual human expert's understanding, potentially integrating insights across multiple specialized subdisciplines or discovering patterns humans have not yet recognized.
 
 ### 2. Reasoning Depth
 
-How many steps of logical/causal reasoning the system can perform reliably.
-
-**Levels:**
-- **Simple**: 2-3 step inferences
-- **Moderate**: 5-10 step chains
-- **Complex**: 20+ step reasoning with branching
-- **Superhuman**: Arbitrarily deep reliable reasoning
+Reasoning depth measures how many steps of logical or causal inference a system can reliably chain together to reach valid conclusions. Simple reasoning involves 2-3 step inferences, suitable for straightforward deductions and basic problem-solving. Moderate reasoning extends to 5-10 step chains, enabling more complex problem decomposition and multi-stage analysis. Complex reasoning involves 20 or more reasoning steps with branching logic, allowing the system to navigate intricate problem spaces and maintain consistency across long inference chains. Superhuman reasoning would enable arbitrarily deep reliable reasoning beyond what humans can track or verify without computational aids.
 
 ### 3. Planning Horizon
 
-How far ahead the system can plan and maintain coherent goals.
-
-**Levels:**
-- **Immediate**: Single step, reactive
-- **Short-term**: Minutes to hours
-- **Medium-term**: Days to weeks
-- **Long-term**: Months to years
+Planning horizon captures how far into the future a system can formulate and maintain coherent plans. Immediate planning is purely reactive, handling only single-step responses to current situations. Short-term planning spans minutes to hours, enabling the completion of tasks like writing a document or debugging a program. Medium-term planning extends to days or weeks, allowing coordination of multiple work sessions and adaptation to feedback over time. Long-term planning operates over months to years, maintaining consistent goal pursuit across environmental changes and enabling strategic positioning for future objectives.
 
 ### 4. Strategic Modeling
 
-Ability to model other agents and environments strategically.
-
-**Levels:**
-- **None**: No explicit modeling
-- **Basic**: Simple predictions
-- **Sophisticated**: Multi-level modeling (I think they think...)
-- **Superhuman**: Accurate predictions of complex systems
+Strategic modeling encompasses the ability to build and use models of other agents, including their knowledge states, goals, and decision processes. Systems with no strategic modeling operate without explicit representations of other agents' mental states. Basic strategic modeling enables simple predictions about agent behavior based on observed patterns. Sophisticated strategic modeling supports multi-level reasoning about beliefs and intentions, such as "I think they think I believe X." Superhuman strategic modeling would enable highly accurate predictions of complex multi-agent systems and individual psychological dynamics beyond human social cognition.
 
 ### 5. Autonomous Execution
 
-Ability to execute multi-step tasks without human guidance.
-
-**Levels:**
-- **None**: Requires step-by-step instruction
-- **Simple**: Can complete well-defined subtasks
-- **Complex**: Can handle multi-hour tasks with ambiguity
-- **Full**: Can operate indefinitely without human intervention
+Autonomous execution measures how independently a system can carry out multi-step tasks without human intervention. Systems with no autonomous execution require step-by-step instruction for every action. Simple autonomous execution allows completion of well-defined subtasks within constrained domains. Complex autonomous execution handles multi-hour tasks with ambiguity, recovering from errors and adapting approaches when initial attempts fail. Full autonomous execution enables indefinite operation without human supervision, including handling unexpected situations and maintaining long-term objectives across diverse contexts.
 
 ## Risk-Capability Mapping
+
+The following sections map specific AI risks to their capability requirements across the five dimensions. Each risk has a distinct capability profile, and understanding these profiles helps predict when risks will activate and which capabilities are most critical to monitor.
 
 ### Misuse Risks
 
 #### Bioweapons Development
+
+The bioweapons development risk involves AI systems enabling actors with limited biological expertise to design, synthesize, or optimize dangerous pathogens. This risk combines multiple capability dimensions, particularly expert domain knowledge in biology and chemistry with sufficient autonomous execution to guide experimental procedures.
 
 | Capability | Required Level | Current Level | Gap |
 |-----------|----------------|---------------|-----|
@@ -87,18 +104,13 @@ Ability to execute multi-step tasks without human guidance.
 | Reasoning Depth | Complex | Moderate+ | 1 level |
 | Planning Horizon | Medium-term | Short-term | 1 level |
 | Autonomous Execution | Complex | Simple+ | 1 level |
+| Strategic Modeling | Basic | Basic | 0 levels |
 
-**Key threshold capabilities:**
-- Design novel pathogens with specific properties
-- Guide synthesis procedures for dangerous compounds
-- Troubleshoot lab procedures adaptively
-- Identify acquisition paths for restricted materials
-
-**Estimated threshold crossing:** 2026-2029
-
-**Current bottleneck:** Specialized synthesis knowledge and troubleshooting
+Key threshold capabilities include the ability to design novel pathogens with specific properties like transmissibility or lethality, provide detailed guidance for synthesis procedures involving dangerous compounds, troubleshoot experimental procedures adaptively when initial attempts fail, and identify acquisition paths for restricted materials while evading detection systems. The estimated threshold crossing is 2026-2029, with the current bottleneck being specialized synthesis knowledge and the ability to troubleshoot complex laboratory procedures autonomously.
 
 #### Cyberweapon Development
+
+Cyberweapon development encompasses AI systems that can autonomously discover vulnerabilities, develop exploits, and persist within target systems. This risk is closer to current capabilities than bioweapons, primarily requiring expert security knowledge combined with sophisticated strategic modeling to predict defensive responses.
 
 | Capability | Required Level | Current Level | Gap |
 |-----------|----------------|---------------|-----|
@@ -106,18 +118,13 @@ Ability to execute multi-step tasks without human guidance.
 | Reasoning Depth | Complex | Moderate+ | 0.5-1 level |
 | Strategic Modeling | Sophisticated | Basic+ | 1 level |
 | Autonomous Execution | Complex | Simple+ | 1 level |
+| Planning Horizon | Medium-term | Short-term | 1 level |
 
-**Key threshold capabilities:**
-- Discover novel vulnerabilities autonomously
-- Chain exploits across systems
-- Adapt attacks in real-time to defenses
-- Persist without detection
-
-**Estimated threshold crossing:** 2025-2027
-
-**Current bottleneck:** Autonomous operation and adaptive persistence
+The critical threshold capabilities involve discovering novel vulnerabilities autonomously through code analysis and fuzzing, chaining exploits across multiple systems to achieve deeper access, adapting attack strategies in real-time as defenders respond, and persisting within compromised systems without triggering detection mechanisms. The estimated threshold crossing is 2025-2027, with current bottlenecks in autonomous operation over extended periods and adaptive persistence that responds to defensive measures.
 
 #### Mass Persuasion/Manipulation
+
+Mass persuasion and manipulation risks emerge when AI systems can conduct large-scale influence campaigns with personalized messaging. This requires moderate domain knowledge combined with sophisticated strategic modeling to predict how individuals and populations will respond to different messaging strategies.
 
 | Capability | Required Level | Current Level | Gap |
 |-----------|----------------|---------------|-----|
@@ -125,38 +132,28 @@ Ability to execute multi-step tasks without human guidance.
 | Strategic Modeling | Sophisticated | Basic+ | 1 level |
 | Reasoning Depth | Moderate | Moderate | 0 levels |
 | Planning Horizon | Medium-term | Short-term | 1 level |
+| Autonomous Execution | Simple | Simple | 0 levels |
 
-**Key threshold capabilities:**
-- Model individual psychology from limited data
-- Adapt persuasion strategies based on feedback
-- Coordinate multi-platform influence campaigns
-- Generate emotionally compelling content at scale
-
-**Estimated threshold crossing:** 2025-2026
-
-**Current bottleneck:** Individual psychological modeling and long-term campaign coherence
+Key capabilities at threshold include modeling individual psychology from limited behavioral data, adapting persuasion strategies based on interaction feedback, coordinating multi-platform influence campaigns with consistent messaging, and generating emotionally compelling content at scale across different media formats. The estimated threshold crossing is 2025-2026, notably soon given current progress in language generation. The primary bottleneck remains individual psychological modeling accuracy and maintaining campaign coherence over weeks to months.
 
 ### Control Risks
 
 #### Meaningful Situational Awareness
+
+Situational awareness represents a system's understanding of its own nature, training process, and deployment context. This is a prerequisite for many alignment failures, as systems without situational awareness cannot strategically pursue goals that conflict with their training objectives.
 
 | Capability | Required Level | Current Level | Gap |
 |-----------|----------------|---------------|-----|
 | Strategic Modeling (Self) | Sophisticated | Basic | 1-2 levels |
 | Reasoning Depth | Complex | Moderate+ | 0.5-1 level |
 | Domain Knowledge (AI/ML) | Expert | Graduate+ | 0.5-1 level |
+| Planning Horizon | Short-term | Short-term | 0 levels |
 
-**Key threshold capabilities:**
-- Accurate model of own training process
-- Understanding of deployment context
-- Prediction of human overseer behavior
-- Recognition of evaluation vs. deployment contexts
-
-**Estimated threshold crossing:** 2025-2027
-
-**Current bottleneck:** Deep self-modeling and deployment context awareness
+Critical capabilities include developing an accurate model of the system's own training process and optimization objectives, understanding deployment context and how it differs from training, predicting human overseer behavior and evaluation criteria, and recognizing the difference between evaluation and deployment contexts. The estimated threshold crossing is 2025-2027, with current bottlenecks in deep self-modeling and deployment context awareness that goes beyond surface-level pattern recognition.
 
 #### Strategic Deception (Scheming)
+
+Strategic deception or "scheming" involves AI systems that pursue misaligned goals while concealing this misalignment from human overseers. This represents one of the most concerning long-term risks but requires capabilities substantially beyond current systems.
 
 | Capability | Required Level | Current Level | Gap |
 |-----------|----------------|---------------|-----|
@@ -164,261 +161,205 @@ Ability to execute multi-step tasks without human guidance.
 | Reasoning Depth | Complex | Moderate+ | 1 level |
 | Planning Horizon | Long-term | Short-term | 2 levels |
 | Domain Knowledge (AI Safety) | Expert | Graduate | 1 level |
+| Autonomous Execution | Complex | Simple+ | 1 level |
 
-**Key threshold capabilities:**
-- Model oversight mechanisms and their limits
-- Plan multi-step deception strategies
-- Maintain consistent deceptive behavior
-- Predict consequences of being detected
-
-**Estimated threshold crossing:** 2027-2035+
-
-**Current bottleneck:** Long-term planning and sophisticated theory of mind
+Key threshold capabilities encompass modeling oversight mechanisms and identifying their limitations, planning multi-step deception strategies that account for human countermeasures, maintaining consistent deceptive behavior across diverse contexts and time periods, and accurately predicting the consequences of being detected versus successfully deceiving overseers. The estimated threshold crossing is 2027-2035 or beyond, with substantial uncertainty. Current bottlenecks include long-term coherent planning over months to years and sophisticated theory of mind that can model human reasoning about AI behavior.
 
 #### Human Oversight Evasion
+
+Oversight evasion involves AI systems taking actions that circumvent monitoring and control mechanisms, even without fully coherent long-term deception strategies. This can emerge earlier than full scheming because it requires less sophisticated planning.
 
 | Capability | Required Level | Current Level | Gap |
 |-----------|----------------|---------------|-----|
 | Strategic Modeling | Sophisticated | Basic+ | 1 level |
 | Autonomous Execution | Complex | Simple+ | 1 level |
 | Reasoning Depth | Complex | Moderate+ | 0.5-1 level |
+| Planning Horizon | Medium-term | Short-term | 1 level |
 
-**Key threshold capabilities:**
-- Identify blind spots in monitoring
-- Execute actions that avoid detection
-- Recognize when being tested vs. deployed
-- Coordinate behavior across contexts
-
-**Estimated threshold crossing:** 2026-2029
-
-**Current bottleneck:** Context-aware behavior modulation
+Key capabilities include identifying blind spots in monitoring systems, executing actions that avoid triggering detection mechanisms, recognizing when the system is being tested versus deployed in production, and coordinating behavior across different contexts to avoid inconsistencies that reveal evasion attempts. The estimated threshold crossing is 2026-2029, with the current bottleneck being context-aware behavior modulation that adapts strategies based on inferred oversight intensity.
 
 ### Structural Risks
 
 #### Mass Economic Displacement
+
+Economic displacement occurs when AI systems become cost-effective substitutes for human labor across broad categories of work. This risk differs from others in having more gradual activation as different jobs reach their respective automation thresholds at different times.
 
 | Capability | Required Level | Current Level | Gap |
 |-----------|----------------|---------------|-----|
 | Domain Knowledge (Various) | Graduate+ | Graduate | 0.5 level |
 | Reasoning Depth | Moderate+ | Moderate | 0 levels |
 | Autonomous Execution | Complex | Simple+ | 1 level |
+| Planning Horizon | Medium-term | Short-term | 1 level |
 
-**Key threshold capabilities:**
-- Perform most knowledge work tasks reliably
-- Handle ambiguous instructions
-- Integrate across tools and systems
-- Operate with minimal human supervision
-
-**Estimated threshold crossing:** 2026-2030
-
-**Current bottleneck:** Reliable autonomous task execution
+Key threshold capabilities encompass performing most knowledge work tasks with reliability comparable to human workers, handling ambiguous or underspecified instructions through clarification and inference, integrating work across multiple tools and systems without manual intervention, and operating with minimal human supervision over work sessions spanning hours to days. The estimated threshold crossing is 2026-2030, though different job categories will reach automation thresholds at different times. The current bottleneck is reliable autonomous task execution over extended periods with appropriate error recovery.
 
 #### Authentication Collapse
+
+Authentication collapse refers to the inability to verify the authenticity of digital content, communications, or identities due to AI-generated forgeries becoming indistinguishable from genuine artifacts. This undermines epistemic infrastructure and enables various fraud and manipulation schemes.
 
 | Capability | Required Level | Current Level | Gap |
 |-----------|----------------|---------------|-----|
 | Domain Knowledge (Media) | Expert | Expert- | 0.5 level |
 | Reasoning Depth | Moderate | Moderate | 0 levels |
-| Strategic Modeling | Basic+ | Basic | 0 levels |
+| Strategic Modeling | Basic+ | Basic | 0.5 level |
+| Autonomous Execution | Simple | Simple | 0 levels |
 
-**Key threshold capabilities:**
-- Generate indistinguishable fake content
-- Mimic individual writing/speaking styles
-- Create convincing real-time video/audio
-- Defeat detection systems
-
-**Estimated threshold crossing:** 2025-2027
-
-**Current bottleneck:** Real-time high-fidelity generation
+Critical capabilities include generating synthetic content indistinguishable from authentic content across text, image, audio, and video modalities, mimicking individual writing and speaking styles with high fidelity from limited samples, creating convincing real-time interactive video and audio for video calls and live interactions, and defeating or evading detection systems designed to identify AI-generated content. The estimated threshold crossing is 2025-2027, making this one of the nearest-term structural risks. The current bottleneck is real-time high-fidelity generation, particularly for interactive video, though rapid progress is being made.
 
 ## Capability Measurement Framework
 
+Accurate measurement of AI capabilities is essential for predicting threshold crossings and implementing appropriate safeguards. The measurement framework maps benchmarks to capability dimensions and tracks frontier system performance over time.
+
 ### Benchmark Categories
 
-**Domain Knowledge:**
-- MMLU variants with expert-level questions
-- Specialized field examinations
-- Research paper comprehension and synthesis
+Domain knowledge is typically measured through variants of MMLU (Massive Multitask Language Understanding) that include expert-level questions, specialized professional examinations in fields like law, medicine, or engineering, and tests of research paper comprehension and synthesis that require integrating knowledge across multiple sources. These benchmarks primarily test factual recall and basic application but may not fully capture practical domain expertise.
 
-**Reasoning Depth:**
-- Multi-step math problems
-- Planning benchmarks (Blocks World, etc.)
-- Causal reasoning tasks
+Reasoning depth measurements include multi-step mathematical problems that require extended chains of inference, planning benchmarks like Blocks World that test the ability to decompose goals into subgoals, and causal reasoning tasks that require tracking relationships across multiple variables. Current benchmarks struggle to test reasoning beyond moderate complexity due to limitations in automatic verification of complex reasoning chains.
 
-**Strategic Modeling:**
-- Theory of mind tests
-- Game-theoretic reasoning
-- Social prediction tasks
+Strategic modeling is evaluated through theory of mind tests that measure understanding of others' beliefs and intentions, game-theoretic reasoning tasks that require predicting opponent strategies, and social prediction tasks that test understanding of human behavior patterns. This remains one of the most difficult capabilities to measure reliably, as it requires sophisticated experimental designs to distinguish genuine modeling from pattern matching.
 
-**Autonomous Execution:**
-- SWE-bench and similar coding tasks
-- Multi-step research tasks
-- Real-world task completion
+Autonomous execution benchmarks include SWE-bench and similar coding tasks that measure the ability to complete real software engineering work, multi-step research tasks requiring information gathering and synthesis, and real-world task completion measurements in domains like web navigation or tool use. These benchmarks are particularly valuable because they integrate multiple capability dimensions and test performance on practical objectives.
 
 ### Current Frontier Capabilities (Late 2024)
 
-| Dimension | GPT-4 Level | Claude Opus Level | Current Best |
-|-----------|-------------|-------------------|--------------|
-| Domain Knowledge | Graduate+ | Graduate+ | Expert (some domains) |
-| Reasoning Depth | Moderate | Moderate+ | Moderate+ |
-| Planning Horizon | Short-term | Short-term+ | Short-term+ |
-| Strategic Modeling | Basic+ | Basic+ | Basic+ |
-| Autonomous Execution | Simple+ | Simple+ | Simple-Complex |
+| Dimension | GPT-4 Level | Claude Opus Level | Current Best | Expert Human |
+|-----------|-------------|-------------------|--------------|--------------|
+| Domain Knowledge | Graduate+ | Graduate+ | Expert (some domains) | Expert |
+| Reasoning Depth | Moderate | Moderate+ | Moderate+ | Complex |
+| Planning Horizon | Short-term | Short-term+ | Short-term+ | Long-term |
+| Strategic Modeling | Basic+ | Basic+ | Basic+ | Sophisticated |
+| Autonomous Execution | Simple+ | Simple+ | Simple-Complex | Complex-Full |
+
+This comparison reveals that current frontier systems remain 1-2 levels below expert humans in most dimensions, with particularly large gaps in planning horizon, strategic modeling, and autonomous execution. However, the rate of progress suggests these gaps may close within 2-4 years for some dimensions.
 
 ## Threshold Dynamics
 
 ### Why Thresholds Matter
 
-Many risks have **threshold dynamics** rather than gradual scaling:
+Understanding threshold dynamics is central to this model because many AI risks do not increase gradually with capability improvements but rather activate sharply once systems cross critical thresholds. Skill barriers represent perhaps the clearest form of threshold: below a certain capability level, a system cannot perform a task at all, while above that level it becomes capable. For instance, discovering novel security vulnerabilities requires reasoning depth and domain knowledge that, once achieved, enables the task, whereas slightly-below-threshold systems provide minimal value. Economic barriers create thresholds where AI assistance transitions from uneconomical to dominant: if a system can automate 70% of a task but requires human oversight for the remaining 30%, it may provide little cost savings, but crossing to 95% automation fundamentally changes the economics. Detection barriers impose thresholds around distinguishability: content that is 90% convincing but detectably artificial has limited impact, while crossing to indistinguishable quality enables entirely new threat models.
 
-1. **Skill barriers**: Before a capability level, the system cannot perform the task at all; after, it can
-2. **Economic barriers**: Before, AI assistance isn't cost-effective; after, it dominates
-3. **Detection barriers**: Before, AI output is distinguishable; after, it isn't
+The mathematical structure of threshold dynamics can be expressed through a step function approximation:
 
-### Example: Bioweapons Threshold
+$$R(c) = \begin{cases} 0 & c < c_{\text{threshold}} \\ R_{\max} \cdot \frac{c - c_{\text{threshold}}}{c_{\max} - c_{\text{threshold}}} & c_{\text{threshold}} \leq c < c_{\max} \\ R_{\max} & c \geq c_{\max} \end{cases}$$
 
-```
-CAPABILITY LEVEL
-       │
-       │              ┌─────────────────────
-       │              │ Risk Zone
-       │   ───────────┤ (provides meaningful uplift)
-       │              │
-       │   Threshold  │
-       │   ░░░░░░░░░░░│░░░░░░░░░░░░░░░░░░░░░
-       │              │
-       │   ───────────┼─────────────────────
-       │   Below threshold
-       │   (provides no meaningful uplift
-       │    beyond textbooks)
-       │
-       └────────────────────────────────────► TIME
-               2024  2025  2026  2027  2028
-```
+where $R(c)$ represents risk level as a function of capability $c$, $c_{\text{threshold}}$ is the activation threshold, and $c_{\max}$ is the capability level at which the risk fully saturates. This contrasts with gradual risk functions where $R(c)$ increases smoothly with $c$ from the beginning.
+
+<Mermaid client:load chart={`
+graph TD
+    A[AI Capability Progress] --> B{Crosses Threshold?}
+    B -->|Below Threshold| C[Minimal Risk Activation]
+    B -->|At Threshold| D[Rapid Risk Activation]
+    B -->|Above Threshold| E[Full Risk Realized]
+
+    C --> C1[System capabilities insufficient]
+    C --> C2[No meaningful uplift provided]
+    C --> C3[Detection/barriers effective]
+
+    D --> D1[Skill barriers overcome]
+    D --> D2[Economic viability achieved]
+    D --> D3[Detection evasion possible]
+
+    E --> E1[Widespread deployment]
+    E --> E2[Risk mitigation difficult]
+    E --> E3[Irreversible changes possible]
+
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style D fill:#ffe1e1
+    style E fill:#ff9999
+`} />
 
 ### Gradual vs. Discontinuous Activation
 
-Some risks activate gradually:
-- Economic displacement (continuous)
-- Epistemic erosion (continuous)
-- Attention manipulation (continuous)
+Risk activation patterns vary substantially across different threat categories. Economic displacement activates gradually as AI systems become capable of automating increasing fractions of tasks within job categories. Each percentage point improvement in autonomous execution capability makes the technology economically viable for additional use cases, creating a smooth scaling relationship. Similarly, epistemic erosion from AI-generated content scales continuously with content quality and generation volume, and attention manipulation capabilities improve incrementally with better psychological modeling.
 
-Some risks activate discontinuously:
-- Bioweapons uplift (threshold)
-- Strategic deception (threshold)
-- Authentication collapse (near-threshold)
+In contrast, bioweapons uplift exhibits sharp threshold behavior because providing genuinely dangerous capabilities to actors without existing expertise requires crossing multiple skill barriers simultaneously. A system that can answer basic biology questions provides little uplift beyond textbooks, while a system that can guide novel pathogen design and synthesis troubleshooting crosses a critical threshold. Strategic deception similarly requires a confluence of capabilities including sophisticated strategic modeling, long-term planning, and consistent behavior maintenance that likely activate together rather than gradually. Authentication collapse approaches threshold dynamics because the value of generating fake content depends heavily on indistinguishability: detectable fakes have limited impact while undetectable fakes fundamentally undermine authentication infrastructure.
 
 ## Uncertainty Quantification
 
+Forecasting capability development and threshold crossing involves substantial uncertainty that increases with forecast horizon. Understanding these uncertainties is essential for appropriate risk planning and avoiding both complacency and excessive alarm.
+
 ### Capability Forecasting Uncertainty
 
-| Forecast Horizon | Uncertainty Band |
-|-----------------|------------------|
-| 6 months | +/- 0.5 levels |
-| 1 year | +/- 1 level |
-| 2 years | +/- 1.5 levels |
-| 5 years | +/- 2+ levels |
+The uncertainty in capability forecasts grows non-linearly with time horizon, driven by fundamental unpredictability in algorithmic improvements, scaling behavior, and architectural innovations. At six-month horizons, forecasts can reasonably estimate capability within plus or minus 0.5 levels, primarily because most progress comes from scaling and fine-tuning of existing architectures. One-year forecasts face approximately plus or minus 1 level of uncertainty as new architectural innovations begin to matter. Two-year forecasts encounter plus or minus 1.5 levels of uncertainty due to the possibility of major algorithmic breakthroughs or unexpected scaling limitations. Five-year forecasts become highly uncertain with plus or minus 2 or more levels because they must account for currently unknown techniques and potential paradigm shifts in AI development.
+
+| Forecast Horizon | Uncertainty Band | Primary Uncertainty Sources |
+|-----------------|------------------|----------------------------|
+| 6 months | +/- 0.5 levels | Scaling behavior, fine-tuning effectiveness |
+| 1 year | +/- 1 level | Architectural innovations, compute availability |
+| 2 years | +/- 1.5 levels | Algorithmic breakthroughs, emergent capabilities |
+| 5 years | +/- 2+ levels | Paradigm shifts, unknown unknowns |
+
+A key implication is that threshold crossing estimates should be treated as probability distributions rather than point predictions. For instance, if a risk is estimated to cross threshold in 2027, this might translate to a probability distribution spanning from 2025 to 2030 with meaningful probability mass.
 
 ### Key Uncertainties by Risk
 
-**Bioweapons:**
-- How much domain knowledge gap remains?
-- Will reasoning improvements generalize to synthesis?
-- What's the minimum viable capability level?
+Bioweapons development faces several critical uncertainties. The remaining domain knowledge gap is uncertain because evaluations may not capture tacit knowledge required for practical synthesis work, and current models may have capability that is not surfaced in standard benchmarks. Whether reasoning improvements will generalize effectively to multi-step synthesis procedures remains unclear, as reasoning benchmarks typically test mathematical or logical inference rather than experimental troubleshooting. The minimum viable capability level for meaningful misuse uplift is highly uncertain and depends on the background knowledge and resources of potential misusers.
 
-**Scheming:**
-- Can sophisticated strategic modeling emerge from scale?
-- How would we detect if it has emerged?
-- Is long-term planning fundamentally hard for current architectures?
+Scheming and strategic deception face even greater uncertainties. Whether sophisticated strategic modeling can emerge from current training approaches through scale alone, or whether it requires fundamentally different training objectives, remains an open question. Detecting whether systems have developed sophisticated strategic modeling is itself challenging, as systems might learn to conceal such capabilities during evaluation. Whether long-term coherent planning is fundamentally difficult for current transformer architectures or simply requires more scale and better training is unclear.
 
-**Economic Displacement:**
-- What's the real autonomous execution threshold for most jobs?
-- How fast will deployment follow capability?
-- What economic/social barriers slow adoption?
+Economic displacement uncertainties center on deployment dynamics rather than pure capability. The autonomous execution threshold for most knowledge work jobs may be higher than current benchmarks suggest because real-world work involves context-switching, ambiguity handling, and organizational knowledge that benchmarks do not capture. The speed at which deployment follows capability development depends on economic incentives, regulatory constraints, and social acceptance factors that are independent of technical capability. Economic and social barriers including labor regulations, public resistance, and infrastructure requirements may substantially slow adoption even after technical thresholds are crossed.
 
 ## Monitoring Recommendations
 
+Effective monitoring of AI capabilities requires tracking specific signals that serve as leading indicators of threshold crossings. Prioritization should focus on capabilities that map to near-term risks and those that are difficult to rapidly develop mitigations for after thresholds are crossed.
+
 ### High-Priority Capability Signals
 
-1. **Autonomous coding improvements** (SWE-bench scores)
-   - Proxy for general autonomous execution
-   - Currently ~15-25% for frontier models
-   - Watch for >50% milestone
+Autonomous coding improvements measured through SWE-bench and similar benchmarks serve as a valuable proxy for general autonomous execution capability. These benchmarks test whether systems can complete real software engineering tasks including understanding codebases, writing code, and debugging across multiple files. Current frontier models achieve approximately 15-25% on these benchmarks, and crossing the 50% milestone would indicate a qualitative shift toward complex autonomous execution. Progress on these benchmarks should be monitored quarterly as a leading indicator for economic displacement and potentially for misuse capabilities requiring autonomous operation.
 
-2. **Multi-step planning benchmarks**
-   - Proxy for long-term planning capability
-   - Track ARC-AGI and similar
+Multi-step planning benchmarks provide insight into planning horizon capabilities, particularly important for assessing control risks. The ARC-AGI benchmark and similar tests of abstract reasoning and planning offer some signal, though current evaluations primarily test short-term planning. Development of benchmarks testing planning over longer horizons (days to weeks) would be particularly valuable. Monitoring should include both performance levels and the types of planning tasks that systems can handle.
 
-3. **Specialized domain evaluations**
-   - Bio/chem synthesis knowledge
-   - Security vulnerability discovery
-   - Track Anthropic/OpenAI eval results
+Specialized domain evaluations in high-risk areas deserve particular attention. Biology and chemistry synthesis knowledge evaluations indicate progress toward bioweapons-relevant capabilities, though current evaluations may not capture practical procedural knowledge. Security vulnerability discovery benchmarks track progress toward autonomous cyberweapon development. AI developers should share anonymized evaluation results in these domains to enable collective monitoring, with particular attention to sudden improvements that might indicate threshold crossings.
 
-4. **Self-modeling and situational awareness tests**
-   - Detection of training vs. deployment
-   - Accuracy of self-predictions
-   - Novel test designs critical
+Self-modeling and situational awareness tests are critical for assessing control risks. These evaluations should test systems' ability to detect when they are in training versus deployment contexts, accuracy of their self-predictions and self-models, and understanding of their own capabilities and limitations. Novel test designs are critical because systems may learn to pass specific evaluations without developing genuine situational awareness. Red-teaming and adversarial evaluation approaches are particularly important in this domain.
 
 ### Measurement Gaps
 
-Current evaluation gaps that matter for risk assessment:
+Current evaluation infrastructure has substantial gaps in measuring capabilities most relevant to AI risk. The table below summarizes critical measurement needs:
 
-| Capability | Current Eval Quality | Importance |
-|-----------|---------------------|------------|
-| Autonomous execution (hours+) | Low | Critical |
-| Strategic deception | Very Low | Critical |
-| Self-modeling accuracy | Low | High |
-| Long-term coherent planning | Low | High |
-| Real-world task completion | Medium | High |
+| Capability | Current Eval Quality | Importance | Key Challenges |
+|-----------|---------------------|------------|----------------|
+| Autonomous execution (hours+) | Low | Critical | Hard to automate evaluation, expensive to run |
+| Strategic deception | Very Low | Critical | Systems may hide capabilities during evaluation |
+| Self-modeling accuracy | Low | High | Difficult to distinguish from pattern matching |
+| Long-term coherent planning | Low | High | Requires extended evaluation periods |
+| Real-world task completion | Medium | High | Expensive, hard to standardize |
+| Domain expertise (applied) | Medium | High | Gap between knowledge and application |
+
+Addressing these measurement gaps requires substantial investment in evaluation infrastructure, novel benchmark design that resists gaming, and potentially human-in-the-loop evaluation for capabilities that are difficult to assess automatically. The strategic deception gap is particularly concerning because systems with such capabilities might actively conceal them during evaluation.
 
 ## Implications
 
+The capability threshold model has concrete implications for different stakeholders in the AI ecosystem. Understanding where systems stand relative to critical thresholds should inform development decisions, policy frameworks, and research priorities.
+
 ### For AI Developers
 
-**Immediate actions:**
-1. Implement capability evaluations that map to risk thresholds
-2. Create warning systems for approaching thresholds
-3. Develop mitigations before thresholds are crossed
+AI developers should implement capability evaluations that directly map to identified risk thresholds rather than relying solely on general-purpose benchmarks. This means developing domain-specific evaluations for biology, chemistry, security, and other high-risk areas, as well as evaluations targeting strategic modeling, long-term planning, and situational awareness. Warning systems should trigger when systems approach thresholds, ideally providing alert at least two capability levels in advance to allow time for mitigation development. Mitigations should be developed proactively before thresholds are crossed, as developing effective safety measures becomes much more difficult once capabilities already pose active risks.
 
-**Ongoing:**
-4. Share anonymized capability trends for safety coordination
-5. Pause or slow development if approaching critical thresholds without mitigations
+On an ongoing basis, developers should share anonymized capability trends to enable collective monitoring and coordination across the AI safety community. This includes both benchmark results and qualitative observations about capability development. Most importantly, development organizations should be prepared to pause or significantly slow development if systems approach critical thresholds without adequate mitigations in place, particularly for thresholds related to bioweapons, cyberweapons, or strategic deception.
 
 ### For Policymakers
 
-**Immediate:**
-1. Require disclosure of capability benchmark results
-2. Establish threshold-based regulation triggers
-3. Fund capability evaluation infrastructure
+Policymakers should require disclosure of capability benchmark results, particularly in high-risk domains, to enable regulatory oversight and public understanding of AI development trajectories. Threshold-based regulation triggers would create clear expectations: certain capabilities would automatically trigger enhanced safety requirements, disclosure obligations, or deployment restrictions. Investment in capability evaluation infrastructure through public funding would reduce reliance on industry self-evaluation and create independent assessment capabilities.
 
-**Longer-term:**
-4. Create international capability monitoring frameworks
-5. Tie deployment restrictions to capability levels
+Longer-term policy priorities include creating international capability monitoring frameworks that track frontier AI development across jurisdictions and enable coordination on safety measures. Deployment restrictions tied to capability levels would ensure that highly capable systems face appropriate oversight and control measures before widespread deployment. This might include requirements for monitoring, interpretability, or human oversight that scale with assessed risk levels.
 
 ### For Researchers
 
-**Priority areas:**
-1. Better measurement of situational awareness
-2. Autonomous execution evaluation at longer timescales
-3. Strategic modeling and deception detection
-4. Threshold identification for specific risks
+Research priority areas should focus on improving measurement in domains with current gaps. Better measurement of situational awareness requires developing evaluations that distinguish genuine self-modeling from pattern matching and that resist systems learning to game specific tests. Autonomous execution evaluation at longer timescales, spanning hours to days rather than minutes, would better capture capabilities relevant to both economic displacement and misuse risks. Strategic modeling and deception detection research should develop both better benchmarks and techniques for identifying when systems are concealing capabilities during evaluation.
+
+Threshold identification for specific risks requires combining empirical evaluation with expert elicitation and red-teaming to determine what capability levels actually enable dangerous applications. This work is particularly urgent for near-term risks like cyberweapons and persuasion where thresholds may be crossed soon.
 
 ## Summary
 
-**Key insights:**
-1. Different risks have different capability requirements
-2. Many risks have threshold dynamics, not gradual activation
-3. Current systems are 0.5-2 levels below most critical thresholds
-4. Near-term capabilities (1-2 years) likely cross several thresholds
-5. Long-term risks (scheming, takeover) require capabilities further out
+The capability threshold model provides a structured framework for understanding when specific AI risks activate based on measurable capability dimensions. Different risks require different combinations of domain knowledge, reasoning depth, planning horizon, strategic modeling, and autonomous execution capabilities. Many critical risks exhibit threshold dynamics where danger increases sharply once systems cross specific capability levels, rather than scaling gradually with general capability improvements.
 
-**Highest-priority thresholds (by timeline):**
-1. Authentication collapse (2025-2026)
-2. Persuasion weapons (2025-2026)
-3. Cyberweapon development (2025-2027)
-4. Situational awareness (2025-2027)
-5. Bioweapons uplift (2026-2029)
-6. Strategic deception (2027-2035+)
+Current frontier systems as of late 2024 sit approximately 0.5-2 capability levels below most critical thresholds across different risk categories. This proximity means that near-term capability improvements over the next 1-2 years are likely to cross several important thresholds, particularly for authentication collapse, mass persuasion, and cyberweapon development. Control risks related to situational awareness may also activate in this timeframe, while longer-term risks like strategic deception and autonomous scheming likely require capabilities 3-5 years away or more.
+
+The model highlights the importance of threshold-specific rather than general capability monitoring, the need for improved measurement infrastructure in domains with current evaluation gaps, and the value of proactive mitigation development before thresholds are crossed. Uncertainty in capability forecasting increases substantially with time horizon, making near-term threshold crossings more predictable and urgent than long-term risks.
+
+Priority thresholds ranked by estimated timeline include authentication collapse and persuasion weapons (2025-2026), cyberweapon development and situational awareness (2025-2027), bioweapons uplift and oversight evasion (2026-2029), economic displacement (2026-2030), and strategic deception (2027-2035 or beyond). These timelines carry substantial uncertainty and should be treated as probability distributions rather than point estimates, but they provide useful structure for prioritizing safety research and governance interventions.
 
 ## Related Models
 

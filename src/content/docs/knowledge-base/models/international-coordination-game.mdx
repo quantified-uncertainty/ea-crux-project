@@ -19,444 +19,331 @@ ratings:
   completeness: 4  # Good coverage of players, scenarios, and stability conditions
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="international-coordination-game" ratings={frontmatter.ratings} />
 
 
 ## Overview
 
-International AI governance presents a complex coordination problem between major powers - primarily the United States and China, with the European Union, United Kingdom, and other actors playing supporting roles. The structure of this game significantly influences whether humanity achieves safe AI development or races toward catastrophe.
+International AI governance presents a complex coordination problem between major powers - primarily the United States and China, with the European Union, United Kingdom, and other actors playing supporting roles. The structure of this game significantly influences whether humanity achieves safe AI development or races toward catastrophe. This coordination challenge sits at the intersection of geopolitics, technological competition, and existential risk management, making it one of the most critical strategic questions of the 21st century.
 
-**Central question:** Under what conditions can international coordination on AI safety emerge and remain stable?
+The central question driving this analysis is: Under what conditions can international coordination on AI safety emerge and remain stable? Unlike previous technological competitions, AI development carries the potential for both transformative benefits and catastrophic outcomes, creating a unique payoff structure where mutual cooperation offers the highest collective benefit, yet unilateral defection remains persistently tempting. The game-theoretic framework reveals why rational actors might choose suboptimal outcomes even when better alternatives exist.
 
 ## The Players
 
 ### Major Powers
 
-**United States**
-- Hosts leading AI labs (OpenAI, Anthropic, Google DeepMind, Meta)
-- Strong compute infrastructure (NVIDIA, cloud providers)
-- Democratic governance, but fragmented policy process
-- Oscillating regulatory approaches between administrations
+The United States holds a commanding position in the AI landscape, hosting the world's leading AI laboratories including OpenAI, Anthropic, Google DeepMind, and Meta. Its strength extends beyond research institutions to encompass robust compute infrastructure built on NVIDIA's semiconductor dominance and massive cloud computing platforms. However, democratic governance creates a fragmented policy process, with regulatory approaches oscillating between administrations. This institutional structure enables rapid private sector innovation but complicates long-term strategic coordination.
 
-**China**
-- Hosts major AI labs (Baidu, Alibaba, Tencent, ByteDance)
-- Growing compute capacity, but chip supply constraints
-- Centralized governance, can move quickly on policy
-- Strategic AI as national priority (Made in China 2025)
+China approaches AI development with centralized strategic planning, having designated artificial intelligence as a national priority through initiatives like "Made in China 2025." Major Chinese AI labs including Baidu, Alibaba, Tencent, and ByteDance operate with significant state support and coordination. While China possesses growing compute capacity and can implement policy decisions rapidly through centralized governance, it faces persistent chip supply constraints due to export controls. This asymmetry creates both competitive pressure and potential motivation for international agreements.
 
-**European Union**
-- Smaller but significant AI research base
-- Leading on regulatory frameworks (AI Act)
-- Democratic, but slow consensus-building
-- Focus on rights-based approach to AI
+The European Union occupies a distinctive position, maintaining a smaller but significant AI research base while leading on comprehensive regulatory frameworks through the AI Act. Its democratic consensus-building process produces robust rights-based approaches to AI governance, though implementation proceeds more slowly than in either the US or China. This regulatory leadership provides the EU with normative influence even where it lacks technological dominance.
 
-**Other actors**
-- UK: Punching above weight in research (DeepMind legacy)
-- Singapore, UAE, Saudi Arabia: Compute investments
-- Japan, South Korea: Industrial AI applications
-- India, Brazil: Large markets, growing ambitions
+Beyond these major powers, several other actors shape the international coordination landscape. The United Kingdom punches above its weight in AI research, leveraging the DeepMind legacy and concentrated expertise. Singapore, the UAE, and Saudi Arabia are making substantial compute infrastructure investments, potentially creating alternative centers of AI development. Japan and South Korea focus on industrial AI applications, while India and Brazil represent large markets with growing technological ambitions that could shift the multipolar balance.
 
 ### Interests and Objectives
 
-| Actor | Primary Interests | Secondary Interests |
-|-------|-------------------|---------------------|
-| **US** | Technological leadership, national security, economic dominance | Democratic values, allied coordination |
-| **China** | Technological self-sufficiency, strategic parity, regime stability | Economic development, regional influence |
-| **EU** | Values protection, market access, strategic autonomy | Industrial competitiveness, transatlantic alignment |
-| **Labs** | Commercial success, regulatory predictability, talent access | Safety (variable commitment), research freedom |
+| Actor | Primary Interests | Secondary Interests | Coordination Incentives |
+|-------|-------------------|---------------------|------------------------|
+| **US** | Technological leadership, national security, economic dominance | Democratic values, allied coordination | Maintain advantage while avoiding catastrophic outcomes |
+| **China** | Technological self-sufficiency, strategic parity, regime stability | Economic development, regional influence | Catch up through coordination, avoid being locked out |
+| **EU** | Values protection, market access, strategic autonomy | Industrial competitiveness, transatlantic alignment | Set global norms, ensure safety standards |
+| **Labs** | Commercial success, regulatory predictability, talent access | Safety (variable commitment), research freedom | Predictable regulations, level playing field |
+| **UK** | Research leadership, regulatory influence, allied integration | Economic benefits, national security | Bridge US-EU coordination gaps |
 
 ## Game Structure
 
 ### The Basic Coordination Game
 
-Two major powers choosing between:
-- **Cooperate:** Invest in safety, share information, accept constraints
-- **Defect:** Race to capabilities, hoard advantages, minimal safety
+The fundamental game structure involves two major powers choosing between cooperation and defection along multiple dimensions. Cooperation entails investing substantially in safety research, sharing critical information about risks and capabilities, and accepting meaningful constraints on development timelines and deployment decisions. Defection involves racing toward advanced capabilities with minimal safety investment, hoarding technological advantages, and rejecting external constraints in pursuit of first-mover benefits.
 
-**Payoff matrix (stylized):**
+The stylized payoff matrix captures the essential strategic tension:
 
 |  | China Cooperates | China Defects |
 |--|-----------------|---------------|
-| **US Cooperates** | (4, 4) Safe AI | (1, 5) China advantage |
-| **US Defects** | (5, 1) US advantage | (2, 2) Mutual racing |
+| **US Cooperates** | (4, 4) Safe AI development | (1, 5) China gains advantage |
+| **US Defects** | (5, 1) US gains advantage | (2, 2) Mutual racing dynamics |
 
-**Key features:**
-- Mutual cooperation is Pareto-optimal but not stable
-- Unilateral defection is tempting (first-mover advantage)
-- Mutual defection is stable but suboptimal
-- Classic prisoner's dilemma structure
+This structure exhibits classic prisoner's dilemma characteristics. Mutual cooperation produces the Pareto-optimal outcome (4, 4), where both powers achieve safe AI development. However, this equilibrium remains unstable because unilateral defection offers a tempting payoff of 5 versus the cooperator's 1, creating first-mover advantages. The Nash equilibrium lands at mutual defection (2, 2), a stable but suboptimal outcome where racing dynamics dominate and catastrophic risk increases.
+
+The expected utility for each strategy can be formalized as:
+
+$$U_i(\text{Cooperate}) = p_j \cdot 4 + (1-p_j) \cdot 1$$
+
+$$U_i(\text{Defect}) = p_j \cdot 5 + (1-p_j) \cdot 2$$
+
+where $p_j$ represents the probability that the other player cooperates. Defection dominates cooperation when $p_j &lt; \frac{1}{2}$, explaining why mutual defection persists even when both parties recognize superior cooperative outcomes.
 
 ### Complications
 
-**Asymmetric Information:**
-- Each side uncertain about other's capabilities
-- Classified research creates fog of war
-- Incentives to exaggerate or conceal progress
+Real-world coordination faces complications that simple game theory models cannot fully capture. Asymmetric information creates fundamental uncertainty, as each side remains uncertain about the other's true capabilities. Classified research programs generate a technological fog of war, while strategic incentives encourage actors to exaggerate progress when seeking leverage or conceal breakthroughs to maintain surprise advantages. This information asymmetry undermines trust and makes verification mechanisms essential for any stable agreement.
 
-**Multiple Dimensions:**
-- Compute: Hardware, data centers, chip manufacturing
-- Algorithms: Research, training techniques, architectures
-- Applications: Deployment, integration, use cases
-- Safety: Alignment research, evaluations, safeguards
+The coordination challenge extends across multiple independent dimensions. Compute governance involves hardware production, data center operations, and chip manufacturing supply chains. Algorithmic progress encompasses research breakthroughs, training techniques, and architectural innovations that may occur independently of compute investments. Applications layer includes deployment decisions, integration strategies, and specific use cases that determine real-world impact. Safety research represents another dimension, covering alignment research, evaluation frameworks, and technical safeguards. Progress along these dimensions occurs at different rates and with varying visibility, complicating comprehensive coordination.
 
-**Time Dynamics:**
-- Early stages: More room for cooperation
-- Near-AGI: Racing pressure intensifies
-- Post-AGI: Game structure changes fundamentally
+Time dynamics further destabilize cooperation. Early development stages offer more room for coordination, as capability gaps remain small and catastrophic risks feel distant. As systems approach AGI-level capabilities, racing pressure intensifies dramatically, with perceived first-mover advantages overwhelming safety considerations. Post-AGI development fundamentally transforms the game structure, potentially creating winner-take-all dynamics that retroactively justify earlier defection.
+
+<Mermaid client:load chart={`
+graph TD
+    A[Initial State: Strategic Uncertainty] --> B{US Strategy Choice}
+    A --> C{China Strategy Choice}
+
+    B --> D[US Cooperates]
+    B --> E[US Defects]
+    C --> F[China Cooperates]
+    C --> G[China Defects]
+
+    D --> H{China Response}
+    E --> I{China Response}
+    F --> J{US Response}
+    G --> K{US Response}
+
+    H --> L["Mutual Cooperation<br/>(4,4) Safe Development"]
+    H --> M["US Exploited<br/>(1,5) China Advantage"]
+    I --> N["US Advantage<br/>(5,1) Unilateral Lead"]
+    I --> O["Mutual Defection<br/>(2,2) Arms Race"]
+
+    J --> L
+    J --> N
+    K --> M
+    K --> O
+
+    L --> P[Stable Equilibrium?]
+    O --> Q[Nash Equilibrium]
+
+    P -->|No Trust| O
+    P -->|Verification Works| R[Sustained Cooperation]
+
+    style L fill:#90EE90
+    style O fill:#FFB6C6
+    style Q fill:#FFB6C6
+    style R fill:#90EE90
+`} />
 
 ## US-China Dynamics
 
 ### Sources of Competition
 
-**Technological nationalism:**
-- AI as "commanding heights" of 21st century
-- Zero-sum framing in political discourse
-- Military applications (autonomous weapons, ISR)
-- Economic competition (automation, services)
+Technological nationalism drives much of the competitive dynamic, with AI framed as the "commanding heights" of 21st-century economic and military power. Political discourse in both countries increasingly adopts zero-sum framing, where one nation's AI advances necessarily diminish the other's relative position. Military applications including autonomous weapons systems and intelligence, surveillance, and reconnaissance capabilities create direct security competition. Economic dimensions span automation technologies, AI-powered services, and the race to dominate emerging markets, generating powerful domestic constituencies opposed to cooperation.
 
-**Ideological dimension:**
-- Democratic vs. authoritarian models
-- Surveillance capitalism vs. state surveillance
-- Human rights concerns (Xinjiang, social credit)
-- Information control and censorship
+The ideological dimension adds layers of complexity beyond pure strategic competition. The contest between democratic and authoritarian governance models extends to AI development, with each system claiming superior capacity for responsible innovation. Surveillance capitalism in the West confronts state surveillance in China, creating fundamentally different approaches to data governance and privacy. Human rights concerns including Xinjiang monitoring and social credit systems generate moral objections to coordination, while information control and censorship policies create mutual suspicion about intentions and values.
 
-**Strategic distrust:**
-- Decades of geopolitical competition
-- Taiwan tensions
-- Economic decoupling pressures
-- Lack of direct communication channels
+Strategic distrust built over decades of geopolitical competition undermines coordination efforts before they begin. Taiwan tensions create an ever-present crisis risk that could rapidly escalate and destroy nascent agreements. Economic decoupling pressures driven by supply chain security concerns and technology export controls reduce mutual dependencies that might otherwise support cooperation. Perhaps most critically, the lack of direct, reliable communication channels between AI safety researchers and policymakers across the US-China divide prevents even basic trust-building dialogue.
 
 ### Sources of Common Interest
 
-**Shared risks:**
-- Catastrophic AI outcomes harm both
-- Extinction is not in anyone's interest
-- Arms race dynamics hurt both sides
-- Economic disruption affects global economy
+Despite deep competition, shared risks create genuine common ground. Catastrophic AI outcomes would harm both powers equally, with existential risks like extinction serving no rational actor's interests. Arms race dynamics that sacrifice safety for speed hurt both sides simultaneously, creating symmetric costs that might enable mutual restraint. Economic disruption from misaligned AI affects the interconnected global economy, ensuring that neither power can fully insulate itself from the other's failures.
 
-**Mutual benefits:**
-- Aligned AI is a global public good
-- Safety research can be shared
-- Regulatory coordination reduces costs
-- Scientific collaboration accelerates progress
+Mutual benefits from cooperation extend beyond risk reduction. Aligned AI represents a global public good, with safety breakthroughs benefiting all actors regardless of who achieves them first. Safety research can often be shared without compromising competitive advantages, allowing collaboration on the hardest technical problems. Regulatory coordination reduces compliance costs for labs operating across jurisdictions and creates more predictable investment environments. Scientific collaboration historically accelerates progress faster than isolated competition, suggesting cooperation could advance both capability and safety simultaneously.
 
-**Precedents:**
-- Nuclear arms control achieved despite Cold War
-- Climate cooperation (imperfect but existent)
-- Pandemic cooperation (variable success)
-- Space cooperation (ISS model)
+Historical precedents demonstrate that cooperation remains possible even amid intense strategic competition. Nuclear arms control achieved significant success despite Cold War hostilities, establishing verification mechanisms and confidence-building measures. Climate cooperation, while imperfect, has produced meaningful international frameworks that survived political transitions. Pandemic cooperation has shown variable success but created institutional infrastructure for future collaboration. The International Space Station model demonstrates sustained cooperation on complex technological projects between geopolitical rivals, offering a potential template for AI governance.
 
 ### Asymmetries
 
-**US advantages:**
-- Current capability lead
-- Stronger semiconductor ecosystem
-- Allied coordination (Five Eyes, Quad, AUKUS)
-- Private sector dynamism
-- Talent attraction
+| Dimension | US Advantages | Chinese Advantages | Strategic Implications |
+|-----------|--------------|-------------------|----------------------|
+| **Technology** | Current capability lead, stronger semiconductor ecosystem | Data availability at scale, less privacy constraints | US seeks to maintain gap, China motivated to close it |
+| **Alliances** | Five Eyes, Quad, AUKUS coordination | Belt and Road partnerships, emerging market influence | US can coordinate export controls, China can bypass through alternative supply chains |
+| **Innovation** | Private sector dynamism, top-tier talent attraction | Faster policy implementation, state funding capacity | US innovation harder to control, China can direct development centrally |
+| **Planning** | Democratic accountability, policy oscillation | Long-term planning horizon, control over domestic companies | US struggles with consistency, China executes sustained strategies |
+| **Coordination Preference** | Maintain lead through competition | Catch up through coordination frameworks | Asymmetric incentives complicate agreement structure |
 
-**Chinese advantages:**
-- Data availability (population scale, less privacy constraint)
-- Faster policy implementation
-- State funding capacity
-- Long-term planning horizon
-- Control over domestic companies
-
-**Implications:**
-- US may prefer to maintain lead through competition
-- China may prefer coordination to catch up
-- Both may miscalculate relative position
+These asymmetries create different strategic preferences that complicate coordination. The United States, currently ahead in most capabilities, may prefer to maintain its lead through continued competition rather than risk coordination that allows China to catch up. China, facing capability gaps and supply chain vulnerabilities, has stronger incentives to pursue coordination frameworks that provide access to safety research and establish international norms limiting US advantages. Both powers risk miscalculating their relative positions, either overestimating their lead and rejecting beneficial cooperation, or underestimating their position and accepting unfavorable terms.
 
 ## First-Mover vs. Coordination
 
 ### First-Mover Advantages
 
-**Arguments for racing:**
-1. Winner shapes AI development trajectory
-2. Second place may be locked out permanently
-3. National security requires dominance
-4. Coordination is naive about adversary intentions
-5. Lead provides leverage to set global norms
+The case for racing rests on several powerful arguments. First-mover advantages could allow the winner to shape the entire AI development trajectory, potentially locking in values, safety approaches, and governance structures before rivals can respond. Some strategists argue that second place may be locked out permanently, with early leaders achieving recursive self-improvement that creates insurmountable capability gaps. National security considerations appear to require dominance, as losing the AI race could mean subordination to adversary values and interests. Hawks dismiss coordination as naive about adversary intentions, arguing that promises will be broken when stakes become existential. Finally, proponents note that technological leadership provides leverage to set global norms, suggesting that racing and winning may be the best path to eventual beneficial coordination.
 
-**Problems with racing:**
-1. Cuts corners on safety
-2. Accelerates timeline before safety is solved
-3. Creates arms race dynamics
-4. Reduces trust for later coordination
-5. May not actually achieve lasting advantage
+However, racing strategies carry severe risks that may outweigh potential advantages. Most critically, racing pressure cuts corners on safety, with developers rushing deployments before alignment problems are solved. Accelerated timelines compress the window for safety research, potentially reaching transformative capabilities before technical safeguards exist. Racing creates arms race dynamics that become self-reinforcing, with each side's defensive moves appearing as offensive threats to the other. Early defection reduces trust needed for later coordination, potentially foreclosing cooperation even when catastrophic risks become undeniable. Finally, the assumption of lasting advantage may prove false if AI capabilities are inherently difficult to monopolize, meaning racing costs would be paid without securing promised benefits.
 
-### Coordination Benefits
+### Coordination Benefits and Challenges
 
-**Arguments for coordination:**
-1. Reduces catastrophic risk for all
-2. Allows more time for safety research
-3. Creates stable equilibrium
-4. Enables resource sharing
-5. Avoids duplicative costs
+Coordination offers substantial benefits if achievable. Most importantly, mutual safety commitments reduce catastrophic risk for all parties, addressing shared existential threats. Slower timelines allow more time for safety research, potentially solving alignment before reaching dangerous capability levels. Stable coordination creates predictable equilibrium points rather than volatile racing dynamics prone to accidents. Resource sharing enables tackling hard safety problems collectively rather than duplicating efforts. Avoiding competitive waste frees resources for beneficial applications and safety work.
 
-**Problems with coordination:**
-1. Verification is difficult
-2. Defection risk is high
-3. Domestic political costs
-4. May slow beneficial applications
-5. May not include all relevant actors
+Yet coordination faces formidable obstacles. Verification of AI capabilities remains technically difficult, with algorithmic advances nearly impossible to monitor externally. High defection risk persists because breakout advantages appear large and treaty violations might remain undetected until too late. Domestic political costs of cooperation can be prohibitive, with nationalism and security establishments opposing perceived concessions. Coordination frameworks may slow beneficial applications alongside dangerous ones, creating economic costs that erode political support. Finally, any bilateral agreement risks exclusion of relevant actors, with labs, researchers, or other nations potentially defecting from frameworks they did not shape.
 
 ### The Coordination-Competition Spectrum
 
-Reality is not binary. Options include:
+Reality is not binary but spans a spectrum from full racing to deep coordination. At the extreme negative end, full racing features no meaningful constraints, minimal communication between powers, and maximum competition across all dimensions. Moving toward the center, competitive coexistence allows some communication channels, limited coordination on worst-case outcomes like autonomous weapon systems, but continued aggressive capability competition. Managed competition, slightly positive on the spectrum, involves regular diplomatic dialogue, red lines on the most dangerous applications, and genuine cooperation on safety research while maintaining competitive development. At the positive extreme, deep coordination entails binding agreements with robust verification, shared safety standards applied across jurisdictions, and potentially joint governance mechanisms for transformative systems.
 
-**Full Racing** (-1)
-- No constraints
-- Minimal communication
-- Maximum competition
-
-**Competitive Coexistence** (0)
-- Some communication
-- Limited coordination on worst outcomes
-- Continued capability competition
-
-**Managed Competition** (+0.5)
-- Regular dialogue
-- Red lines on most dangerous applications
-- Cooperation on safety research
-
-**Deep Coordination** (+1)
-- Binding agreements with verification
-- Shared safety standards
-- Joint governance mechanisms
-
-**Current state:** Between -1 and 0, moving negative
+The current state of international AI coordination sits somewhere between full racing and competitive coexistence, approximately -0.5 on this scale, and recent trends suggest movement in the negative direction. Export controls, technology decoupling, and increasingly nationalist rhetoric indicate deteriorating prospects for meaningful cooperation absent significant interventions or catalyzing events.
 
 ## Treaty and Agreement Stability
 
 ### Conditions for Stable Agreements
 
-**Verification:**
-- Can defection be detected?
-- How quickly?
-- With what confidence?
+Stable international agreements require three core conditions: verification, enforcement, and iteration. Verification mechanisms must detect defection reliably and quickly enough to enable response before irreversible advantages accrue. The fundamental question is whether violations can be identified with sufficient confidence to trigger enforcement without false positives that undermine trust. Speed matters critically in AI contexts where capability improvements may occur rapidly, potentially creating detection-to-response gaps that enable fait accompli scenarios.
 
-**Enforcement:**
-- What are the penalties for defection?
-- Are they credible?
-- Can punishment be targeted?
+Enforcement mechanisms must impose credible penalties that make defection unprofitable. Penalties must exceed the gains from violation, remain credible despite mutual dependencies, and be targeted precisely enough to punish violators without triggering broader conflict escalation. The challenge for AI agreements is that major powers are difficult to sanction effectively, and enforcement actions may escalate into general confrontation.
 
-**Iteration:**
-- Is the game repeated?
-- Is there a shadow of the future?
-- Can reputation mechanisms work?
+Iteration enables cooperation through reciprocity and reputation mechanisms. Repeated interactions create shadows of the future where short-term defection gains are outweighed by long-term cooperation benefits. However, if AGI represents a one-shot game that fundamentally transforms power dynamics, iteration logic may fail precisely when stakes become highest.
 
 ### Verification Challenges
 
-**What can be verified:**
-- Large compute clusters (satellite observation, power consumption)
-- Major deployments (public products)
-- Published research (with time lag)
-- Chip sales and transfers
+The verification landscape divides sharply between observable and hidden dimensions of AI development:
 
-**What cannot be verified:**
-- Algorithmic advances
-- Internal capability levels
-- Safety practices
-- Intent and plans
+| Dimension | Verifiability | Monitoring Method | Confidence Level | Time Lag |
+|-----------|--------------|------------------|------------------|----------|
+| **Large compute clusters** | High | Satellite observation, power consumption analysis | High | Days to weeks |
+| **Major deployments** | High | Public product monitoring, usage tracking | High | Immediate |
+| **Chip sales** | Medium | Export controls, supply chain tracking | Medium | Weeks to months |
+| **Published research** | Medium | Academic monitoring, patent analysis | Medium | Months |
+| **Algorithmic advances** | Low | None reliable | Low | Unknown |
+| **Internal capabilities** | Very low | Intelligence gathering only | Very low | Unknown |
+| **Safety practices** | Very low | Self-reporting only | Very low | N/A |
+| **Intent and plans** | None | N/A | None | N/A |
 
-**Implication:** Any agreement must focus on verifiable dimensions, likely compute governance.
+This verification asymmetry creates a fundamental constraint: any viable agreement must focus on verifiable dimensions, particularly compute governance. Large training runs require visible infrastructure - massive data centers consuming enormous power that satellite observation and electrical grid monitoring can detect. Chip manufacturing and distribution involves physical supply chains amenable to tracking. By contrast, algorithmic innovations occur invisibly within researchers' minds and classified labs, making monitoring impossible short of intrusive inspections that no major power would accept.
 
 ### Enforcement Mechanisms
 
-**Economic:**
-- Trade sanctions
-- Technology export controls
-- Financial restrictions
-- Investment screening
+Economic enforcement tools include trade sanctions targeting AI-related sectors, technology export controls restricting access to critical inputs like advanced chips, financial restrictions limiting investment in violating entities, and investment screening preventing technology transfer. These mechanisms have proven effective in slowing China's semiconductor advancement but face limits when applied to major economic powers with alternative supply chains and large domestic markets.
 
-**Diplomatic:**
-- Alliance coordination
-- International isolation
-- Reputation costs
-- Normative pressure
+Diplomatic enforcement leverages alliance coordination to create multilateral pressure, threatens international isolation through coordinated action, imposes reputation costs that affect future negotiations, and applies normative pressure through international organizations. However, diplomatic tools struggle against great powers that prioritize security over reputation and maintain alternative alliance structures.
 
-**Technical:**
-- Compute governance (kill switches)
-- Hardware backdoors
-- Standard setting
+Technical enforcement mechanisms might include compute governance systems with remote kill switches, hardware backdoors enabling monitoring or control, and standard-setting that privileges compliant actors. These approaches face severe trust barriers, as no power will accept dependency on adversary-controlled technology, and attempts to impose such systems could trigger immediate defection.
 
-**Limits:**
-- Major powers are hard to sanction
-- Mutual dependencies create hesitation
-- Enforcement can escalate conflict
+Critical limits constrain all enforcement approaches: major powers are hard to sanction effectively without imposing reciprocal costs, mutual dependencies create hesitation to escalate enforcement, and aggressive enforcement can trigger broader conflict that exceeds the governance problem it aimed to solve.
 
 ### What Makes Agreements Stable?
 
-**Self-enforcing structure:**
-- Mutual gains from compliance
-- Costs of defection exceed benefits
-- Graduated response to violations
+Self-enforcing structures remain stable without external enforcement because mutual gains from compliance exceed defection benefits, creating incentive-compatible equilibria. Graduated response to violations enables proportional punishment that maintains cooperation while deterring major defection. The key is designing agreements where compliance constitutes each party's best response given the other's strategy.
 
-**Institutional support:**
-- Monitoring organizations
-- Regular review mechanisms
-- Dispute resolution processes
+Institutional support through dedicated monitoring organizations, regular review mechanisms for updating terms as technology evolves, and dispute resolution processes for addressing ambiguity reduces coordination failures and builds trust over time. Institutions create focal points for cooperation and reduce transaction costs.
 
-**Domestic politics:**
-- Leaders can sell agreement at home
-- Interest groups benefit from compliance
-- Nationalism doesn't override cooperation
+Domestic political sustainability determines whether agreements survive electoral transitions and factional shifts. Leaders must be able to sell agreements at home as serving national interests, with interest groups benefiting from compliance creating supportive constituencies. Critically, nationalist sentiment must not override cooperation logic, requiring careful framing and public education about shared risks.
 
 ## Scenario Analysis
 
+The following scenarios represent distinct possible futures for international AI coordination, each with different probability assessments and pathway requirements.
+
+<Mermaid client:load chart={`
+flowchart TD
+    Start["Current State<br/>Competitive Coexistence<br/>~35% Coordination"] --> Crisis{Major AI<br/>Incident?}
+    Start --> Breakthrough{Capability<br/>Breakthrough?}
+    Start --> Dialogue{Sustained<br/>Dialogue?}
+
+    Crisis -->|Yes| Salience[Increased Risk Salience]
+    Crisis -->|No| Status[Status Quo Continues]
+
+    Breakthrough -->|US Lead| USPanic[China Panic Response]
+    Breakthrough -->|China Lead| ChinaPanic[US Panic Response]
+    Breakthrough -->|Simultaneous| Multipolar[Multipolar Competition]
+
+    Dialogue -->|Success| Track2[Track 2 Breakthrough]
+    Dialogue -->|Failure| Status
+
+    Salience --> Negotiate{Negotiate<br/>Framework?}
+    Negotiate -->|Yes| SC[Successful Coordination<br/>15%]
+    Negotiate -->|No| AR[Accelerating Race<br/>35%]
+
+    USPanic --> AR
+    ChinaPanic --> AR
+    Multipolar --> AR
+
+    Status --> CE[Competitive Coexistence<br/>35%]
+
+    Track2 --> Verify{Verification<br/>Workable?}
+    Verify -->|Yes| SC
+    Verify -->|No| CE
+
+    CE --> Decouple{Technology<br/>Decoupling?}
+    Decouple -->|Complete| DW[Decoupled Worlds<br/>15%]
+    Decouple -->|Partial| CE
+
+    AR --> Catastrophe[High Catastrophic Risk]
+    SC --> Safety[Safer Development Path]
+    CE --> Moderate[Moderate Risk]
+    DW --> Unknown[Unknown Outcome]
+
+    style SC fill:#90EE90
+    style AR fill:#FFB6C6
+    style Safety fill:#90EE90
+    style Catastrophe fill:#FF6B6B
+    style Moderate fill:#FFE66D
+`} />
+
 ### Scenario 1: Successful Coordination (15% probability)
 
-**Path:**
-1. Major AI incident raises salience globally
-2. Track 2 diplomacy establishes common ground
-3. Bilateral US-China framework on AI safety
-4. Multilateral expansion (G7+, UN framework)
-5. Verification mechanisms prove workable
+This optimistic scenario requires a catalyzing event that dramatically raises global salience of AI risks without causing irreversible damage. A major AI incident - perhaps a significant economic disruption, military close call, or alignment failure demonstration - creates political space for cooperation by making abstract risks concrete and immediate. Track 2 diplomacy leveraging this window establishes common ground between AI safety researchers and technical experts across the geopolitical divide, building trust that enables official channels.
 
-**Requirements:**
-- Crisis that demonstrates shared risk
-- Leadership willing to take political risk
-- Technical verification solutions
-- Domestic political support
+With technical and epistemic foundations laid, a bilateral US-China framework on AI safety emerges, focusing initially on verifiable dimensions like compute governance and shared evaluation standards. This bilateral foundation enables multilateral expansion through G7+ mechanisms and eventually UN frameworks, creating global coordination infrastructure. Critically, verification mechanisms prove workable through some combination of compute monitoring, third-party audits, and confidence-building measures that reduce defection risk below the threshold where cooperation dominates.
 
-**Outcome:** Slower, safer AI development trajectory
+Requirements for this path include crisis timing that raises salience without escalation, political leadership in both countries willing to take domestic political risks for cooperation, technical solutions to verification challenges that currently appear intractable, and sufficient domestic political support to sustain agreements through electoral transitions. The outcome is a slower, safer AI development trajectory with meaningful international oversight, though potentially at the cost of delayed beneficial applications.
 
 ### Scenario 2: Competitive Coexistence (35% probability)
 
-**Path:**
-1. Continued competition, but avoiding worst outcomes
-2. Informal red lines on military AI
-3. Some scientific exchange continues
-4. Parallel development in both blocs
-5. Gradual norm development
+The modal scenario involves muddling through with continued competition that nonetheless avoids the worst outcomes. Neither cooperation nor full-scale racing dominates, as both powers pursue capability advantages while recognizing catastrophic downside risks. Informal red lines on military AI applications develop through tacit coordination and occasional near-misses that establish boundaries. Scientific exchange continues at reduced levels, with safety research communities maintaining connections despite governmental restrictions.
 
-**Requirements:**
-- No major crises that escalate
-- Continued mutual dependency
-- Lab-level safety practices hold
-- No technological surprise
+Parallel development proceeds in both US and Chinese spheres, with allied countries choosing sides or attempting neutrality. Gradual norm development occurs through international organizations and industry groups, creating soft coordination without binding treaties. This equilibrium persists as long as no major crises escalate tensions, continued mutual economic dependency constrains purely competitive instincts, lab-level safety practices prove adequate for current capability levels, and no technological surprise creates breakout advantages or panic responses.
 
-**Outcome:** Moderate racing, elevated risk, not catastrophic
+The outcome is moderate racing with elevated existential risk, but not immediately catastrophic. Safety investments continue, though subordinated to competitive pressures. This scenario likely has the highest conditional probability given current trajectories, representing neither the best nor worst case but a prolonged period of anxious competition.
 
 ### Scenario 3: Accelerating Race (35% probability)
 
-**Path:**
-1. Perceived breakthrough by one side
-2. Panic response by other
-3. Racing dynamics intensify
-4. Safety cuts to maintain pace
-5. Coordination becomes impossible
+This dangerous scenario begins with a perceived breakthrough by one power - whether real or exaggerated through imperfect intelligence. The other power, facing potential permanent disadvantage, launches a panic response that abandons safety constraints in favor of maximum-speed development. Racing dynamics intensify as each side's acceleration justifies the other's fears, creating self-reinforcing competition. Safety investments get cut to maintain pace, with alignment research sacrificed for capability advancement. At this point, coordination becomes impossible as neither side can afford to slow down while the adversary races ahead.
 
-**Triggers:**
-- Major algorithmic advance
-- Compute breakthrough
-- Geopolitical crisis (Taiwan)
-- Collapse of existing channels
-
-**Outcome:** Rapid capability growth, minimal safety, high catastrophic risk
+Potential triggers include major algorithmic advances that promise step-change improvements, compute breakthroughs that enable previously impossible scale, geopolitical crises like Taiwan conflict that destroy remaining cooperation channels, or collapse of existing diplomatic mechanisms through domestic political changes. The outcome is rapid capability growth with minimal safety assurance, creating high probability of catastrophic outcomes. This scenario assigns equal probability to competitive coexistence because current trends suggest meaningful risk of tipping into full racing mode.
 
 ### Scenario 4: Decoupled Worlds (15% probability)
 
-**Path:**
-1. Full technological decoupling
-2. Separate AI ecosystems develop
-3. No coordination possible
-4. Parallel development with no safety alignment
-5. Eventual collision or divergent outcomes
+Full technological decoupling creates separate AI ecosystems developing in parallel with no coordination mechanism. Complete chip export bans enforce hardware separation, while data sovereignty requirements prevent information sharing. Alliance structures harden into distinct technological blocs, eliminating remaining points of contact between AI research communities. In this bifurcated world, parallel development proceeds with no safety alignment, different values encoded into systems, and incompatible governance frameworks.
 
-**Drivers:**
-- Full chip export ban
-- Data sovereignty enforced
-- Alliance structures harden
-- No remaining points of contact
-
-**Outcome:** Unknown - depends on which system develops first
+Eventual collision becomes likely as systems interact through global infrastructure, trade, or conflict. Alternatively, divergent outcomes might see one ecosystem successfully developing aligned AI while the other faces catastrophic failure, with unpredictable spillover effects. The probability of this scenario is lower because full decoupling imposes enormous economic costs that create pressure for maintaining at least minimal technical exchange, but recent trends toward technology nationalism and supply chain security suggest non-negligible risk.
 
 ## Intervention Points
 
 ### Track 1 (Government-to-Government)
 
-**Bilateral mechanisms:**
-- Direct leader engagement
-- AI-specific dialogue channels
-- Incident prevention agreements
-- Red lines on military applications
+Bilateral mechanisms between the US and China represent the most direct path to coordination, though currently the most politically fraught. Direct leader engagement creates high-level political commitment necessary for major agreements, but remains hostage to broader geopolitical tensions. AI-specific dialogue channels separate technical coordination from other contentious issues, allowing progress even amid general competition. Incident prevention agreements could establish protocols for communicating about AI failures or near-misses, reducing accident risk. Red lines on military applications might prohibit the most destabilizing uses even absent broader cooperation.
 
-**Multilateral mechanisms:**
-- G7/G20 AI frameworks
-- UN AI governance process
-- OECD AI principles
-- Regional arrangements
+Multilateral mechanisms offer alternative pathways that reduce bilateral pressure. G7 and G20 AI frameworks enable coordination among democratic allies first, potentially creating coalition approaches to engage China. UN AI governance processes provide legitimate international forums but risk lowest-common-denominator outcomes. OECD AI principles establish norms among developed economies, while regional arrangements like EU-US coordination or Asian technology partnerships create building blocks for eventual global frameworks.
 
 ### Track 2 (Expert and Lab)
 
-**Scientific exchange:**
-- Joint safety research projects
-- Shared evaluation frameworks
-- Conference participation
-- Publication norms
+Scientific exchange operates below the level of formal diplomacy, potentially enabling coordination when government channels remain blocked. Joint safety research projects between universities and labs across borders build technical common ground and personal relationships. Shared evaluation frameworks create common assessment standards even without formal agreements. Conference participation maintains international epistemic communities despite political tensions. Publication norms ensure safety-relevant research remains accessible globally rather than becoming classified.
 
-**Lab-to-lab coordination:**
-- Safety practice sharing
-- Evaluation collaboration
-- Voluntary commitments
-- Information sharing on incidents
+Lab-to-lab coordination leverages the concentrated nature of frontier AI development. Direct safety practice sharing between leading labs - OpenAI, Anthropic, DeepMind, Baidu, Alibaba - could establish de facto standards ahead of regulation. Evaluation collaboration enables comparison of capability levels and safety measures. Voluntary commitments to responsible development practices create industry norms that shape competitive dynamics. Information sharing on incidents or near-misses builds collective learning and trust.
 
 ### Track 3 (Civil Society)
 
-**Epistemic work:**
-- Shared understanding of risks
-- Common vocabulary
-- Research translation
-- Public education
+Epistemic work by researchers, journalists, and educators shapes the information environment in which decisions occur. Building shared understanding of AI risks across cultures and political systems creates common ground for cooperation. Developing common vocabulary enables clear communication about technical concepts and governance proposals. Research translation makes safety considerations accessible to policymakers and publics. Public education generates informed constituencies that can support or pressure governments toward coordination.
 
-**Advocacy:**
-- Pressure for coordination
-- Accountability mechanisms
-- International campaigning
-- Media engagement
+Advocacy by international civil society organizations applies pressure for cooperation from outside government structures. International campaigning coordinates activists across borders to demand safety prioritization. Accountability mechanisms expose racing behavior and safety failures. Media engagement shapes narratives around AI development, potentially countering nationalist framing with shared risk emphasis.
 
 ### Key Leverage Points
 
-1. **Compute governance:** Most verifiable dimension, focus international attention here
-2. **Safety research sharing:** Low cost, high benefit, builds trust
-3. **Incident communication:** Hot lines for AI incidents, reduce accident risk
-4. **Evaluation standards:** Common benchmarks enable monitoring
-5. **Talent policy:** Immigration and exchange shape development location
+Five intervention areas offer particularly high potential impact. First, compute governance represents the most verifiable coordination dimension - large training runs require visible infrastructure that satellite observation and power consumption monitoring can detect. International attention should focus here given verification feasibility. Second, safety research sharing provides low-cost, high-benefit cooperation that builds trust without requiring competitive sacrifice, as safety breakthroughs often constitute public goods. Third, incident communication through hotlines for AI failures reduces accident risk by enabling rapid response to unexpected behaviors or near-misses. Fourth, common evaluation standards create shared benchmarks that enable monitoring capability progress and safety measures across jurisdictions. Fifth, talent policy including immigration rules and academic exchange programs shapes where development occurs and which countries can participate in frontier research, creating leverage points for inclusion in governance frameworks.
 
 ## Model Limitations
 
 ### Assumptions
 
-1. **Rational actors:** Governments may be driven by ideology, domestic politics, or error
-2. **Bilateral focus:** Other actors (EU, labs, researchers) matter significantly
-3. **State-centric:** Labs and individuals have agency that crosses borders
-4. **Static preferences:** Interests and constraints evolve over time
+This game-theoretic framework rests on several simplifying assumptions that may not hold in practice. The model assumes rational actors optimizing expected utility, but governments may be driven by ideology, domestic politics, electoral concerns, or simple error rather than strategic calculation. The bilateral focus on US-China competition obscures the significant influence of other actors including the EU, UK, labs, and researchers who shape outcomes independently. State-centric analysis treats governments as unitary actors, when in reality labs and individuals have agency that crosses borders and may coordinate even when governments cannot. Static preference assumptions fail to capture how interests and constraints evolve as technology advances and political contexts shift.
 
 ### Missing Dynamics
 
-1. **Domestic politics:** Elections, factional conflict, public opinion
-2. **Technology surprise:** Breakthroughs can change game structure
-3. **Third parties:** Other actors may defect or enable coordination
-4. **Non-state actors:** Labs, researchers, civil society have independent agency
+Several important dynamics fall outside this model's scope. Domestic politics including elections, factional conflicts, and public opinion create discontinuities that game theory struggles to capture - a single electoral transition can completely reverse a country's coordination stance. Technology surprises in the form of unexpected breakthroughs can fundamentally change the game structure, transforming payoffs and equilibria overnight. Third-party actors beyond the US and China may defect from coordination frameworks or alternatively enable cooperation by providing neutral verification or mediation. Non-state actors including labs, individual researchers, and civil society organizations exercise independent agency that may support or undermine state-level coordination efforts.
 
 ### Empirical Uncertainties
 
-- How strong is the first-mover advantage actually?
-- Can AI capabilities be verified at all?
-- Will domestic politics permit cooperation?
-- What is the actual capability gap?
+Critical empirical questions remain unresolved, limiting confidence in model predictions. The strength of first-mover advantages is uncertain - do early leaders achieve lasting dominance, or do catching-up dynamics and technology diffusion undermine initial leads? Verification feasibility remains an open question, with current technical capabilities insufficient to monitor algorithmic progress reliably. Domestic political constraints may make coordination impossible regardless of strategic logic, if nationalist sentiment or security establishment opposition proves insurmountable. The actual capability gap between US and China is disputed, with intelligence asymmetries preventing accurate assessment.
 
 ## Open Questions
 
-1. **Is meaningful verification possible?** Can we monitor AI development sufficiently to enable agreements?
-2. **What triggers would enable cooperation?** What kind of crisis or opportunity could shift dynamics?
-3. **Can labs lead where governments cannot?** Private coordination as alternative to state coordination?
-4. **Is the game actually iterated?** Or is AGI a one-shot game that changes everything?
-5. **What role for middle powers?** Can EU, UK, or others facilitate coordination?
+Several fundamental questions require resolution to improve this model and guide strategy:
+
+**Is meaningful verification possible?** The feasibility of monitoring AI development determines whether stable agreements can exist at all. If capabilities remain fundamentally unverifiable, coordination collapses to cheap talk. Progress on compute governance, evaluation standards, and confidence-building measures will determine whether verification constraints can be overcome.
+
+**What triggers would enable cooperation?** Understanding what kind of crisis or opportunity could shift coordination dynamics is essential for strategic planning. Would a major AI incident catalyze cooperation or intensify racing? What level of demonstrated risk changes political calculus? How can coordination advocates create conditions favorable to cooperation?
+
+**Can labs lead where governments cannot?** If state-level coordination remains blocked by geopolitical tensions, can private sector coordination provide an alternative path? Leading labs concentrating frontier development might establish de facto governance through voluntary commitments and shared safety practices, potentially creating facts on the ground that governments later formalize.
+
+**Is the game actually iterated?** Standard game theory assumes repeated interactions enable cooperation through reciprocity and reputation. But if AGI represents a one-shot game that fundamentally transforms the strategic landscape, iteration logic breaks down. The shadow of the future depends on whether post-AGI dynamics resemble pre-AGI competition or constitute an entirely new game.
+
+**What role for middle powers?** Can the EU, UK, or coalitions of smaller countries facilitate US-China coordination by providing neutral forums, verification mechanisms, or mediation? Middle powers may lack technological leadership but possess diplomatic capital and institutional capacity that proves decisive for coordination.
 
 ## Related Models
 

@@ -4,7 +4,7 @@ description: Diffusion dynamics model analyzing how AI capabilities spread acros
 sidebar:
   order: 25
 quality: 4
-lastEdited: "2025-12-25"
+lastEdited: "2025-12-26"
 ratings:
   novelty: 4
   rigor: 4
@@ -12,610 +12,296 @@ ratings:
   completeness: 5
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="proliferation-risk-model" ratings={frontmatter.ratings} />
 
-
 ## Overview
 
-This model analyzes the diffusion of AI capabilities from frontier labs to broader populations of actors. It examines diffusion mechanisms, control points, and the relationship between proliferation speed and risk accumulation.
+This model analyzes the diffusion of AI capabilities from frontier laboratories to progressively broader populations of actors, examining the mechanisms that drive proliferation, the control points available for intervention, and the relationship between diffusion speed and risk accumulation. The central question: **How fast do dangerous AI capabilities spread from a handful of frontier labs to millions of potential users, and which intervention points offer meaningful leverage for control?**
 
-**Central Question:** How fast do dangerous AI capabilities spread, and where are the leverage points for control?
+The key insight is that proliferation follows predictable tier-based diffusion patterns, but the time constants are compressing dramatically. Capabilities that took 24-36 months to diffuse from Tier 1 (frontier labs) to Tier 4 (open source) in 2020 now spread in 12-18 months, with projections suggesting 6-12 month diffusion cycles by 2025-2026. This acceleration fundamentally changes the governance calculus: interventions that were viable with multi-year windows become impractical when proliferation occurs within months. The model identifies compute governance and pre-proliferation decision gates as high-leverage interventions, while post-proliferation controls offer diminishing returns as diffusion accelerates.
 
-## Proliferation Model Framework
+Understanding proliferation dynamics matters because many AI governance proposals implicitly assume control is possible after deployment. This model challenges that assumption by quantifying how rapidly the window for control closes once capabilities exist. The irreversibility threshold—the point beyond which proliferation cannot be reversed—is crossed earlier than commonly appreciated, often before policymakers recognize a capability as dangerous.
+
+## Conceptual Framework
 
 ### The Diffusion Cascade
 
-**Actor Tiers:**
+AI capabilities diffuse through a hierarchical structure of actor tiers, each defined by resource availability and access mechanisms. The cascade operates as a one-way valve: once capabilities reach a tier, they cannot be recalled. Understanding this structure is essential for identifying where intervention remains possible.
 
-```
-Tier 1: Frontier Labs (5-10 actors)
-  ↓ (6-18 months)
-Tier 2: Major Tech Companies (50-100 actors)
-  ↓ (12-24 months)
-Tier 3: Well-Resourced Organizations (1,000-10,000 actors)
-  ↓ (18-36 months)
-Tier 4: Open Source / Public (millions of actors)
-  ↓ (24-48 months)
-Tier 5: Individuals (billions of potential actors)
-```
+<Mermaid client:load chart={`flowchart TD
+    subgraph Tier1["Tier 1: Frontier Labs (5-10 actors)"]
+        A1[Original Development]
+    end
 
-**Time constants are decreasing:**
-- 2020: 24-36 months from Tier 1 → Tier 4
-- 2023: 12-18 months (ChatGPT effect)
-- 2025: 6-12 months projected
-- Trend: Accelerating diffusion
+    subgraph Tier2["Tier 2: Major Tech (50-100 actors)"]
+        A2[API Access / Partnerships]
+    end
 
-### Diffusion Mechanisms
+    subgraph Tier3["Tier 3: Well-Resourced Orgs (1K-10K actors)"]
+        A3[Fine-tuning / Replication]
+    end
 
-**1. Publication (Knowledge Transfer)**
+    subgraph Tier4["Tier 4: Open Source (Millions)"]
+        A4[Public Model Weights]
+    end
 
-**Pathway:** Research → Conferences/Journals → Replication
+    subgraph Tier5["Tier 5: Individuals (Billions)"]
+        A5[Consumer Applications]
+    end
 
-| Mechanism | Speed | Fidelity | Controllability |
-|-----------|-------|----------|-----------------|
-| Academic publication | 6-18 months | High | Low (norms favor openness) |
-| Preprints (arXiv) | Immediate | High | Very Low |
-| Conference presentations | 3-12 months | Medium | Low |
-| Patents | 18-24 months | High | Medium (but public) |
+    A1 -->|"6-18 months"| A2
+    A2 -->|"12-24 months"| A3
+    A3 -->|"18-36 months"| A4
+    A4 -->|"24-48 months"| A5
 
-**Current Status:**
-- Most capability research published
-- Increasing self-censorship for dangerous capabilities
-- But: Competitive pressure to publish
+    style A1 fill:#fcc
+    style A2 fill:#fdc
+    style A3 fill:#ffc
+    style A4 fill:#cfc
+    style A5 fill:#cff`} />
 
-**Control Effectiveness: Low-Medium**
-- Norms can shift (some dangerous work not published)
-- But: Can't unpublish; knowledge spreads
-- Reverse engineering possible
+The time constants shown represent historical averages but are compressing rapidly. For GPT-3-class capabilities, full diffusion from Tier 1 to Tier 4 required approximately 24 months (2020-2022). For GPT-4-class capabilities, this compressed to 18-24 months (2023-2025). Current trajectories suggest future frontier capabilities may reach Tier 4 within 6-12 months of initial development.
 
-**2. Open Source Release (Direct Capability Transfer)**
+### Mathematical Formulation
 
-**Pathway:** Model → Public Repository → Download/Fine-tune
+The proliferation risk model combines diffusion dynamics with actor-specific risk assessment:
 
-| Example | Release Date | Tier 1 → Tier 4 Time | Control Attempt |
-|---------|-------------|---------------------|-----------------|
-| LLaMA 1 | Feb 2023 | &lt;1 week (leak) | Failed |
-| LLaMA 2 | Jul 2023 | Immediate (intentional) | None |
-| Mistral 7B | Sep 2023 | Immediate | None |
-| DeepSeek R1 | Jan 2025 | Immediate | None |
+$$
+R_{\text{total}}(t) = \sum_{i=1}^{5} N_i(t) \cdot C_i(t) \cdot P_{\text{misuse},i}
+$$
 
-**Current Status:**
-- Major trend toward open release
-- Motivations: Competition, ideology, ecosystem building
-- Safety measures stripped rapidly (uncensored variants)
+Where:
+- $R_{\text{total}}(t)$ = Total expected risk at time $t$
+- $N_i(t)$ = Number of actors in tier $i$ with access at time $t$
+- $C_i(t)$ = Capability level accessible to tier $i$ at time $t$
+- $P_{\text{misuse},i}$ = Per-actor probability of misuse for tier $i$
 
-**Control Effectiveness: Very Low**
-- Once released, cannot be recalled
-- Fine-tuning enables customization
-- Quantization enables broader access (smaller hardware requirements)
+The diffusion dynamics follow a modified logistic function for each tier transition:
 
-**3. API Access (Controlled Capability Transfer)**
+$$
+N_i(t) = \frac{N_{i,\max}}{1 + e^{-k_i(t - t_{0,i})}}
+$$
 
-**Pathway:** Capability → API → Gated Access
+Where $k_i$ represents the diffusion rate (increasing over time) and $t_{0,i}$ represents the inflection point when capability reaches tier $i$. The accelerating diffusion trend is captured by:
 
-| Provider | Control Mechanism | Bypass Difficulty |
-|----------|------------------|-------------------|
-| OpenAI GPT-4 | Usage policies, monitoring | Low-Medium (jailbreaks common) |
-| Anthropic Claude | Constitutional AI, screening | Low-Medium |
-| Google Gemini | Safety filters | Low-Medium |
+$$
+k_i(t) = k_{i,0} \cdot e^{\alpha t}
+$$
 
-**Current Status:**
-- Provides capability without proliferating weights
-- But: API jailbreaks common
-- And: Inference-time safety can be defeated
+With $\alpha \approx 0.15$ per year, implying diffusion rates roughly double every 5 years.
 
-**Control Effectiveness: Medium**
-- Better than open source
-- But: Limited protection against determined actors
-- And: Doesn't prevent eventual weight proliferation
+## Diffusion Mechanism Analysis
 
-**4. Talent Movement (Know-How Transfer)**
+### Publication and Knowledge Transfer
 
-**Pathway:** Frontier Lab → Researcher Movement → New Organization
+Academic publication represents the fastest and least controllable diffusion mechanism. Research flows from laboratories to conferences and journals to global replication within months. The AI research community has historically operated under strong norms favoring openness, though these norms are beginning to shift for capabilities perceived as dangerous.
 
-**Metrics:**
-- ~30-50% of AI researchers change organizations every 2-3 years
-- Rapid founding of new labs by former big-lab researchers
-- Knowledge embodied in people is non-excludable
+| Mechanism | Diffusion Speed | Information Fidelity | Controllability | Current Status |
+|-----------|-----------------|---------------------|-----------------|----------------|
+| Preprints (arXiv) | Days-Weeks | Very High | Very Low | Dominant for AI research |
+| Conference papers | 3-6 months | High | Low | Norms favor acceptance |
+| Journal articles | 6-18 months | High | Low | Slower but permanent |
+| Patents | 18-24 months | High | Medium | Public after filing |
+| Internal reports | Indefinite | High | High | Rarely maintained |
 
-**Control Effectiveness: Very Low**
-- Cannot restrict movement in free societies
-- Trade secret law limited effectiveness
-- Tacit knowledge travels with people
+The challenge with publication control is that competitive pressure to publish remains intense. Priority claims, citation metrics, and talent recruitment all depend on visible research output. Voluntary restraint faces collective action problems: labs that self-censor lose competitive advantage while rivals continue publishing. The 2023 shift toward some publication restraint at frontier labs represents a fragile norm that could collapse under competitive pressure.
 
-**5. Compute Accessibility (Infrastructure Transfer)**
+### Open Source Model Releases
 
-**Pathway:** Frontier Compute → Cloud Services → Wider Access
+Direct release of model weights represents the most irreversible form of proliferation. Once weights are public, they cannot be recalled, and safety measures built into the original model can be removed through fine-tuning within days. The trend toward open release has accelerated dramatically since 2022.
 
-| Compute Tier | Access Method | Cost Barrier | Control Point |
-|--------------|---------------|--------------|---------------|
-| Frontier training (100K+ GPUs) | Direct ownership | $100M-1B+ | High (very few actors) |
-| Large-scale training (10K GPUs) | Cloud rental | $10M-100M | Medium (limited actors) |
-| Fine-tuning (100s GPUs) | Cloud rental | $100K-1M | Low (many actors) |
-| Inference (1-10 GPUs) | Consumer hardware | $1K-10K | Very Low (mass market) |
+| Model | Release Date | Tier 1 to Tier 4 Time | Control Attempt | Outcome |
+|-------|--------------|----------------------|-----------------|---------|
+| GPT-2 | Feb 2019 | 6 months (staged) | Staged release | Eventually full release |
+| LLaMA 1 | Feb 2023 | &lt;1 week | Limited access | Leaked within days |
+| LLaMA 2 | Jul 2023 | Immediate | Intentional open | Full proliferation |
+| Mistral 7B | Sep 2023 | Immediate | None | Full proliferation |
+| DeepSeek R1 | Jan 2025 | Immediate | None | Full proliferation |
+| Qwen 2.5 | Oct 2024 | Immediate | None | Full proliferation |
 
-**Control Effectiveness: Medium-High (for training), Low (for inference)**
-- Export controls on advanced chips (effective against some state actors)
-- Cloud provider monitoring (can detect large training runs)
-- But: Doesn't control proliferation after training
+The motivations driving open release include competitive positioning (building ecosystems around models), ideological commitment to open-source values, and geopolitical considerations (reducing dependence on U.S. companies). These incentives are structural rather than individual, meaning they persist regardless of any single actor's safety preferences.
 
-**6. Reverse Engineering (Capability Reconstruction)**
+### API Access and Controlled Deployment
 
-**Pathway:** Observed Capability → Analysis → Replication
+API-based deployment offers a middle path: providing capability access while retaining some control over usage. Providers can implement usage monitoring, content filtering, and access restrictions. However, the effectiveness of these controls faces systematic challenges.
 
-**Examples:**
-- GPT-3 → Many similar models
-- AlphaFold → RoseTTAFold, OpenFold
-- DALL-E → Stable Diffusion, Midjourney
+| Provider | Control Mechanisms | Jailbreak Difficulty | Typical Evasion Time | Control Durability |
+|----------|-------------------|---------------------|---------------------|-------------------|
+| OpenAI GPT-4 | RLHF, monitoring, ToS | Low-Medium | Hours-Days | Low (continuous bypass) |
+| Anthropic Claude | Constitutional AI, screening | Low-Medium | Hours-Days | Low (continuous bypass) |
+| Google Gemini | Safety filters, monitoring | Low-Medium | Hours-Days | Low (continuous bypass) |
+| Open-source APIs | Minimal-None | Trivial | Immediate | Very Low |
 
-**Time to Replication:**
-- 2020: 18-36 months
-- 2023: 12-18 months
-- 2025: 6-12 months projected
+The fundamental limitation of API controls is that they operate at inference time and can be circumvented through prompt engineering, while the underlying capability information has already been concentrated in model weights. API controls also face economic pressure: customers prefer fewer restrictions, creating competitive disadvantage for more cautious providers.
 
-**Control Effectiveness: Very Low**
-- Cannot prevent reverse engineering
-- Only delays proliferation
+### Compute and Infrastructure
 
-## Risk Accumulation Model
+Compute requirements represent the most effective current control point because frontier model training demands resources concentrated in very few hands. Training GPT-4-class models requires 10,000+ advanced GPUs operating for months—resources available to perhaps 10-20 organizations globally. This concentration enables control through hardware export restrictions and cloud provider governance.
 
-### Risk = f(Capability, Proliferation, Intent)
+| Compute Tier | Resource Requirement | Cost Range | Actor Pool | Control Feasibility |
+|--------------|---------------------|------------|------------|-------------------|
+| Frontier training | 100K+ H100 equivalents | $500M-2B | 5-10 actors | High |
+| Large-scale training | 10K-100K GPUs | $50M-500M | 20-50 actors | Medium-High |
+| Medium training | 1K-10K GPUs | $5M-50M | 100-500 actors | Medium |
+| Fine-tuning | 100-1K GPUs | $100K-5M | Thousands | Low |
+| Inference | 1-100 GPUs | $1K-100K | Millions | Very Low |
 
-**Quantitative Framework:**
+The durability of compute control is uncertain. Algorithmic efficiency improvements reduce compute requirements by approximately 2x per year, meaning today's frontier training costs become accessible to Tier 3 actors within 3-5 years. China's domestic chip development, while currently lagging, aims to reduce dependence on controlled supply chains. Smuggling and diversion of chips through third countries has proven difficult to prevent completely.
 
-```
-Total_Risk = Σ(Capability_level × Probability_of_access × Probability_of_misuse)
-
-Where sum is over all actor types:
-- State actors (high capability, medium-high access, low-medium misuse probability)
-- Terrorist groups (medium capability, low-medium access, high misuse probability)
-- Criminal organizations (medium capability, medium access, medium-high misuse probability)
-- Individuals (low-medium capability, high access post-proliferation, low misuse probability)
-```
-
-**Key Insight:** Even if individual misuse probability is low, with millions of actors, expected harms increase.
+## Risk Accumulation Dynamics
 
 ### Proliferation Thresholds
 
-**Threshold 1: Organizational Proliferation (EXCEEDED)**
+The model identifies three critical thresholds that mark qualitative shifts in risk dynamics. Crossing these thresholds is largely irreversible, making them high-stakes decision points.
 
-**Definition:** Capability accessible to well-resourced organizations (Tier 3)
+<Mermaid client:load chart={`stateDiagram-v2
+    [*] --> Contained: Capability developed
+    Contained --> Organizational: Tier 3 access
+    Organizational --> Individual: Tier 4/5 access
+    Individual --> Irreversible: Open source + common knowledge
 
-**Current Status:**
-- GPT-3-level: EXCEEDED (2022)
-- GPT-4-level: EXCEEDED (2024)
-- Future capabilities: TBD
+    Contained: Contained Proliferation
+    note right of Contained
+        Control still possible
+        Response time: months
+    end note
 
-**Implication:**
-- State actors can access
-- Large criminal organizations can access
-- Some terrorist groups can access
+    Organizational: Organizational Proliferation
+    note right of Organizational
+        State/criminal access likely
+        Response time: weeks
+    end note
 
-**Risk Level:** Medium-High
-- Enables misuse by sophisticated actors
-- Still requires resources, limits pool
+    Individual: Individual Proliferation
+    note right of Individual
+        Attribution difficult
+        Monitoring overwhelmed
+    end note
 
-**Threshold 2: Individual Proliferation (APPROACHING for some capabilities)**
+    Irreversible: Irreversible Proliferation
+    note right of Irreversible
+        Control not possible
+        Focus shifts to defense
+    end note`} />
 
-**Definition:** Capability accessible to individuals with modest resources (Tier 5)
+**Threshold 1: Organizational Proliferation.** When capabilities reach well-resourced organizations (Tier 3), state actors, large criminal organizations, and sophisticated terrorist groups gain access. This threshold was crossed for GPT-3-level capabilities in 2022 and GPT-4-level capabilities in 2024. At this stage, monitoring remains theoretically possible but practically limited by the number and sophistication of actors.
 
-**Current Status:**
-- GPT-3-level: EXCEEDED (open models, fine-tuning)
-- GPT-4-level: APPROACHING (DeepSeek, others)
-- Dangerous specific capabilities: Variable
+**Threshold 2: Individual Proliferation.** When capabilities reach individuals with modest resources (Tier 5), the actor pool expands to millions. Attribution becomes extremely difficult, monitoring is overwhelmed by scale, and governance must shift from prevention to resilience. For text generation and basic code assistance, this threshold has been exceeded. For more dangerous capabilities, it approaches.
 
-**Implication:**
-- Millions of potential actors
-- Impossible to monitor all
-- Attribution very difficult
+**Threshold 3: Capability Irreversibility.** When capability knowledge becomes embedded in open-source code, public documentation, and common practitioner knowledge, proliferation cannot be reversed. This threshold has been crossed for text generation, image generation, code generation, and protein structure prediction. Future dangerous capabilities face the same fate unless controlled before release.
 
-**Risk Level:** High
-- Mass potential for misuse
-- Governance nearly impossible
-- Weak link problem extreme
+### Risk Calculation by Actor Type
 
-**Threshold 3: Capability Irreversibility (EXCEEDED for many capabilities)**
+Different actor types present different risk profiles. State actors have the highest capability but face deterrence through attribution. Individual actors have the lowest capability but benefit from anonymity and scale.
 
-**Definition:** Capability proliferation cannot be reversed (open source, widespread knowledge)
+| Actor Type | Estimated Actors | Capability Access | P(Access) | P(Misuse\|Access) | Relative Risk Weight |
+|------------|-----------------|-------------------|-----------|-------------------|---------------------|
+| State programs (hostile) | 5-15 | Frontier | 0.95 | 0.15-0.40 | Very High |
+| Major criminal organizations | 50-200 | Near-frontier | 0.70-0.85 | 0.30-0.60 | High |
+| Terrorist organizations | 100-500 | Moderate | 0.40-0.70 | 0.50-0.80 | High |
+| Ideologically motivated groups | 1,000-10,000 | Moderate | 0.50-0.80 | 0.10-0.30 | Medium |
+| Individual malicious actors | 10,000-100,000 | Basic-Moderate | 0.60-0.90 | 0.01-0.10 | Medium (scale-driven) |
 
-**Current Status:**
-- Text generation: EXCEEDED
-- Image generation: EXCEEDED
-- Code generation: EXCEEDED
-- Protein folding: EXCEEDED
-- Future dangerous capabilities: At risk
+The key insight from this analysis is that even if individual misuse probability is low (1-10%), with tens of thousands of capable actors, the expected number of misuse incidents becomes substantial. This represents a shift from low-probability/high-consequence events to high-probability/variable-consequence events.
 
-**Implication:**
-- Control must be preventive, not reactive
-- Once crossed, cannot go back
-- Lock-in of proliferated state
+## Scenario Analysis
 
-**Risk Level:** Critical (for future capabilities)
-- No second chances
-- Irreversible decisions
+### Proliferation Trajectory Scenarios
+
+| Scenario | Probability | Tier 1-4 Time (2025-2030) | Key Drivers | Risk Level |
+|----------|-------------|---------------------------|-------------|------------|
+| Accelerating openness | 35% | 3-6 months | Open-source ideology wins, regulation fails | Very High |
+| Current trajectory | 40% | 6-12 months | Mixed open/closed, partial regulation | High |
+| Managed deceleration | 15% | 12-24 months | International coordination, major incident | Medium |
+| Effective control | 10% | 24+ months | Strong compute governance, industry agreement | Low-Medium |
+
+**Accelerating Openness Scenario (35%).** If open-source ideology continues gaining ground and regulatory efforts fail, diffusion time constants could compress to 3-6 months. In this scenario, control shifts entirely to post-proliferation defense, and the focus becomes resilience rather than prevention. This scenario is most likely if DeepSeek and similar efforts demonstrate that frontier capabilities can be achieved at dramatically lower cost, making compute control ineffective.
+
+**Current Trajectory Scenario (40%).** Continuation of present trends yields 6-12 month diffusion cycles with partial control through API restrictions and voluntary agreements. Risk accumulates gradually, with periodic incidents prompting reactive rather than proactive governance. This scenario likely persists until either a major incident shifts the Overton window or compute control proves durable.
+
+**Managed Deceleration Scenario (15%).** A major AI-related incident (not necessarily catastrophic, but visible and attributable) could shift political will toward meaningful regulation. Combined with durable compute control and lab coordination, this could extend diffusion times to 12-24 months—sufficient for meaningful governance windows.
+
+**Effective Control Scenario (10%).** Strong international coordination on compute governance, binding agreements among frontier labs, and effective export controls could maintain 24+ month diffusion windows. This scenario requires geopolitical cooperation that appears unlikely in the current environment but could emerge from crisis or changing leadership priorities.
+
+### Intervention Timing Analysis
+
+The value of intervention depends critically on timing relative to proliferation thresholds. Interventions become dramatically less effective once capabilities cross irreversibility thresholds.
+
+| Intervention Timing | Control Window | Intervention Options | Expected Effectiveness |
+|--------------------|----------------|---------------------|----------------------|
+| Pre-development | Years | Research direction, funding priorities | High (if coordination achieved) |
+| Post-development, pre-deployment | Months | Deployment gates, evaluation requirements | Medium-High |
+| Post-deployment, pre-proliferation | Weeks-Months | API controls, release decisions | Medium |
+| Post-Tier 3 proliferation | Days-Weeks | Monitoring, enforcement | Low-Medium |
+| Post-Tier 4 proliferation | N/A | Defensive measures only | Low |
 
 ## Control Point Analysis
 
-### High-Control Points (Most Effective)
+### High-Leverage Control Points
 
-**1. Compute (Training Phase)**
+**Compute Governance.** Training advanced AI systems requires concentrated computational resources that enable control through export restrictions, cloud provider regulation, and chip-level governance. Current U.S. export controls on advanced semiconductors represent the most significant intervention in this space. Effectiveness is estimated at 60-80% for preventing frontier capability development by restricted actors, though this degrades over time as China develops domestic alternatives and efficiency improvements reduce compute requirements. The window for effective compute control is estimated at 5-15 years before circumvention becomes widespread.
 
-**Mechanism:** Restrict access to compute needed for frontier training
+**Pre-Proliferation Decision Gates.** Establishing mandatory evaluation and approval processes before deployment or open release could prevent irreversible proliferation of the most dangerous capabilities. This requires defining "dangerous capabilities" (contentious but achievable for extreme cases), creating evaluation infrastructure, and ensuring international coordination to prevent regulatory arbitrage. Current voluntary commitments represent weak versions of this approach; binding requirements with enforcement mechanisms would be substantially more effective but face political feasibility challenges.
 
-**Effectiveness:** High (for now)
-- Training GPT-4-class models requires 10K+ advanced GPUs
-- Very few actors have this
-- Choke point: Semiconductor manufacturing (highly concentrated)
+**Model Weight Security.** Treating frontier model weights as sensitive assets requiring cybersecurity protection, insider threat programs, and leak response protocols could delay proliferation from weeks to months or years. However, this control is fragile: a single successful breach results in irreversible proliferation. The LLaMA 1 leak demonstrated how quickly controlled releases can fail.
 
-**Implementation:**
-- Export controls on advanced chips (U.S., others)
-- Cloud provider monitoring (detect large training runs)
-- Chip-level governance (usage tracking)
+### Medium-Leverage Control Points
 
-**Limitations:**
-- Compute efficiency improving (lowers barrier over time)
-- China developing domestic chip industry
-- Doesn't control inference
-- Doesn't prevent proliferation after training
+| Control Point | Mechanism | Current Effectiveness | Durability | Key Limitation |
+|---------------|-----------|----------------------|------------|----------------|
+| API access controls | Usage policies, monitoring, filtering | 40-60% | Low (continuous bypass) | Economic pressure for access |
+| Capability evaluation | Red-teaming before deployment | 50-70% | Medium | May miss capabilities |
+| Publication review | Pre-publication screening | 30-50% | Medium | Norms favor openness |
+| Talent restrictions | Employment controls, security clearances | 20-40% | Low | Cannot restrict movement in free societies |
 
-**Durability:** Medium (5-10 years before likely circumvention)
+### Low-Leverage Control Points
 
-**2. Model Weights Security (Post-Training)**
+Post-proliferation controls—detection, monitoring, and enforcement after capabilities have spread—face fundamental limitations of scale and attribution. With millions of actors having access to capable systems, comprehensive monitoring is infeasible without invasive surveillance, and attribution of specific harms to specific actors becomes extremely difficult. These controls remain valuable for specific, targeted threats but cannot address the diffuse risk from widespread access.
 
-**Mechanism:** Prevent unauthorized access to trained model weights
+## Sensitivity Analysis
 
-**Effectiveness:** Medium-High (if implemented well)
-- Weights are the "compiled capability"
-- Small files (can be secured like classified information)
-- Theft/leak single point of failure
+### Parameter Sensitivity
 
-**Implementation:**
-- Cybersecurity for model storage
-- Insider threat mitigation
-- Leak response plans
+The model's outputs are most sensitive to three parameters: diffusion rate acceleration ($\alpha$), per-actor misuse probability ($P_{\text{misuse}}$), and control point effectiveness at key thresholds.
 
-**Limitations:**
-- Single breach = irreversible proliferation
-- Insider access necessary for operation
-- Eventual open-source equivalents likely
+| Parameter | Base Value | Sensitivity (10% change) | Key Uncertainty |
+|-----------|------------|-------------------------|-----------------|
+| Diffusion rate acceleration | 0.15/year | High (compounds over time) | Algorithmic efficiency trends |
+| Tier 5 misuse probability | 0.01-0.10 | Very High (multiplied by millions) | Motivation distribution |
+| Compute control effectiveness | 60-80% | High | China chip development timeline |
+| Irreversibility threshold timing | 6-18 months post-Tier 1 | Medium | Open-source release decisions |
 
-**Durability:** Low-Medium (leak probability accumulates over time)
+### Model Limitations
 
-**3. Pre-Publication Review (Knowledge Phase)**
-
-**Mechanism:** Review dangerous capability research before publication
-
-**Effectiveness:** Medium
-- Can delay proliferation
-- Allows time for countermeasures
-- Preserves surprise advantage for defenders
-
-**Implementation:**
-- Voluntary self-governance (current, weak)
-- Institutional review boards (possible)
-- Government classification (existing for some areas)
-
-**Limitations:**
-- Chills research and collaboration
-- Hard to define "dangerous"
-- International coordination needed
-- Can't prevent independent discovery
-
-**Durability:** Medium (if norms hold)
-
-### Medium-Control Points
-
-**4. API Access Controls (Deployment Phase)**
-
-**Mechanism:** Provide capability through controlled interfaces, not model weights
-
-**Effectiveness:** Medium
-- Enables usage monitoring
-- Allows intervention on misuse
-- Preserves capability concentration
-
-**Implementation:**
-- Usage policies and monitoring (current)
-- Know-your-customer requirements
-- Rate limiting, filtering
-
-**Limitations:**
-- Jailbreaks common
-- Doesn't prevent weight proliferation
-- Economic pressure to open access
-
-**Durability:** Low-Medium (circumvention frequent)
-
-**5. Capability Evaluation and Red-Teaming (Assessment Phase)**
-
-**Mechanism:** Identify dangerous capabilities before deployment
-
-**Effectiveness:** Medium
-- Can inform decision whether to deploy
-- Identifies risks proactively
-- Enables targeted controls
-
-**Implementation:**
-- Internal red teams (current, variable quality)
-- Independent audits (proposed)
-- Mandatory evaluations (proposed policy)
-
-**Limitations:**
-- Doesn't prevent proliferation, only informs
-- May miss capabilities
-- Evaluation itself may be revealing
-
-**Durability:** Medium (as early-warning system)
-
-### Low-Control Points
-
-**6. Post-Proliferation Monitoring (After Spread)**
-
-**Mechanism:** Detect and respond to misuse after capabilities spread
-
-**Effectiveness:** Low
-- Too many actors to monitor
-- Attribution difficult
-- Reactive, not preventive
-
-**Implementation:**
-- Law enforcement (traditional)
-- Platform monitoring (limited)
-- Cyber defenses
-
-**Limitations:**
-- Overwhelmed by scale
-- Harms occur before intervention
-- Privacy concerns with mass surveillance
-
-**Durability:** Low (gets worse with proliferation)
-
-## Diffusion Speed Analysis
-
-### Historical Diffusion Rates
-
-**GPT-3 (June 2020):**
-- Tier 1: June 2020 (OpenAI)
-- Tier 2: Late 2020 (API access)
-- Tier 3: 2021 (fine-tuning, similar models)
-- Tier 4: 2022 (open models approach capability)
-- Time Tier 1 → Tier 4: ~24 months
-
-**GPT-4 (March 2023):**
-- Tier 1: March 2023 (OpenAI)
-- Tier 2: Immediate (API)
-- Tier 3: Late 2023 (competitors approach)
-- Tier 4: 2025 (DeepSeek, others)
-- Time Tier 1 → Tier 4: ~18-24 months
-
-**Trend:** Accelerating diffusion
-- Publication speed increasing
-- Replication speed increasing
-- Open-source movement growing
-- Compute efficiency improving
-
-**Projection:** Future capabilities may diffuse in 6-12 months
-
-### Factors Accelerating Diffusion
-
-1. **Competitive Pressure**
-   - Racing dynamics → Open releases to stay relevant
-   - Example: Meta's LLaMA releases
-
-2. **Compute Efficiency Gains**
-   - DeepSeek: GPT-4-level at 1/10th training cost
-   - Lowers barrier to replication
-
-3. **Ideological Commitment**
-   - Open-source movement strong in AI community
-   - "AI should be open" as value
-
-4. **Economic Incentives**
-   - Ecosystems built on open models
-   - Customer demand for open alternatives
-
-5. **Geopolitical Dynamics**
-   - States want domestic capabilities
-   - Reduces dependence on U.S. companies
-
-### Factors Slowing Diffusion
-
-1. **Safety Norms (Weak)**
-   - Some self-censorship on dangerous capabilities
-   - But: Inconsistent, not enforced
-
-2. **Compute Barriers (Eroding)**
-   - Frontier training still expensive
-   - But: Efficiency improving
-
-3. **Regulatory Efforts (Nascent)**
-   - Export controls on chips
-   - But: Limited scope, circumventable
-
-4. **Commercial Interests (Mixed)**
-   - Some companies withhold capabilities for advantage
-   - But: Others release to compete
-
-**Net Assessment:** Accelerating diffusion more likely than slowing
-
-## Intervention Strategies
-
-### High Leverage
-
-**1. Compute Governance (Effectiveness: High, Difficulty: High)**
-
-**Mechanisms:**
-- Strengthen chip export controls (expand scope, improve enforcement)
-- International agreements on compute access
-- Chip-level usage tracking and restrictions
-- Cloud provider regulation (know-your-customer, training run monitoring)
-
-**Impact:**
-- Slow frontier capability development by restricted actors
-- Create time buffer for safety research
-- Enable detection of unauthorized training
-
-**Challenges:**
-- China developing domestic chips
-- Smuggling and circumvention
-- Legitimate use cases restricted
-- Efficiency gains reducing compute requirements
-
-**Timeline Effectiveness:** 5-15 years (before circumvented)
-
-**2. Pre-Proliferation Decision Gates (Effectiveness: Medium-High, Difficulty: Very High)**
-
-**Mechanisms:**
-- Mandatory dangerous capability evaluation
-- Deployment approval process
-- International coordination on what to release
-
-**Impact:**
-- Prevent irreversible proliferation of most dangerous capabilities
-- Create decision points before point of no return
-
-**Challenges:**
-- Defining "dangerous"
-- International coordination
-- Competitive pressure to defect
-- Enforcement
-
-**Timeline Effectiveness:** Dependent on coordination success
-
-**3. Differential Technology Development (Effectiveness: Medium, Difficulty: High)**
-
-**Mechanisms:**
-- Accelerate safety research (publish openly)
-- Slow dangerous capability research (restrict publication)
-- Prioritize defensive over offensive capabilities
-
-**Impact:**
-- Improves ratio of defensive to offensive capabilities
-- Maintains safety research pace while slowing dangerous capabilities
-
-**Challenges:**
-- Identifying what's defensive vs. offensive (dual-use)
-- Coordination across research community
-- Incentive misalignment (capability work more rewarded)
-
-### Medium Leverage
-
-**4. Weight Security Standards (Effectiveness: Medium, Difficulty: Medium)**
-
-**Mechanisms:**
-- Cybersecurity requirements for frontier models
-- Insider threat programs
-- Leak response protocols
-- Encryption and access controls
-
-**Impact:**
-- Reduces probability of leaks
-- Delays proliferation
-
-**Challenges:**
-- Single breach sufficient for proliferation
-- Insider access necessary for operation
-- Accumulating risk over time
-
-**5. API-Only Deployment (Effectiveness: Low-Medium, Difficulty: Medium)**
-
-**Mechanisms:**
-- Release capabilities through APIs, not weights
-- Usage monitoring and restrictions
-- Graduated access controls
-
-**Impact:**
-- Maintains some control after deployment
-- Enables misuse detection
-- Prevents fine-tuning for misuse
-
-**Challenges:**
-- Economic pressure for open alternatives
-- Jailbreaks common
-- Doesn't prevent eventual open-source equivalents
-
-### Lower Leverage
-
-**6. Post-Proliferation Defenses (Effectiveness: Low, Difficulty: High)**
-
-**Mechanisms:**
-- Detection systems for AI-generated content
-- Cyber defenses against AI-enabled attacks
-- Resilience measures
-
-**Impact:**
-- Reduces harm from proliferated capabilities
-- Reactive, not preventive
-
-**Challenges:**
-- Arms race with offensive capabilities
-- Scale problem (too many actors)
-- Fundamental disadvantage to defense
-
-## Model Limitations
-
-**1. Assumes Current Diffusion Mechanisms**
-- Reality: New mechanisms may emerge
-- Impact: Could accelerate beyond projections
-
-**2. Doesn't Model Capability Plateaus**
-- Reality: AI progress might slow or stop
-- Impact: Could reduce pressure if capabilities plateau
-
-**3. Simplified Actor Model**
-- Reality: Actor motivations and capabilities complex
-- Impact: Risk calculation uncertain
-
-**4. Ignores Defense-Offense Balance**
-- Reality: Proliferation of defensive capabilities also occurring
-- Impact: Net risk may be lower (or higher) than modeled
-
-**5. Geopolitical Dynamics Uncertain**
-- Reality: International relations could shift dramatically
-- Impact: Cooperation or conflict could change proliferation dynamics
-
-## Research Gaps
-
-1. **Empirical diffusion tracking** across capability types
-2. **Reverse engineering timelines** and difficulty
-3. **Control mechanism effectiveness** testing
-4. **Offensive-defensive balance** in proliferated capabilities
-5. **Actor intent modeling** and misuse probability
-6. **Optimal governance structures** for proliferation control
+This model embeds several simplifying assumptions that may not hold in practice. First, it treats capabilities as continuous variables when actual dangerous capabilities may be discrete and require specific combinations of knowledge. Second, it assumes relatively stable actor motivations when geopolitical events could dramatically shift the actor landscape. Third, the diffusion mechanism analysis assumes current structures persist; new mechanisms (such as AI-to-AI capability transfer) could fundamentally alter dynamics. Finally, the model focuses on capability proliferation while ignoring parallel development of defensive capabilities that could partially offset risk.
 
 ## Policy Recommendations
 
-**Immediate (0-2 years):**
-1. Strengthen compute governance (export controls, monitoring)
-2. Establish dangerous capability evaluation frameworks
-3. Improve model weight security standards
+**Immediate Priorities (0-2 years).** Strengthen and expand compute governance through improved enforcement of existing export controls, extension of controls to additional chip types, and cloud provider monitoring requirements. Establish dangerous capability evaluation frameworks with clear thresholds and evaluation protocols. Implement industry-wide weight security standards with mandatory cybersecurity requirements for frontier models.
 
-**Medium-term (2-5 years):**
-1. Build international coordination on proliferation limits
-2. Create pre-deployment review processes
-3. Develop differential technology norms
+**Medium-Term Priorities (2-5 years).** Build international coordination mechanisms for proliferation control, potentially through an international AI safety organization with inspection and verification capabilities. Create binding pre-deployment review processes for capabilities above defined risk thresholds. Develop differential technology norms that accelerate safety research while restricting dangerous capability publication.
 
-**Long-term (5+ years):**
-1. Establish sustainable governance for open/closed balance
-2. Build verification mechanisms for international agreements
-3. Develop adaptive systems as diffusion landscape changes
+**Long-Term Priorities (5+ years).** Establish sustainable governance frameworks for the open/closed balance that account for accelerating diffusion while preserving beneficial uses. Build verification mechanisms for international agreements that can detect unauthorized training runs and capability development. Develop adaptive systems that update governance as the diffusion landscape evolves.
+
+## Research Gaps
+
+Several critical uncertainties limit the precision of this model. Empirical tracking of diffusion across capability types remains limited; most analysis relies on case studies rather than systematic measurement. Reverse engineering difficulty and timelines are poorly understood and likely vary dramatically across capability types. Control mechanism effectiveness has not been rigorously tested; most estimates are based on theoretical analysis rather than empirical validation. The offensive-defensive balance in proliferated environments—whether diffusion favors attackers or defenders—is essentially unknown. Finally, actor intent modeling and misuse probability estimation remain highly uncertain, yet these parameters dominate risk calculations for widespread access scenarios.
 
 ## Related Models
 
-- [Racing Dynamics Impact](/knowledge-base/models/racing-dynamics-impact/) - Why actors release capabilities
-- [Multipolar Trap Dynamics](/knowledge-base/models/multipolar-trap-dynamics/) - Coordination challenges
-- [Winner-Take-All Concentration](/knowledge-base/models/winner-take-all-concentration/) - Alternative to proliferation
+- [Racing Dynamics Impact](/knowledge-base/models/racing-dynamics-impact/) — Explains competitive pressures driving open release decisions
+- [Multipolar Trap Dynamics](/knowledge-base/models/multipolar-trap-dynamics/) — Models coordination failures in proliferation control
+- [Winner-Take-All Concentration](/knowledge-base/models/winner-take-all-concentration/) — Analyzes alternative to proliferation through market concentration
 
 ## Sources
 
-- Nuclear proliferation literature (analogies and lessons)
-- AI capability diffusion data (LLaMA, GPT, etc.)
-- Export control analysis (chips, technology)
-- Open-source AI debates and research
-- Compute governance proposals
+- Nuclear proliferation literature and analogies (Nye, Sagan, Waltz)
+- AI capability diffusion data from public model releases and timelines
+- Export control analysis from CSIS, Brookings, and RAND
+- Open-source AI movement analysis and advocacy materials
+- Compute governance proposals from academic and policy sources
+- RAND Corporation AI proliferation studies
 
-## Related Pages
-
-<Backlinks client:load entityId="proliferation-risk-model" />
+<Backlinks />
