@@ -10,11 +10,10 @@ ratings:
   completeness: 4  # Thorough taxonomy of shift types and mitigation approaches
 ---
 
-import { DataInfoBox, ModelRatings } from '@/components/wiki';
+import { DataInfoBox } from '@/components/wiki';
 
-<DataInfoBox entityId="goal-misgeneralization-probability" />
+<DataInfoBox entityId="goal-misgeneralization-probability" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

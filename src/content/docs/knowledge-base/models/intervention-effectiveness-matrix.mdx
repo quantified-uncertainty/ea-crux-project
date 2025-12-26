@@ -12,11 +12,10 @@ ratings:
   completeness: 3  # Good coverage of interventions but gap analysis is brief
 ---
 
-import { DataInfoBox, Backlinks, KeyQuestions, ModelRatings } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, KeyQuestions } from '../../../../components/wiki';
 
-<DataInfoBox entityId="intervention-effectiveness-matrix" />
+<DataInfoBox entityId="intervention-effectiveness-matrix" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

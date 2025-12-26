@@ -12,11 +12,10 @@ ratings:
   completeness: 5  # Comprehensive 5-threshold model with domain analysis and projections
 ---
 
-import { DataInfoBox, Backlinks, ModelRatings } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks } from '../../../../components/wiki';
 
-<DataInfoBox entityId="flash-dynamics-threshold" />
+<DataInfoBox entityId="flash-dynamics-threshold" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

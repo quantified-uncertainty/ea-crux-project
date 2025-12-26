@@ -12,11 +12,10 @@ ratings:
   completeness: 4  # Thorough step-by-step analysis
 ---
 
-import { DataInfoBox, Backlinks, EstimateBox, ModelRatings } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, EstimateBox } from '../../../../components/wiki';
 
-<DataInfoBox entityId="bioweapons-attack-chain" />
+<DataInfoBox entityId="bioweapons-attack-chain" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

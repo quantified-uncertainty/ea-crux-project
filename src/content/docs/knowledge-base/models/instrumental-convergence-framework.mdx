@@ -10,11 +10,10 @@ ratings:
   completeness: 5  # Comprehensive 10-goal taxonomy with conditions and evidence
 ---
 
-import { DataInfoBox, ModelRatings } from '@/components/wiki';
+import { DataInfoBox } from '@/components/wiki';
 
-<DataInfoBox entityId="instrumental-convergence-framework" />
+<DataInfoBox entityId="instrumental-convergence-framework" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

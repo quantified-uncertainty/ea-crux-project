@@ -8,11 +8,10 @@ ratings:
   completeness: 5
 ---
 
-import { DataInfoBox, ModelRatings } from '@/components/wiki';
+import { DataInfoBox } from '@/components/wiki';
 
-<DataInfoBox entityId="reward-hacking-taxonomy" />
+<DataInfoBox entityId="reward-hacking-taxonomy" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

@@ -12,11 +12,10 @@ ratings:
   completeness: 4  # Thorough decomposition of conditions
 ---
 
-import { DataInfoBox, ModelRatings } from '../../../../components/wiki';
+import { DataInfoBox } from '../../../../components/wiki';
 
-<DataInfoBox entityId="deceptive-alignment-decomposition" />
+<DataInfoBox entityId="deceptive-alignment-decomposition" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

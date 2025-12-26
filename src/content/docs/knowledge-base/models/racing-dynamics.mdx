@@ -12,11 +12,10 @@ ratings:
   completeness: 4  # Solid coverage of equilibria and dynamics
 ---
 
-import { DataInfoBox, Backlinks, ModelRatings } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks } from '../../../../components/wiki';
 
-<DataInfoBox entityId="racing-dynamics" />
+<DataInfoBox entityId="racing-dynamics" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

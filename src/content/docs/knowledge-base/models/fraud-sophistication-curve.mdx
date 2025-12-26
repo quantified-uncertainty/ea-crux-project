@@ -12,11 +12,10 @@ ratings:
   completeness: 4  # Solid 6-tier ladder with projections and scenarios
 ---
 
-import { DataInfoBox, Backlinks, ModelRatings } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks } from '../../../../components/wiki';
 
-<DataInfoBox entityId="fraud-sophistication-curve" />
+<DataInfoBox entityId="fraud-sophistication-curve" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

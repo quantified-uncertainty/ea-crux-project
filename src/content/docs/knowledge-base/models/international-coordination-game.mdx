@@ -19,11 +19,10 @@ ratings:
   completeness: 4  # Good coverage of players, scenarios, and stability conditions
 ---
 
-import { DataInfoBox, Backlinks, ModelRatings } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks } from '../../../../components/wiki';
 
-<DataInfoBox entityId="international-coordination-game" />
+<DataInfoBox entityId="international-coordination-game" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

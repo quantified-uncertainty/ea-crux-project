@@ -12,11 +12,10 @@ ratings:
   completeness: 5
 ---
 
-import { DataInfoBox, Backlinks, KeyQuestions, ModelRatings } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, KeyQuestions } from '../../../../components/wiki';
 
-<DataInfoBox entityId="reality-fragmentation-network" />
+<DataInfoBox entityId="reality-fragmentation-network" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 

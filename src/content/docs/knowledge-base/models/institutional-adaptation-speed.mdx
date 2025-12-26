@@ -21,11 +21,10 @@ ratings:
   completeness: 5  # Comprehensive coverage of factors, domains, and time horizons
 ---
 
-import { DataInfoBox, Backlinks, KeyQuestions, ModelRatings } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, KeyQuestions } from '../../../../components/wiki';
 
-<DataInfoBox entityId="institutional-adaptation-speed" />
+<DataInfoBox entityId="institutional-adaptation-speed" ratings={frontmatter.ratings} />
 
-<ModelRatings ratings={frontmatter.ratings} />
 
 ## Overview
 
