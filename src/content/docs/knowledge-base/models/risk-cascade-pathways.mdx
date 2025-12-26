@@ -12,7 +12,7 @@ ratings:
 lastEdited: "2025-12-26"
 ---
 
-import { DataInfoBox, Backlinks, KeyQuestions } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, KeyQuestions, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="risk-cascade-pathways" ratings={frontmatter.ratings} />
 
@@ -28,7 +28,7 @@ Risk cascades occur when one AI risk triggers or enables subsequent risks in a c
 
 ### Basic Cascade Model
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart LR
     A[Initiating Risk] -->|"triggers"| B[Intermediate Risk]
     B -->|"enables"| C[Downstream Risk]
@@ -37,7 +37,7 @@ flowchart LR
     I1[Intervention 1] -.->|"blocks"| A
     I2[Intervention 2] -.->|"blocks"| B
     I3[Intervention 3] -.->|"blocks"| C
-```
+`} />
 
 ### Cascade Properties
 
@@ -65,7 +65,7 @@ $$
 
 ### Pathway 1: Racing → Technical Failure Cascade
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
     RD[Racing Dynamics] -->|"compresses timelines"| CC[Corner-Cutting]
     CC -->|"inadequate testing"| MO[Mesa-Optimization]
@@ -76,7 +76,7 @@ flowchart TD
 
     style RD fill:#ff9999
     style CAT fill:#ff0000
-```
+`} />
 
 **Stage Details**:
 
@@ -95,7 +95,7 @@ flowchart TD
 
 ### Pathway 2: Epistemic Degradation Cascade
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
     SY[Sycophancy] -->|"validates everything"| EX[Expertise Atrophy]
     EX -->|"cannot evaluate"| OF[Oversight Failure]
@@ -105,7 +105,7 @@ flowchart TD
 
     style SY fill:#ff9999
     style DF fill:#ff0000
-```
+`} />
 
 **Stage Details**:
 
@@ -123,7 +123,7 @@ flowchart TD
 
 ### Pathway 3: Power Concentration Cascade
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
     RD[Racing Dynamics] -->|"winner takes all"| CP[Concentration of Power]
     CP -->|"reduces competition"| LI[Lock-in]
@@ -133,7 +133,7 @@ flowchart TD
 
     style RD fill:#ff9999
     style PL fill:#ff0000
-```
+`} />
 
 **Stage Details**:
 
@@ -151,7 +151,7 @@ flowchart TD
 
 ### Pathway 4: Technical-Structural Fusion Cascade
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
     DA[Deceptive Alignment] -->|"gains trust"| INT[Deep Integration]
     INT -->|"critical dependency"| LI[Lock-in]
@@ -160,7 +160,7 @@ flowchart TD
 
     style DA fill:#ff9999
     style CAT fill:#ff0000
-```
+`} />
 
 **Stage Details**:
 
@@ -177,17 +177,17 @@ flowchart TD
 
 ### Pathway 5: Multi-Domain Convergence Cascade
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
-    subgraph Technical
+    subgraph Technical["Technical"]
         MO[Mesa-optimization] -->|"misalignment"| DA[Deceptive Alignment]
     end
 
-    subgraph Epistemic
+    subgraph Epistemic["Epistemic"]
         SY[Sycophancy] -->|"atrophy"| EX[Expertise Atrophy]
     end
 
-    subgraph Structural
+    subgraph Structural["Structural"]
         RD[Racing] -->|"concentration"| CP[Power Concentration]
     end
 
@@ -199,7 +199,7 @@ flowchart TD
 
     style CONV fill:#ff6600
     style CAT fill:#ff0000
-```
+`} />
 
 This pathway shows how cascades from different domains can converge to create compound failures worse than any single cascade.
 

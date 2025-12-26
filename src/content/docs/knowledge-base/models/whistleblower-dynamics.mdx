@@ -18,7 +18,7 @@ ratings:
   completeness: 4
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="whistleblower-dynamics" ratings={frontmatter.ratings} />
 
@@ -34,18 +34,18 @@ The key insight from this analysis is that whistleblower dynamics operate as a c
 
 The dynamics of whistleblowing in AI safety can be understood as a multi-stage information flow system with feedback loops that either reinforce disclosure or suppress it. Information originates with insiders who observe concerning developments, passes through a decision calculus weighing personal costs against perceived benefits, and either reaches external recipients or remains contained within organizational boundaries.
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
     A[Insider Observes Concern] --> B{Assess Severity}
     B -->|Low| C[Internal Report Only]
     B -->|High| D{Evaluate Options}
-    D --> E{Internal Channels<br/>Trusted?}
+    D --> E{Internal Channels Trusted?}
     E -->|Yes| F[Report Internally]
     F --> G{Adequate Response?}
     G -->|Yes| H[Issue Resolved]
     G -->|No| D
     E -->|No| I{External Disclosure}
-    I --> J{Legal Protection<br/>Available?}
+    I --> J{Legal Protection Available?}
     J -->|Yes| K[Protected Disclosure]
     J -->|No| L{Risk Tolerance}
     L -->|High| M[Unprotected Disclosure]
@@ -59,7 +59,7 @@ flowchart TD
     S -->|Yes| T[Forced Disclosure]
     T --> O
     S -->|No| R
-```
+`} />
 
 This diagram illustrates the decision tree facing insiders and the pathways through which information either reaches public awareness or remains suppressed. The feedback loops are critical: successful protected disclosures encourage future whistleblowers, while visible retaliation creates chilling effects that suppress subsequent disclosures. The accumulation of hidden problems increases the probability of eventual forced disclosure through incidents, but at much higher cost than proactive revelation would have entailed.
 

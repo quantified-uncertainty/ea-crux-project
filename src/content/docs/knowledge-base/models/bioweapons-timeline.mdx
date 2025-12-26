@@ -12,7 +12,7 @@ ratings:
   completeness: 3
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="bioweapons-timeline" ratings={frontmatter.ratings} />
 
@@ -28,33 +28,38 @@ The model synthesizes capability forecasts from AI research, biosecurity expert 
 
 The model structures AI-bioweapons risk around four capability thresholds that represent qualitative shifts in what becomes possible for potential attackers. Each threshold enables different attack profiles and requires different countermeasures.
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
-    subgraph "Threshold Progression"
-        T1[Threshold 1<br/>Knowledge Democratization]
-        T2[Threshold 2<br/>Synthesis Assistance]
-        T3[Threshold 3<br/>Novel Agent Design]
-        T4[Threshold 4<br/>Full Attack Automation]
+    subgraph ThresholdProgression["Threshold Progression"]
+        T1["Threshold 1: Knowledge Democratization"]
+        T2["Threshold 2: Synthesis Assistance"]
+        T3["Threshold 3: Novel Agent Design"]
+        T4["Threshold 4: Full Attack Automation"]
     end
 
-    subgraph "Enablers"
+    subgraph Enablers["Enablers"]
         E1[LLM Capabilities]
         E2[Lab Automation]
         E3[Protein Engineering AI]
         E4[System Integration]
     end
 
-    subgraph "Risk Profile"
-        R1[Expanded Actor Pool<br/>Low Sophistication]
-        R2[Reduced Barriers<br/>Medium Sophistication]
-        R3[Novel Threats<br/>High Sophistication]
-        R4[Scalable Attacks<br/>Maximum Danger]
+    subgraph RiskProfile["Risk Profile"]
+        R1["Expanded Actor Pool - Low Sophistication"]
+        R2["Reduced Barriers - Medium Sophistication"]
+        R3["Novel Threats - High Sophistication"]
+        R4["Scalable Attacks - Maximum Danger"]
     end
 
     E1 --> T1
-    E1 & E2 --> T2
-    E2 & E3 --> T3
-    E1 & E2 & E3 & E4 --> T4
+    E1 --> T2
+    E2 --> T2
+    E2 --> T3
+    E3 --> T3
+    E1 --> T4
+    E2 --> T4
+    E3 --> T4
+    E4 --> T4
 
     T1 --> R1
     T2 --> R2
@@ -64,7 +69,7 @@ flowchart TD
     T1 --> T2
     T2 --> T3
     T3 --> T4
-```
+`} />
 
 The thresholds are ordered but not strictly sequential—advances in one area can partially compensate for limitations in others. The diagram illustrates how different technological enablers feed into each threshold and the resulting risk profiles. Knowledge democratization expands the actor pool but doesn't create fundamentally new threats; full automation would enable scalable attacks that could overwhelm response systems.
 

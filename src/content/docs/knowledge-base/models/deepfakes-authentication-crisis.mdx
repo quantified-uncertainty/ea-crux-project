@@ -12,7 +12,7 @@ ratings:
 lastEdited: "2025-12-26"
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="deepfakes-authentication-crisis" ratings={frontmatter.ratings} />
 
@@ -28,29 +28,29 @@ The key insight is that the authentication crisis operates through two distinct 
 
 The authentication crisis unfolds through a cascade of technological capability improvements, detection failures, and social trust erosion. Understanding this cascade structure is essential for identifying intervention points and prioritizing countermeasures.
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
-    A[Generative AI<br/>Capability Improvement] --> B[Synthetic Media<br/>Quality Increases]
-    B --> C{Detection<br/>Keeps Pace?}
+    A[Generative AI Capability Improvement] --> B[Synthetic Media Quality Increases]
+    B --> C{Detection Keeps Pace?}
     C -->|Yes| D[Temporary Equilibrium]
     D --> A
-    C -->|No| E[Human Detection<br/>Falls to Chance]
-    E --> F[Technical Detection<br/>Fails]
-    F --> G[Authentication Crisis<br/>Threshold Crossed]
-    G --> H[Direct Deception<br/>Becomes Viable]
-    G --> I[Liar's Dividend<br/>Becomes Universal]
-    H --> J[Evidentiary<br/>Collapse]
+    C -->|No| E[Human Detection Falls to Chance]
+    E --> F[Technical Detection Fails]
+    F --> G[Authentication Crisis Threshold Crossed]
+    G --> H[Direct Deception Becomes Viable]
+    G --> I[Liar's Dividend Becomes Universal]
+    H --> J[Evidentiary Collapse]
     I --> J
-    J --> K[Legal System<br/>Adaptation Required]
-    J --> L[Journalism<br/>Transformation]
-    J --> M[Social Trust<br/>Erosion]
+    J --> K[Legal System Adaptation Required]
+    J --> L[Journalism Transformation]
+    J --> M[Social Trust Erosion]
 
-    N[Content Provenance<br/>Adoption] --> O{Achieves<br/>Critical Mass?}
-    O -->|Yes| P[Two-Tier Media<br/>System Emerges]
-    O -->|No| Q[Crisis<br/>Unmitigated]
-    P --> R[Partial Trust<br/>Restoration]
+    N[Content Provenance Adoption] --> O{Achieves Critical Mass?}
+    O -->|Yes| P[Two-Tier Media System Emerges]
+    O -->|No| Q[Crisis Unmitigated]
+    P --> R[Partial Trust Restoration]
     Q --> J
-```
+`} />
 
 The diagram illustrates the fundamental dynamics at play. Generative AI capabilities drive synthetic media quality improvements, which outpace detection capabilities in an asymmetric arms race. Once detection fails, both direct deception and the liar's dividend become operational, leading to evidentiary collapse across multiple social domains. The primary intervention point is content provenance adoption, which can potentially establish a two-tier system distinguishing authenticated from unauthenticated content.
 

@@ -12,7 +12,7 @@ ratings:
   completeness: 5
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="concentration-of-power-model" ratings={frontmatter.ratings} />
 
@@ -28,7 +28,7 @@ This matters because we may be approaching tipping points beyond which concentra
 
 The following diagram illustrates the primary feedback loops driving power concentration in the AI era. Reinforcing loops (R1-R4) accelerate concentration while balancing loops (B1-B2) provide potential countervailing forces. The relative strength of these loops determines whether power concentrates or remains distributed.
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
     subgraph Reinforcing["Reinforcing Loops (Concentration)"]
         AI[AI Capabilities] -->|R1| ECON[Economic Power]
@@ -62,7 +62,7 @@ flowchart TD
     style Reinforcing fill:#ffcccc
     style Balancing fill:#ccffcc
     style CrossDomain fill:#ccccff
-```
+`} />
 
 ### Stock-Flow Model
 

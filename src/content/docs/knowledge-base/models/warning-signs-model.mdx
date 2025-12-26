@@ -12,7 +12,7 @@ ratings:
   completeness: 4
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="warning-signs-model" ratings={frontmatter.ratings} />
 
@@ -28,17 +28,17 @@ The key insight from this analysis is that the AI safety community currently lac
 
 The warning signs framework organizes indicators along two primary dimensions: temporal position (leading vs. lagging) and signal category (capability, behavioral, incident, research, social). Understanding this structure enables more effective monitoring by clarifying what each indicator type can and cannot tell us about risk trajectories.
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
     subgraph Leading["Leading Indicators (Predictive)"]
-        CAP[Capability Signals<br/>Benchmark improvements]
-        BEH[Behavioral Signals<br/>System behaviors in eval]
-        RES[Research Signals<br/>Publications, breakthroughs]
+        CAP[Capability Signals - Benchmark improvements]
+        BEH[Behavioral Signals - System behaviors in eval]
+        RES[Research Signals - Publications, breakthroughs]
     end
 
     subgraph Lagging["Lagging Indicators (Confirmatory)"]
-        INC[Incident Signals<br/>Real-world events]
-        SOC[Social Signals<br/>Institutional responses]
+        INC[Incident Signals - Real-world events]
+        SOC[Social Signals - Institutional responses]
     end
 
     CAP --> |"Capability enables"| BEH
@@ -47,12 +47,12 @@ flowchart TD
     INC --> |"Incidents trigger"| SOC
     SOC --> |"Policy affects"| RES
 
-    CAP --> TRP{Tripwire<br/>Threshold}
+    CAP --> TRP{Tripwire Threshold}
     BEH --> TRP
     INC --> TRP
-    TRP --> |"Crossed"| ACT[Predetermined<br/>Response]
-    TRP --> |"Approaching"| MON[Heightened<br/>Monitoring]
-```
+    TRP --> |"Crossed"| ACT[Predetermined Response]
+    TRP --> |"Approaching"| MON[Heightened Monitoring]
+`} />
 
 Leading indicators predict future risk before it materializes and provide the greatest opportunity for proactive response. Capability improvements on relevant benchmarks signal expanding risk surface before that capability is deployed or misused. Research paper publications and internal lab evaluations offer windows into near-term capability trajectories. Policy changes at AI companies can signal anticipated capabilities or perceived risks. The limitation of leading indicators is uncertainty: not all capability improvements translate to risk, and interpretation requires significant expertise.
 

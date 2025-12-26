@@ -12,7 +12,7 @@ ratings:
   completeness: 4
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="autonomous-weapons-proliferation" ratings={frontmatter.ratings} />
 
@@ -28,17 +28,17 @@ The key insight emerging from quantitative proliferation modeling is that LAWS f
 
 The proliferation of autonomous weapons follows a five-stage diffusion model that parallels technology adoption curves but proceeds at unprecedented speed due to the dual-use nature of enabling technologies. Each stage is characterized by distinct actor types, capability levels, and deployment patterns, with the transition between stages driven primarily by three factors: declining cost of AI and hardware, increasing availability of technical knowledge through open-source channels, and weakening of export control mechanisms as commercial applications overwhelm regulatory capacity.
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
-    A[Great Power R&D] --> B{Technology<br/>Maturation}
-    B -->|Export Sales| C[Regional Power<br/>Adoption]
-    B -->|Commercial<br/>Dual-Use| D[Widespread State<br/>Access]
-    C --> E{Control Mechanisms<br/>Effective?}
+    A[Great Power R&D] --> B{Technology Maturation}
+    B -->|Export Sales| C[Regional Power Adoption]
+    B -->|Commercial Dual-Use| D[Widespread State Access]
+    C --> E{Control Mechanisms Effective?}
     D --> E
-    E -->|No| F[Non-State Actor<br/>Access]
+    E -->|No| F[Non-State Actor Access]
     E -->|Yes| G[Limited Proliferation]
     F --> H[Mass Availability]
-    H --> I[Assassination-at-Scale<br/>Capability]
+    H --> I[Assassination-at-Scale Capability]
 
     style A fill:#e1f5ff
     style C fill:#fff4e1
@@ -46,7 +46,7 @@ flowchart TD
     style F fill:#ffe1e1
     style H fill:#ff9999
     style I fill:#ff6666
-```
+`} />
 
 The diagram illustrates how proliferation proceeds through multiple parallel pathways—direct military-to-military technology transfer and commercial dual-use diffusion—that converge to enable non-state access unless effective control mechanisms are established during the regional adoption phase. The critical branching point occurs at Stage 3-4 transition, where the window for meaningful proliferation control effectively closes.
 

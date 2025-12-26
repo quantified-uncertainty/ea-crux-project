@@ -12,7 +12,7 @@ ratings:
 lastEdited: "2025-12-26"
 ---
 
-import { DataInfoBox, Backlinks, KeyQuestions } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, KeyQuestions, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="risk-interaction-network" ratings={frontmatter.ratings} />
 
@@ -27,7 +27,7 @@ This model maps the key interaction pathways between technical, structural, and 
 
 ## Risk Network Visualization
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
     subgraph Technical["Technical Risks"]
         MO[Mesa-optimization]
@@ -85,7 +85,7 @@ flowchart TD
     CP -.->|"intensifies"| RD
     EC -.->|"accelerates"| EX
     AT -.->|"enforces"| LI
-```
+`} />
 
 ## Risk Categories
 

@@ -12,7 +12,7 @@ ratings:
   completeness: 4
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="fraud-sophistication-curve" ratings={frontmatter.ratings} />
 
@@ -91,34 +91,34 @@ Return on investment calculations increasingly favor sophisticated fraud as auto
 
 The following diagram illustrates the cyclical relationship between fraud evolution and defensive responses, showing why attackers maintain persistent advantages.
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
-    subgraph Attack Evolution
+    subgraph AE["Attack Evolution"]
         A[AI Capability Advancement] --> B[New Fraud Techniques]
         B --> C[Technique Diffusion]
         C --> D[Widespread Attacks]
     end
 
-    subgraph Defense Response
+    subgraph DR["Defense Response"]
         D --> E[Increased Losses]
         E --> F[Defense Investment]
         F --> G[Countermeasures Deployed]
         G --> H[Technique Obsolescence]
     end
 
-    subgraph Amplifiers
+    subgraph AMP["Amplifiers"]
         I[Economic Incentives] --> B
         K[Open-Source AI] --> C
         L[Fraud-as-a-Service] --> D
     end
 
     H --> B
-    J[Detection Gap<br/>18-36 months] --> E
+    J[Detection Gap 18-36 months] --> E
 
     style J fill:#ff6b6b
     style A fill:#4ecdc4
     style G fill:#95e1d3
-```
+`} />
 
 The diagram reveals a fundamental asymmetry: the attack evolution cycle (AI capability to technique diffusion) operates on 12-18 month timescales, while the defense response cycle (loss detection to countermeasure deployment) requires 18-36 months. This persistent gap means defenses are always protecting against yesterday's threats.
 

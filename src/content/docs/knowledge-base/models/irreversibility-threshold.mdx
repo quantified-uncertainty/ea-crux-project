@@ -12,7 +12,7 @@ ratings:
   completeness: 4
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="irreversibility-threshold" ratings={frontmatter.ratings} />
 
@@ -30,25 +30,25 @@ The key insight emerging from this analysis is that irreversibility thresholds a
 
 The following state diagram illustrates how AI developments transition through stages of increasing irreversibility. Each transition represents a qualitative shift in reversal difficulty, with associated cost multipliers and typical time horizons.
 
-```mermaid
+<Mermaid client:load chart={`
 stateDiagram-v2
     [*] --> FullyReversible: Initial Decision
 
     FullyReversible --> CostlyReversible: Deployment
-    note right of FullyReversible: R&D Phase\nCost: $K-$M\nTime: Days-Weeks
+    note right of FullyReversible: R and D Phase Cost: $K-$M Time: Days-Weeks
 
     CostlyReversible --> PracticallyIrreversible: Lock-in Effects
-    note right of CostlyReversible: Deployment Phase\nCost: $M-$B\nTime: Months-Years
+    note right of CostlyReversible: Deployment Phase Cost: $M-$B Time: Months-Years
 
     PracticallyIrreversible --> AbsolutelyIrreversible: Existential Threshold
-    note right of PracticallyIrreversible: Integration Phase\nCost: $B-$T\nTime: Years-Decades
+    note right of PracticallyIrreversible: Integration Phase Cost: $B-$T Time: Years-Decades
 
     AbsolutelyIrreversible --> [*]: No Return
-    note right of AbsolutelyIrreversible: Terminal State\nCost: Infinite\nTime: Permanent
+    note right of AbsolutelyIrreversible: Terminal State Cost: Infinite Time: Permanent
 
     CostlyReversible --> FullyReversible: Early Reversal
     PracticallyIrreversible --> CostlyReversible: Costly Reversal
-```
+`} />
 
 Most AI developments are not binary reversible/irreversible but exist on a spectrum where reversal costs increase over time. The transitions between states are driven by accumulating dependencies, infrastructure integration, skills atrophy, and political consolidation. Critically, the arrows pointing leftward (toward reversal) become progressively harder to traverse, both in terms of direct costs and the coordination required to achieve them.
 

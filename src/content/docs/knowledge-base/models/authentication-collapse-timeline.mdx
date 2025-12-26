@@ -12,7 +12,7 @@ ratings:
   completeness: 5
 ---
 
-import { DataInfoBox, Backlinks, KeyQuestions } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, KeyQuestions, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="authentication-collapse-timeline" ratings={frontmatter.ratings} />
 
@@ -26,15 +26,15 @@ The model's key insight reveals an asymmetric arms race where generators possess
 
 ## Conceptual Framework
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
-    A[Generative AI Capability] --> B{Detection<br/>Accuracy}
+    A[Generative AI Capability] --> B{Detection Accuracy}
     B -->|>70%| C[Functional Authentication]
     B -->|50-70%| D[Degraded Authentication]
     B -->|<50%| E[Authentication Collapse]
 
     C --> F[Normal Operations]
-    D --> G{Intervention<br/>Success?}
+    D --> G{Intervention Success?}
     E --> H[Institutional Crisis]
 
     G -->|Yes| I[Stabilize at Higher Cost]
@@ -52,7 +52,7 @@ flowchart TD
     style H fill:#ff6b6b
     style C fill:#51cf66
     style D fill:#ffd43b
-```
+`} />
 
 The authentication collapse model is structured around five critical thresholds that mark the progressive failure of verification systems. Each threshold represents a discrete capability level where generative AI crosses from detectable to effectively undetectable by specific verification methods. Unlike continuous degradation, these thresholds create discontinuous jumps in risk as institutions that rely on authentication suddenly find their verification methods insufficient for their operational requirements.
 
@@ -117,12 +117,12 @@ Rapid collapse occurs when AI capabilities advance faster than defenses can adap
 
 | Year | Milestone | Detection Accuracy | Institutional Impact |
 |------|-----------|-------------------|---------------------|
-| 2025 | Text detection complete failure | <55% | Academic integrity crisis, initial legal challenges |
-| 2026 | Image detection below reliability threshold | <60% | Document authentication crisis, insurance fraud spike |
-| 2027 | Audio detection ineffective | <55% | Voice ID abandoned, authentication calls fail |
-| 2028 | Video detection below threshold | <60% | Visual evidence challenged in courts |
+| 2025 | Text detection complete failure | &lt;55% | Academic integrity crisis, initial legal challenges |
+| 2026 | Image detection below reliability threshold | &lt;60% | Document authentication crisis, insurance fraud spike |
+| 2027 | Audio detection ineffective | &lt;55% | Voice ID abandoned, authentication calls fail |
+| 2028 | Video detection below threshold | &lt;60% | Visual evidence challenged in courts |
 | 2029 | All modalities at random baseline | ~50% | Legal precedents reject digital evidence |
-| 2030 | Authentication collapse complete | <50% | Institutional restructuring required |
+| 2030 | Authentication collapse complete | &lt;50% | Institutional restructuring required |
 
 This scenario becomes likely if open-source models reach GPT-5 equivalent capabilities by 2025-2026, watermarking adoption remains below 20% of generated content, detection research funding stays flat or declines, and international coordination on AI governance fails to materialize. The rapid collapse scenario creates severe institutional stress because adaptation timelines (typically 5-10 years for legal and regulatory frameworks) lag well behind capability timelines (2-3 years for major model generations).
 
