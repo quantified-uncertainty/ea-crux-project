@@ -3478,7 +3478,7 @@
 
 .wiki-infobox__rating-item {
   display: grid;
-  grid-template-columns: 16px 1fr auto;
+  grid-template-columns: 16px 1fr 60px;
   align-items: center;
   gap: 0.5rem;
 }
@@ -3493,12 +3493,18 @@
 }
 
 .wiki-infobox__rating-bar {
-  position: relative;
-  width: 50px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wiki-infobox__rating-bar-track {
+  flex: 1;
   height: 6px;
   background: var(--sl-color-gray-5);
   border-radius: 3px;
-  overflow: visible;
+  position: relative;
+  overflow: hidden;
 }
 
 .wiki-infobox__rating-bar-fill {
@@ -3512,11 +3518,9 @@
 }
 
 .wiki-infobox__rating-value {
-  position: absolute;
-  right: -18px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: var(--sl-color-gray-2);
+  min-width: 12px;
+  text-align: right;
 }

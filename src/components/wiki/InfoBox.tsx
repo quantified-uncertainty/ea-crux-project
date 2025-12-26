@@ -117,10 +117,12 @@ function RatingBar({ value, max = 5 }: { value: number; max?: number }) {
   const percentage = (value / max) * 100;
   return (
     <div className="wiki-infobox__rating-bar">
-      <div
-        className="wiki-infobox__rating-bar-fill"
-        style={{ width: `${percentage}%` }}
-      />
+      <div className="wiki-infobox__rating-bar-track">
+        <div
+          className="wiki-infobox__rating-bar-fill"
+          style={{ width: `${percentage}%` }}
+        />
+      </div>
       <span className="wiki-infobox__rating-value">{value}</span>
     </div>
   );
