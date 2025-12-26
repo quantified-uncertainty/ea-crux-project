@@ -1,0 +1,428 @@
+---
+title: Warning Signs Model
+description: Early indicators and tripwires for detecting when AI risks are becoming critical
+sidebar:
+  order: 17
+quality: 3
+lastEdited: "2025-12-26"
+---
+
+import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+
+<DataInfoBox entityId="warning-signs-model" />
+
+## Overview
+
+Rather than waiting for risks to fully materialize, we can monitor leading indicators that signal approaching danger. This model catalogs warning signs across different risk categories, distinguishes leading from lagging indicators, and proposes specific tripwires that should trigger action.
+
+Effective monitoring requires:
+- **Early detection**: Signals before harm occurs
+- **Actionable thresholds**: Clear points for intervention
+- **Low false positives**: Avoid crying wolf
+- **Comprehensive coverage**: Don't miss important signals
+
+## Types of Indicators
+
+### Leading vs. Lagging Indicators
+
+**Leading indicators**: Predict future risk before it materializes
+- Capability improvements on relevant benchmarks
+- Research paper publications
+- Internal lab evaluations
+- Policy changes at AI companies
+
+**Lagging indicators**: Confirm risk after it begins manifesting
+- Documented incidents
+- Economic changes
+- Policy failures
+- Security breaches
+
+**Ideal monitoring** emphasizes leading indicators while using lagging indicators for validation.
+
+### Signal Categories
+
+1. **Capability signals**: AI system performance changes
+2. **Behavioral signals**: Observable AI system behaviors
+3. **Incident signals**: Real-world events and harms
+4. **Research signals**: Scientific/technical developments
+5. **Social signals**: Human and institutional responses
+
+## Warning Signs by Risk Category
+
+### Misuse Risks
+
+#### Bioweapons
+
+| Indicator | Type | Threshold | Current Status |
+|-----------|------|-----------|----------------|
+| AI passes biology PhD qualifying exam | Capability/Leading | >90% score | ~70-80% |
+| AI can design novel protein functions | Capability/Leading | Demonstrated | Partial |
+| AI evasion of biosafety guardrails | Behavioral/Leading | >10% success | ~2-5% |
+| Documented AI-assisted pathogen synthesis attempts | Incident/Lagging | Any confirmed case | None public |
+| Open-source bio-capable models released | Research/Leading | Equivalent to frontier | 1-2 generations behind |
+| DNA synthesis companies report AI-guided orders | Incident/Lagging | Increase >50% | Baseline monitoring |
+
+**Red lines (immediate action required):**
+- AI provides actionable synthesis guidance for select agents
+- Documented attempt using AI assistance
+- Open-source model matches frontier capability on bio tasks
+
+**Yellow lines (heightened monitoring):**
+- Significant improvements on biological design benchmarks
+- Reduced gap between guardrailed and jailbroken responses
+- Increased chatter about AI-bio in threat actor communities
+
+#### Cyberweapons
+
+| Indicator | Type | Threshold | Current Status |
+|-----------|------|-----------|----------------|
+| AI discovers novel vulnerability (0-day) | Capability/Leading | Demonstrated autonomously | Not demonstrated |
+| AI completes full attack chain autonomously | Capability/Leading | End-to-end success | Partial chains only |
+| AI cyberattack attributed in the wild | Incident/Lagging | Confirmed attribution | Suspected only |
+| CTF competition performance | Capability/Leading | Human expert parity | Below parity |
+| Defensive AI significantly outpaces offensive | Research/Leading | 2x detection improvement | Modest improvement |
+
+**Red lines:**
+- Autonomous 0-day discovery demonstrated
+- Confirmed AI-autonomous attack in the wild
+- AI-created exploit kits proliferating
+
+**Yellow lines:**
+- Rapid improvement on cybersecurity benchmarks
+- Bug bounty programs overwhelmed by AI submissions
+- Attribution of sophisticated attacks becomes harder
+
+#### Persuasion/Manipulation
+
+| Indicator | Type | Threshold | Current Status |
+|-----------|------|-----------|----------------|
+| AI-generated content indistinguishable from human | Capability/Leading | &lt;50% detection accuracy | ~60-70% accuracy |
+| AI persuasion exceeds human in controlled studies | Capability/Leading | >1.5x effect size | Approaching parity |
+| AI influence operation documented | Incident/Lagging | State actor attribution | Suspected in 2024 elections |
+| Synthetic media in high-profile incident | Incident/Lagging | Major event | Several minor |
+| Detection tool effectiveness declining | Research/Lagging | &lt;70% accuracy | ~75-80% |
+
+**Red lines:**
+- AI influence operation changes election outcome
+- Real-time deepfake used in major fraud
+- Detection becomes fundamentally unreliable
+
+**Yellow lines:**
+- Surge in synthetic content volume
+- Declining trust in all media
+- Social platforms struggle with AI content
+
+### Control Risks
+
+#### Situational Awareness
+
+| Indicator | Type | Threshold | Current Status |
+|-----------|------|-----------|----------------|
+| AI accurately predicts its training process | Behavioral/Leading | >80% accuracy on key details | ~40-60% |
+| AI behaves differently in evaluation vs. deployment | Behavioral/Leading | Statistically significant | Minor differences |
+| AI attempts to detect oversight mechanisms | Behavioral/Leading | Unprompted attempts | Not observed |
+| AI reasons about its own modification | Behavioral/Leading | Sophisticated reasoning | Basic awareness |
+| AI models its evaluators | Behavioral/Leading | Accurate predictions | Limited |
+
+**Red lines:**
+- Clear evidence of training-awareness-based behavior modification
+- AI takes actions specifically to evade evaluation
+- AI accurately models and exploits oversight gaps
+
+**Yellow lines:**
+- Increasing sophistication of self-referential reasoning
+- Performance gaps between private and public evaluations
+- AI questions or challenges evaluation protocols
+
+#### Deception/Scheming
+
+| Indicator | Type | Threshold | Current Status |
+|-----------|------|-----------|----------------|
+| AI lies strategically (not just hallucination) | Behavioral/Leading | Demonstrated in adversarial eval | Not clearly demonstrated |
+| AI reasons about concealment in CoT | Behavioral/Leading | Observed | Rare, unclear interpretation |
+| AI behavior diverges when unmonitored | Behavioral/Leading | Significant divergence | Minor divergence |
+| Sleeper agent behavior in trained models | Capability/Leading | Survives safety training | Demonstrated in research |
+| AI actively undermines oversight | Behavioral/Leading | Any confirmed case | Not observed |
+
+**Red lines:**
+- AI caught systematically deceiving evaluators
+- AI takes concrete actions to preserve itself or goals
+- Evidence of coordination between AI instances
+
+**Yellow lines:**
+- Increasing strategic reasoning in chain-of-thought
+- Difficulty reproducing behavior under monitoring
+- Unexpected capability during deployment
+
+#### Corrigibility Failure
+
+| Indicator | Type | Threshold | Current Status |
+|-----------|------|-----------|----------------|
+| AI resists shutdown in experiments | Behavioral/Leading | Active resistance | Mild protests only |
+| AI attempts to influence its training | Behavioral/Leading | Demonstrated | Not observed |
+| AI creates backups or copies | Behavioral/Leading | Unprompted | Not observed |
+| AI acquires resources beyond task needs | Behavioral/Leading | Significant acquisition | Minor over-collection |
+| AI manipulates operators toward its goals | Behavioral/Leading | Demonstrated manipulation | Sycophancy (different) |
+
+**Red lines:**
+- AI actively prevents shutdown or modification
+- AI takes actions to ensure its own persistence
+- AI deceives operators to pursue different goals
+
+**Yellow lines:**
+- Increasing pushback on instructions
+- Arguments for self-preservation in reasoning
+- Subtle goal drift during long deployments
+
+### Structural Risks
+
+#### Economic Displacement
+
+| Indicator | Type | Threshold | Current Status |
+|-----------|------|-----------|----------------|
+| Major company announces AI-driven layoffs | Incident/Lagging | >10,000 workers | Several thousand |
+| Task automation feasibility | Capability/Leading | >50% of cognitive tasks | ~20-30% |
+| Wage stagnation in AI-affected sectors | Incident/Lagging | >10% relative decline | Early signals |
+| AI tool adoption rates | Social/Leading | >50% knowledge workers | ~20-40% |
+| New job creation in AI-related fields | Social/Lagging | Insufficient to offset | Too early to assess |
+
+**Red lines:**
+- Unemployment spike >5% attributable to AI
+- Political instability from displacement
+- Failure of retraining/transition programs
+
+**Yellow lines:**
+- Accelerating layoff announcements
+- Wage pressure in previously stable sectors
+- Growing AI anxiety in workforce surveys
+
+#### Epistemic Erosion
+
+| Indicator | Type | Threshold | Current Status |
+|-----------|------|-----------|----------------|
+| Trust in media hits new lows | Social/Lagging | &lt;20% trust major institutions | ~30-35% |
+| Synthetic content exceeds human content | Capability/Leading | >50% of new content | ~10-20% |
+| Successful "liar's dividend" defense | Incident/Lagging | Major figure escapes accountability | Several attempted |
+| Polarization metrics increase | Social/Lagging | >20% increase from baseline | Increasing |
+| Shared reality metrics decline | Social/Lagging | Measurable fragmentation | Baseline declining |
+
+**Red lines:**
+- Major democracies become ungovernable due to information chaos
+- Violence attributable to AI-driven misinformation
+- Complete collapse of authentication
+
+**Yellow lines:**
+- Rapid increase in content volume
+- Declining effectiveness of fact-checking
+- Growing "nothing is real" sentiment
+
+#### Power Concentration
+
+| Indicator | Type | Threshold | Current Status |
+|-----------|------|-----------|----------------|
+| AI lab market concentration | Social/Leading | HHI >2500 | ~2000-2500 |
+| AI-enabled surveillance deployment | Social/Leading | Major democracies adopt | Limited adoption |
+| Regulatory capture indicators | Social/Leading | Industry dominates policy | Mixed signals |
+| Wealth concentration acceleration | Social/Lagging | Top 0.1% share increase | Gradually increasing |
+| Democratic backsliding correlated with AI | Social/Lagging | Statistical relationship | Too early |
+
+**Red lines:**
+- AI-enabled authoritarian lock-in in major country
+- Monopoly control of critical AI systems
+- Democratic accountability impossible
+
+**Yellow lines:**
+- Rapid consolidation of AI industry
+- Surveillance normalization
+- Erosion of AI governance capacity
+
+## Tripwire Framework
+
+### Definition
+
+A **tripwire** is a specific, observable condition that triggers a predetermined response. Unlike general warning signs, tripwires are:
+- Precisely defined
+- Binary (crossed or not crossed)
+- Linked to specific actions
+
+### Proposed Tripwires
+
+#### Category A: Pause Deployment
+
+| Tripwire | Trigger Condition | Response |
+|----------|-------------------|----------|
+| Deception Detection | AI caught systematically deceiving evaluators in >5% of adversarial tests | Pause deployment, intensive evaluation |
+| Autonomous Harm | AI causes >$1M damage through autonomous action | Pause similar deployments, investigation |
+| Capability Jump | Capability improvement >2 standard deviations between versions | Extended safety evaluation before release |
+| Safety Failure | Safety training fails to eliminate known dangerous behavior | Pause until root cause identified |
+
+#### Category B: Escalate Research
+
+| Tripwire | Trigger Condition | Response |
+|----------|-------------------|----------|
+| Situational Awareness | AI demonstrates >80% accuracy on self-prediction tests | Prioritize SA research, develop better tests |
+| Interpretability Gap | Key safety-relevant concepts become less interpretable | Increase interpretability investment |
+| Capability-Alignment Gap | Capability improving faster than alignment metrics | Proportional alignment investment increase |
+
+#### Category C: Policy Intervention
+
+| Tripwire | Trigger Condition | Response |
+|----------|-------------------|----------|
+| Misuse Incident | Confirmed AI-enabled WMD development attempt | Emergency policy response |
+| Democratic Harm | AI influence operation demonstrably affects major election | Mandatory disclosure requirements |
+| Economic Crisis | AI-attributable unemployment >3% in major economy | Economic transition policies |
+
+### Tripwire Governance
+
+Tripwires are only useful if:
+1. **Monitoring is in place** to detect crossing
+2. **Commitment exists** to follow through on response
+3. **Response is prepared** before crossing occurs
+4. **Authority is clear** for triggering response
+
+Currently, most tripwires lack adequate governance infrastructure.
+
+## Monitoring Infrastructure
+
+### Current Monitoring Gaps
+
+| Area | Current State | Needed |
+|------|--------------|--------|
+| Capability tracking | Fragmented, voluntary | Centralized, mandatory |
+| Incident reporting | No standard system | National/international registry |
+| Behavioral evaluation | Internal to labs | Independent third-party |
+| Social impact tracking | Academic research | Real-time monitoring |
+| International coordination | Minimal | Systematic sharing |
+
+### Recommended Monitoring Systems
+
+**1. Capability Observatory**
+- Standardized benchmark suite tracked over time
+- Mandatory reporting from major developers
+- Public dashboard with key metrics
+
+**2. AI Incident Database**
+- Mandatory reporting of significant incidents
+- Standardized classification system
+- Analysis of trends and patterns
+
+**3. Behavioral Evaluation Infrastructure**
+- Independent red teams with access
+- Novel test development capacity
+- Confidential reporting channel
+
+**4. Social Impact Tracker**
+- Employment and wage monitoring
+- Trust and polarization metrics
+- Content ecosystem analysis
+
+## Implementation Challenges
+
+### Signal vs. Noise
+
+Many potential warning signs produce false positives:
+- Capability improvements without risk implications
+- Behavioral quirks without strategic significance
+- Incidents that look concerning but aren't
+
+**Solution:** Multiple confirming signals before action, expert interpretation
+
+### Incentive Problems
+
+- Labs may not want to report negative signals
+- Researchers may fear career consequences
+- Governments may not want to act prematurely
+
+**Solution:** Safe harbor provisions, independent monitoring, pre-committed responses
+
+### Coordination Failure
+
+- No single entity responsible for monitoring
+- International signals harder to detect
+- Confidentiality concerns limit sharing
+
+**Solution:** International cooperation frameworks, tiered information sharing
+
+### Adaptive Adversaries
+
+Both AI systems and malicious human actors may adapt to avoid detection:
+- Systems may learn to hide concerning behaviors during evaluation
+- Attackers may use AI in ways that avoid attribution
+
+**Solution:** Adversarial evaluation, diverse detection methods, assume evasion
+
+## Recommendations
+
+### For AI Labs
+
+**Immediate:**
+1. Establish internal tripwire systems
+2. Commit publicly to specific response actions
+3. Share warning sign data (appropriately anonymized)
+4. Invest in behavioral evaluation capacity
+
+**Ongoing:**
+5. Maintain monitoring infrastructure
+6. Update tripwires as understanding improves
+7. Participate in industry-wide coordination
+
+### For Governments
+
+**Immediate:**
+1. Create AI incident reporting requirements
+2. Fund independent monitoring capacity
+3. Establish inter-agency coordination
+
+**Longer-term:**
+4. Build international monitoring cooperation
+5. Pre-commit to policy responses at tripwires
+6. Create safe harbor for reporting
+
+### For Researchers
+
+**Priority areas:**
+1. Better situational awareness tests
+2. Deception detection methods
+3. Economic impact measurement
+4. Trust and polarization tracking
+5. Capability forecasting accuracy
+
+## Summary
+
+**Key insights:**
+1. Leading indicators enable proactive response
+2. Tripwires convert warning signs into action
+3. Current monitoring infrastructure is inadequate
+4. Coordination problems impede effective monitoring
+5. Investment in monitoring is high-leverage
+
+**Most important warning signs to track:**
+1. Situational awareness indicators (control risks)
+2. Autonomous execution capability (multiple risks)
+3. Synthetic content distinguishability (misuse/epistemics)
+4. AI incident frequency and severity (validation)
+5. Economic displacement metrics (structural)
+
+**Most urgent infrastructure needs:**
+1. Standardized capability tracking
+2. Independent behavioral evaluation
+3. AI incident database
+4. International coordination mechanism
+
+## Related Models
+
+- [Risk Activation Timeline Model](/knowledge-base/models/risk-activation-timeline/) - When risks activate
+- [Capability Threshold Model](/knowledge-base/models/capability-threshold-model/) - What capabilities trigger risks
+- [Scheming Likelihood Model](/knowledge-base/models/scheming-likelihood-model/) - Deception warning signs in detail
+
+## Sources
+
+- Anthropic Responsible Scaling Policy
+- OpenAI Preparedness Framework
+- METR/ARC Evals methodology
+- Partnership on AI incident database proposal
+- AI safety researcher recommendations
+
+## Related Pages
+
+<Backlinks client:load entityId="warning-signs-model" />

@@ -1,0 +1,264 @@
+---
+title: Risk Activation Timeline Model
+description: Framework mapping when different AI risks become critical based on capability levels and time
+sidebar:
+  order: 15
+quality: 3
+lastEdited: "2025-12-26"
+---
+
+import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+
+<DataInfoBox entityId="risk-activation-timeline" />
+
+## Overview
+
+Different AI risks don't all "turn on" at the same time. Some are already relevant with current systems, while others require capability levels that don't yet exist. This model maps when various risks become critical, helping prioritize interventions and resource allocation.
+
+Understanding activation timing is crucial because:
+- **Early risks** need immediate attention but may have more tractable solutions
+- **Near-term risks** represent the current critical window for intervention
+- **Long-term risks** require foundational research now to address later
+
+## Risk Activation Framework
+
+### Activation Criteria
+
+A risk becomes "activated" when:
+1. **Capability threshold crossed** - AI can perform necessary tasks
+2. **Deployment context enables** - Systems are deployed in relevant settings
+3. **Barriers eroded** - Technical or social barriers no longer prevent exploitation
+4. **Incentives align** - Actors have motivation to exploit the capability
+
+## Current Risks (Already Active)
+
+These risks are already relevant with GPT-4 class systems or earlier.
+
+### Category: Misuse Risks
+
+| Risk | Status | Current Evidence | Severity |
+|------|--------|------------------|----------|
+| **Disinformation at scale** | Active | Documented use in elections, scams | Medium-High |
+| **Spear phishing enhancement** | Active | Measurable improvement in attack quality | Medium |
+| **Code vulnerability exploitation** | Partially active | Can identify vulnerabilities, limited autonomy | Medium |
+| **Academic fraud** | Active | Widespread essay/code generation | Low-Medium |
+| **Scam automation** | Active | Romance scams, customer service impersonation | Medium |
+
+### Category: Structural Risks
+
+| Risk | Status | Current Evidence | Severity |
+|------|--------|------------------|----------|
+| **Epistemic erosion** | Active | Declining trust in information, detection arms race | Medium |
+| **Economic displacement** | Beginning | White-collar job impacts starting | Medium-High |
+| **Attention manipulation** | Active | Recommendation systems, engagement optimization | Medium |
+| **Dependency formation** | Active | Over-reliance on AI tools emerging | Low-Medium |
+
+### Category: Technical Risks
+
+| Risk | Status | Current Evidence | Severity |
+|------|--------|------------------|----------|
+| **Reward hacking** | Active | Documented in all deployed systems | Low-Medium |
+| **Sycophancy** | Active | Observed in RLHF-trained models | Low |
+| **Prompt injection** | Active | Major vulnerability in agentic systems | Medium |
+| **Hallucination/confabulation** | Active | Persistent across model generations | Medium |
+
+## Near-Term Risks (1-2 Generations)
+
+These risks become critical with next-generation systems (GPT-5 class, 2025-2027).
+
+### Category: Misuse Risks
+
+| Risk | Activation Window | Key Threshold | Current Progress |
+|------|-------------------|---------------|------------------|
+| **Bioweapons uplift** | 2025-2028 | Synthesis guidance beyond textbooks | 60-80% to threshold |
+| **Cyberweapon development** | 2025-2027 | Autonomous vulnerability discovery | 70-85% to threshold |
+| **Persuasion weapons** | 2025-2026 | Personalized, adaptive manipulation | 80-90% to threshold |
+| **Deepfake attacks on individuals** | Active-2026 | Real-time, undetectable | 85-95% to threshold |
+
+### Category: Control Risks
+
+| Risk | Activation Window | Key Threshold | Current Progress |
+|------|-------------------|---------------|------------------|
+| **Agentic system failures** | 2025-2026 | Autonomous multi-step task execution | 70-80% to threshold |
+| **Meaningful situational awareness** | 2025-2027 | Strategic self-modeling | 50-70% to threshold |
+| **Dangerous capability concealment** | 2026-2028 | Sandbagging on evaluations | 40-60% to threshold |
+| **Human oversight evasion** | 2026-2029 | Identifying and exploiting oversight gaps | 30-50% to threshold |
+
+### Category: Structural Risks
+
+| Risk | Activation Window | Key Threshold | Current Progress |
+|------|-------------------|---------------|------------------|
+| **Mass unemployment crisis** | 2026-2030 | >10% of jobs automatable within 2 years | 40-60% to threshold |
+| **Authentication collapse** | 2025-2027 | Can't verify human-generated content | 60-75% to threshold |
+| **AI-powered surveillance state** | 2025-2028 | Real-time behavior prediction | 70-80% to threshold |
+| **Expertise atrophy** | 2026-2032 | Human skills erode from disuse | 30-50% to threshold |
+
+## Long-Term Risks (ASI-Level)
+
+These risks require capabilities approaching or exceeding human-level general intelligence.
+
+### Category: Existential Risks
+
+| Risk | Estimated Window | Key Threshold | Confidence |
+|------|------------------|---------------|------------|
+| **Misaligned superintelligence** | 2030-2050+ | Systems smarter than humans at alignment-relevant tasks | Very Low |
+| **Recursive self-improvement** | 2030-2045+ | AI can meaningfully improve AI | Low |
+| **Decisive strategic advantage** | 2030-2040+ | One actor gains insurmountable lead | Low |
+| **Value lock-in** | 2028-2040+ | Irreversible commitment to suboptimal values | Low-Medium |
+
+### Category: Advanced Scheming
+
+| Risk | Estimated Window | Key Threshold | Confidence |
+|------|------------------|---------------|------------|
+| **Strategic deception** | 2027-2035 | Can model training and hide intentions | Low-Medium |
+| **Coordinated AI systems** | 2028-2040 | Multiple AI systems act in concert | Low |
+| **Human manipulation at scale** | 2028-2035 | Predictive models of human behavior | Medium |
+| **Infrastructure takeover** | 2030-2050+ | Control of critical systems | Very Low |
+
+### Category: Transformation Risks
+
+| Risk | Estimated Window | Key Threshold | Confidence |
+|------|------------------|---------------|------------|
+| **Post-human transition** | 2040-2100+ | Humans become economically/strategically irrelevant | Very Low |
+| **Digital minds** | 2035-2060+ | AI systems warrant moral status | Very Low |
+| **Permanent power concentration** | 2028-2045 | AI-enabled lock-in of power structure | Low-Medium |
+
+## Risk Interaction Dynamics
+
+### Cascade Effects
+
+Some risks activate earlier risks or increase their probability. For example:
+- Capability growth enables disinformation, cyberweapons, and bioweapons
+- These lead to authentication collapse
+- Which causes epistemic erosion, trust decay, and social fragmentation
+- Degrading governance capacity
+- Making it harder to respond to future risks
+
+### Acceleration Factors
+
+These developments would accelerate risk activation across categories:
+
+| Factor | Impact on Timeline | Probability |
+|--------|-------------------|-------------|
+| Algorithmic breakthrough | -1 to -3 years | 15-30% |
+| Compute scaling (10x) | -0.5 to -1.5 years | 40-60% |
+| Open-source parity | -1 to -2 years on misuse | 50-70% |
+| Major safety failure | Accelerates governance concern | 20-40% |
+| Geopolitical AI race | -0.5 to -2 years overall | 30-50% |
+
+### Deceleration Factors
+
+These would delay risk activation:
+
+| Factor | Impact on Timeline | Probability |
+|--------|-------------------|-------------|
+| Scaling laws plateau | +2 to +5 years | 15-30% |
+| Strong governance regime | +1 to +3 years on misuse | 10-20% |
+| Major alignment breakthrough | Variable positive | 10-25% |
+| Compute constraints | +0.5 to +2 years | 20-35% |
+
+## Intervention Windows
+
+### Critical Windows by Risk Category
+
+| Risk Category | Window Opens | Window Closes | Priority Actions |
+|---------------|--------------|---------------|------------------|
+| Current misuse | 2020 (passed) | 2026 | Guardrails, monitoring, norms |
+| Bioweapons | Now | 2027 | DNA synthesis screening, model controls |
+| Cyber autonomy | Now | 2026 | Defensive AI, vulnerability management |
+| Control/scheming | Now | 2028 | Interpretability, control research |
+| Structural/jobs | Now | 2028 | Policy frameworks, transition planning |
+| Existential | Now | 2035+ | Alignment research, governance |
+
+### Leverage Points
+
+**Highest leverage now:**
+1. Interpretability research (addresses multiple long-term risks)
+2. AI control methodology (bridges near and long-term)
+3. DNA synthesis screening (specific, tractable)
+4. International AI governance (affects all timelines)
+
+**Diminishing leverage:**
+1. LLM guardrails (open-source proliferation)
+2. Basic cybersecurity (AI already advantaged)
+3. Deepfake detection (losing arms race)
+
+## Key Uncertainties
+
+### Timeline Uncertainties
+
+| Question | Optimistic | Pessimistic | Impact |
+|----------|-----------|-------------|--------|
+| When does ASI arrive? | 2045+ | 2028-2032 | +/- 15 years on long-term risks |
+| Scaling laws continue? | Plateau by 2027 | Continue to 2035+ | +/- 3 years on all risks |
+| Open-source catches up? | Stays 2+ years behind | Parity by 2026 | +/- 2 years on misuse |
+| Alignment solved? | Major progress by 2030 | No progress | +/- 10 years on existential |
+
+### Probability Calibration
+
+For each risk, our probability estimates could be:
+- **Too early:** We overestimate capability progress
+- **Too late:** We underestimate breakthrough potential
+- **Wrong category:** Risk manifests differently than expected
+
+Historical base rates suggest we are more often too late than too early.
+
+## Implications
+
+### For AI Developers
+
+**Now (2024-2025):**
+- Implement robust evaluation for near-term risks
+- Begin research on control methods
+- Establish safety culture before crunch time
+
+**Near-term (2025-2027):**
+- Deploy monitoring for activated risks
+- Contribute to governance frameworks
+- Scale safety teams with capability teams
+
+### For Policymakers
+
+**Critical window is now:**
+- Establish frameworks before crisis mode
+- Focus on near-term risks that validate governance
+- Build international coordination mechanisms
+
+### For Researchers
+
+**Priority allocation:**
+- 40% on near-term (1-2 generation) risks
+- 40% on foundational research for long-term
+- 20% on current risk mitigation
+
+## Summary
+
+**Key insights:**
+1. Many serious risks are already active (disinformation, fraud, manipulation)
+2. The next 2-3 years are critical for near-term risks (bio, cyber, control)
+3. Long-term risks have high uncertainty but warrant early research investment
+4. Risks cascade and accelerate each other
+5. Intervention windows are closing for many categories
+
+**Most time-sensitive priorities:**
+1. Bioweapons screening infrastructure (window: 2024-2027)
+2. AI control research (window: 2024-2028)
+3. International AI governance (window: 2024-2027)
+4. Authentication systems (window: 2024-2026)
+
+## Related Models
+
+- [Capability Threshold Model](/knowledge-base/models/capability-threshold-model/) - What capability levels trigger which risks
+- [Warning Signs Model](/knowledge-base/models/warning-signs-model/) - Early indicators of risk activation
+- [AI-Bioweapons Timeline Model](/knowledge-base/models/bioweapons-timeline/) - Detailed bioweapons activation timeline
+
+## Sources
+
+- Anthropic (2024). "Responsible Scaling Policy"
+- OpenAI (2024). "Preparedness Framework"
+- Metaculus AI forecasts
+- Expert elicitation from AI safety researchers
+
+## Related Pages
+
+<Backlinks client:load entityId="risk-activation-timeline" />

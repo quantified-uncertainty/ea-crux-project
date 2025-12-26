@@ -1,0 +1,142 @@
+---
+title: Risk Interaction Matrix Model
+description: Framework for analyzing how different AI risks amplify, mitigate, or transform each other
+sidebar:
+  order: 30
+quality: 3
+lastEdited: "2025-12-26"
+---
+
+import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+
+## Overview
+
+AI risks don't exist in isolation. The **Risk Interaction Matrix** provides a systematic framework for analyzing how different risk categories interact, potentially amplifying each other (synergistic effects) or sometimes offsetting (antagonistic effects).
+
+**Key insight:** Linear risk assessment dramatically underestimates total risk when interactions create multiplicative or threshold effects.
+
+## The Interaction Framework
+
+### Interaction Types
+
+1. **Synergistic (+):** Combined effect exceeds sum of individual risks
+2. **Additive (0):** Combined effect equals sum of individual risks
+3. **Antagonistic (-):** Combined effect less than sum (risks partially offset)
+4. **Threshold (T):** One risk creates conditions for another to manifest
+5. **Cascading (C):** One risk triggers another in sequence
+
+### Key Risk Pairs and Their Interactions
+
+| Risk A | Risk B | Type | Mechanism |
+|--------|--------|------|-----------|
+| Racing Dynamics | Misalignment | + | Speed pressure reduces safety investment |
+| Deepfakes | Epistemic Collapse | C | Authenticity crisis compounds information problems |
+| Economic Disruption | Political Instability | + | Job loss fuels extremism, reduces governance capacity |
+| Bioweapons | Proliferation | T | Open models enable bioweapon development |
+| Surveillance | Authoritarianism | + | AI surveillance enables unprecedented control |
+| Cyberweapons | Critical Infrastructure | C | AI cyber capabilities target essential systems |
+
+## Formal Model
+
+### Pairwise Interaction Score
+
+For risks R_i and R_j with individual severity scores S_i and S_j:
+
+```
+Combined_Severity(R_i, R_j) = S_i + S_j + I(R_i, R_j) * sqrt(S_i * S_j)
+
+Where:
+- I(R_i, R_j) = interaction coefficient [-1, +2]
+- I > 0: synergistic
+- I = 0: additive
+- I < 0: antagonistic
+```
+
+### Portfolio Risk
+
+Total risk across n risks:
+
+```
+Portfolio_Risk = Sum(S_i) + Sum_pairs(I_ij * sqrt(S_i * S_j))
+```
+
+**Note:** Second term can dominate when multiple strong synergies exist.
+
+## High-Priority Interaction Clusters
+
+### Cluster 1: Capability-Governance Gap
+
+**Risks involved:** Racing dynamics, Proliferation, Regulatory lag
+
+**Mechanism:** Racing creates pressure to deploy before governance catches up. Proliferation spreads capabilities to actors outside any governance framework. Creates expanding ungoverned capability frontier.
+
+**Interaction strength:** High synergy (+1.5)
+
+### Cluster 2: Information Ecosystem Collapse
+
+**Risks involved:** Deepfakes, Disinformation, Epistemic collapse, Trust erosion
+
+**Mechanism:** Each risk degrades the foundations others rely on. Deepfakes enable disinformation. Disinformation causes epistemis collapse. Collapse erodes trust. Low trust makes verification harder.
+
+**Interaction strength:** Cascading with positive feedback
+
+### Cluster 3: Concentration-Control Nexus
+
+**Risks involved:** Winner-take-all, Surveillance, Lock-in, Authoritarianism
+
+**Mechanism:** Economic concentration enables surveillance investment. Surveillance enables control. Control enables lock-in. Lock-in prevents course correction.
+
+**Interaction strength:** Sequential amplification
+
+## Implications for Prioritization
+
+### Standard Approach Problems
+
+Traditional risk prioritization:
+1. Assess each risk independently
+2. Rank by expected severity
+3. Allocate resources proportionally
+
+**Problem:** Ignores interaction effects that may constitute majority of actual risk.
+
+### Interaction-Aware Prioritization
+
+Better approach:
+1. Identify high-interaction clusters
+2. Prioritize interventions that break multiple interaction chains
+3. Weight risks by both direct severity AND interaction contribution
+
+### High-Leverage Interventions
+
+Interventions that reduce multiple risks through interaction chains:
+
+| Intervention | Primary Target | Secondary Effects (via interactions) |
+|--------------|---------------|-------------------------------------|
+| AI governance coordination | Racing dynamics | Reduces proliferation pressure, gives time for safety |
+| Content authentication | Deepfakes | Slows epistemic collapse, maintains trust |
+| Antitrust for AI | Concentration | Prevents surveillance/lock-in cascade |
+| Safety standards | Misalignment | Breaks racing-misalignment synergy |
+
+## Limitations and Uncertainties
+
+### Model Limitations
+
+1. **Interaction coefficients are uncertain** - Few empirical data points
+2. **Interactions may be context-dependent** - Same risks interact differently in different scenarios
+3. **Higher-order interactions** - Model only captures pairwise; 3+ way interactions possible
+4. **Dynamic interactions** - Coefficients likely change over time
+
+### Research Priorities
+
+1. **Empirical grounding:** Historical case studies of technology risk interactions
+2. **Expert elicitation:** Systematic surveys to estimate interaction coefficients
+3. **Scenario analysis:** Test model predictions against detailed scenarios
+4. **Dynamic modeling:** Extend to time-varying interactions
+
+## Related Models
+
+- [Racing Dynamics](/knowledge-base/models/racing-dynamics) - Detailed treatment of one key risk
+- [Multipolar Trap](/knowledge-base/models/multipolar-trap) - Related coordination failure dynamics
+- [Epistemic Collapse](/knowledge-base/models/epistemic-collapse-threshold) - Information ecosystem risks
+
+<Backlinks />

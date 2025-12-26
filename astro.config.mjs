@@ -2,6 +2,8 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import react from '@astrojs/react';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -85,6 +87,7 @@ export default defineConfig({
                       { label: 'History', collapsed: true, autogenerate: { directory: 'knowledge-base/history' } },
                       { label: 'Key Literature', collapsed: true, autogenerate: { directory: 'knowledge-base/literature' } },
                       { label: 'Key Metrics', collapsed: true, autogenerate: { directory: 'knowledge-base/metrics' } },
+                      { label: 'Models', collapsed: true, autogenerate: { directory: 'knowledge-base/models' } },
                   ],
               },
               {
@@ -119,5 +122,10 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+  },
+
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
   },
 });

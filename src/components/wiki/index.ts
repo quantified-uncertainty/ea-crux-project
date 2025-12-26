@@ -56,5 +56,8 @@ export { RecentUpdates } from './RecentUpdates';
 // Risk relationship diagrams
 export { RiskRelationshipDiagram } from './RiskRelationshipDiagram';
 
+// Analytical models
+export { ModelsList } from './ModelsList';
+
 // Editorial / page management
 export { PageStatus } from './PageStatus';

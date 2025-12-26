@@ -1,0 +1,157 @@
+---
+title: Intervention Effectiveness Matrix
+description: Mapping AI safety interventions to the risks they mitigate, with effectiveness estimates and gap analysis
+sidebar:
+  order: 35
+quality: 3
+lastEdited: "2025-12-26"
+---
+
+import { DataInfoBox, Backlinks, KeyQuestions } from '../../../../components/wiki';
+
+<DataInfoBox entityId="intervention-effectiveness-matrix" />
+
+## Overview
+
+This model maps **AI safety interventions** (technical, governance, and organizational) to the **specific risks** they help mitigate. The goal is to identify which interventions address which failure modes, estimate their effectiveness, and highlight dangerous gaps where no good interventions exist.
+
+**Key insight**: Many interventions are highly specialized, effective against some risks but irrelevant to others. A comprehensive safety portfolio requires layered interventions targeting different failure modes.
+
+## Intervention Categories
+
+### Technical Interventions
+
+| Intervention | Description | Development Stage |
+|--------------|-------------|-------------------|
+| **Interpretability** | Understanding model internals | Research (promising) |
+| **RLHF/RLAIF** | Human feedback alignment | Deployed (limited) |
+| **Constitutional AI** | Principle-based training | Deployed (limited) |
+| **Capability Evaluations** | Pre-deployment testing | Deployed (improving) |
+| **Red-teaming** | Adversarial testing | Deployed (standard) |
+| **AI Control** | Containment and monitoring | Research (early) |
+| **Formal Verification** | Mathematical proofs | Research (toy models) |
+| **Debate/IDA** | Scalable oversight methods | Research (theoretical) |
+
+### Governance Interventions
+
+| Intervention | Description | Development Stage |
+|--------------|-------------|-------------------|
+| **Compute Governance** | Tracking/restricting compute | Proposed (limited implementation) |
+| **Model Registries** | Tracking deployed models | Proposed |
+| **Safety Standards** | Minimum requirements | Emerging (voluntary) |
+| **Liability Frameworks** | Legal accountability | Underdeveloped |
+| **International Treaties** | Binding agreements | Early discussion |
+| **Export Controls** | Restricting technology flow | Implemented (chips) |
+
+### Organizational Interventions
+
+| Intervention | Description | Development Stage |
+|--------------|-------------|-------------------|
+| **Responsible Scaling** | Capability-triggered safeguards | Voluntary (some labs) |
+| **Safety Teams** | Dedicated safety research | Variable (lab-dependent) |
+| **External Audits** | Third-party evaluation | Emerging |
+| **Whistleblower Protection** | Enabling internal dissent | Weak |
+| **Deployment Pauses** | Halting risky releases | Ad hoc |
+
+## Effectiveness Matrix: Technical Interventions vs Risks
+
+### Accident Risks
+
+| Risk | Interpretability | RLHF | Constitutional AI | Evals | Red-teaming | AI Control |
+|------|-----------------|------|-------------------|-------|-------------|------------|
+| **Deceptive Alignment** | Medium | Low | Low | Low | Low | Medium |
+| **Goal Misgeneralization** | Medium | Medium | Medium | Medium | Medium | Medium |
+| **Reward Hacking** | Low | Low | Low | High | High | Low |
+| **Mesa-Optimization** | Medium | Low | Low | Low | Low | Medium |
+| **Power-Seeking** | Medium | Low | Low | Medium | Medium | High |
+| **Scheming** | Medium | Low | Low | Low | Low | High |
+| **Treacherous Turn** | Low | Low | Low | Low | Low | High |
+| **Corrigibility Failure** | Medium | Medium | Medium | Medium | Medium | High |
+| **Emergent Capabilities** | Low | Low | Low | High | Medium | Medium |
+
+**Legend**: High = substantially reduces risk (over 50 percent reduction); Medium = moderately reduces risk (20-50 percent); Low = minimal impact (under 20 percent)
+
+### Misuse Risks
+
+| Risk | Interpretability | RLHF | Constitutional AI | Evals | Red-teaming | AI Control |
+|------|-----------------|------|-------------------|-------|-------------|------------|
+| **Bioweapons** | Low | Medium | Medium | High | High | N/A |
+| **Cyberweapons** | Low | Medium | Medium | High | High | N/A |
+| **Disinformation** | Low | Medium | Medium | Medium | Medium | N/A |
+| **Deepfakes** | Low | Low | Low | Medium | Medium | N/A |
+| **Surveillance** | Low | Low | Low | Low | Low | N/A |
+| **Autonomous Weapons** | Low | Low | Low | Medium | Medium | N/A |
+
+### Structural Risks
+
+| Risk | Interpretability | RLHF | Constitutional AI | Evals | Red-teaming | AI Control |
+|------|-----------------|------|-------------------|-------|-------------|------------|
+| **Concentration of Power** | Low | Low | Low | Low | Low | Low |
+| **Lock-in** | Low | Low | Low | Low | Low | Low |
+| **Enfeeblement** | Low | Low | Low | Low | Low | Low |
+| **Erosion of Agency** | Low | Low | Low | Low | Low | Low |
+
+### Epistemic Risks
+
+| Risk | Interpretability | RLHF | Constitutional AI | Evals | Red-teaming | AI Control |
+|------|-----------------|------|-------------------|-------|-------------|------------|
+| **Epistemic Collapse** | Low | Low | Low | Low | Low | Low |
+| **Reality Fragmentation** | Low | Medium | Medium | Low | Low | Low |
+| **Trust Cascade** | Low | Low | Low | Low | Low | Low |
+| **Institutional Capture** | Low | Low | Low | Low | Low | Low |
+
+## Gap Analysis: Under-Addressed Risks
+
+### Critical Gaps
+
+| Risk | Gap Description | What is Needed |
+|------|-----------------|----------------|
+| **Deceptive Alignment** | No reliable detection method | Interpretability breakthroughs; robust control methods |
+| **Scheming** | Cannot verify absence of strategic deception | Formal verification at scale; model organisms research |
+| **Lock-in** | Technical tools do not address power dynamics | Governance frameworks; anti-monopoly measures |
+| **Epistemic Collapse** | Technical fixes miss systemic causes | Information ecosystem redesign; media literacy |
+
+## Intervention Synergies
+
+| Pair | Synergy |
+|------|---------|
+| **Interpretability + Evals** | Interpretability explains what evals detect |
+| **Red-teaming + AI Control** | Red-teaming finds gaps in control measures |
+| **RLHF + Constitutional AI** | Layered training approaches |
+| **Compute Gov + Export Controls** | Hardware and software restrictions together |
+
+## Recommendations
+
+### Research Priorities
+
+1. **Interpretability for deception detection** - Critical gap with plausible path forward
+2. **AI Control methods** - Defense against worst-case scenarios
+3. **Formal verification scaling** - Mathematical guarantees remain elusive
+4. **Structural risk governance** - Technical research unlikely to help
+
+## Key Uncertainties
+
+<KeyQuestions
+  questions={[
+    "Will interpretability scale to frontier models?",
+    "Can AI Control work against superintelligent systems?",
+    "Are governance interventions politically feasible before crisis?",
+    "Do current interventions help or hurt with deceptively aligned systems?"
+  ]}
+/>
+
+## Related Models
+
+- [Defense in Depth Model](/knowledge-base/models/defense-in-depth-model/) - How layered interventions combine
+- [Safety-Capability Tradeoff Model](/knowledge-base/models/safety-capability-tradeoff/) - Cost of interventions
+- [Deceptive Alignment Decomposition](/knowledge-base/models/deceptive-alignment-decomposition/) - Key gap analysis
+
+## Sources
+
+- Anthropic. Core Views on AI Safety (2023)
+- Greenblatt et al. AI Control: Improving Safety Despite Intentional Subversion (2024)
+- Hubinger et al. Sleeper Agents (2024)
+
+## Related Pages
+
+<Backlinks client:load entityId="intervention-effectiveness-matrix" />

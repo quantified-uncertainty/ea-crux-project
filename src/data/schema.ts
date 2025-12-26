@@ -279,6 +279,7 @@ export const EntityType = z.enum([
   'lab-startup',
   'lab-academic',
   'crux',
+  'concept',       // Abstract concepts, ideas, or theoretical constructs
   'case-study',
   'researcher',
   'scenario',
@@ -286,6 +287,7 @@ export const EntityType = z.enum([
   'funder',
   'historical',    // Historical era or timeline event
   'analysis',      // Analysis or comparison pages
+  'model',         // Analytical model for risks/scenarios (has MDX content)
 ]);
 export type EntityType = z.infer<typeof EntityType>;
 

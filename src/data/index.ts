@@ -610,6 +610,7 @@ export function getEntityHref(id: string, type?: string): string {
     'funder': '/knowledge-base/funders/',
     'intervention': '/knowledge-base/responses/',
     'historical': '/knowledge-base/history/',
+    'model': '/knowledge-base/models/',
   };
 
   const basePath = pathMapping[type || ''] || '/knowledge-base/';
@@ -731,6 +732,23 @@ export function getMostLinked(limit = 10): Array<{
 /**
  * Get entities by type with optional filtering
  */
+/**
+ * Get models related to a specific entity (e.g., risk)
+ * Models are linked via relatedEntries
+ */
+export function getModelsForEntity(entityId: string): Array<Entity & { href: string }> {
+  const models = entities.filter(e => {
+    if (e.type !== 'model') return false;
+    // Check if this model references the target entity
+    return e.relatedEntries?.some(re => re.id === entityId);
+  });
+
+  return models.map(e => ({
+    ...e,
+    href: getEntityHref(e.id, e.type),
+  }));
+}
+
 export function getEntitiesByType(type: string, options?: {
   limit?: number;
   sortBy?: 'title' | 'lastUpdated' | 'severity';

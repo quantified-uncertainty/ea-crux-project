@@ -1,0 +1,210 @@
+---
+title: Expected Value of AI Safety Research
+description: Economic analysis of marginal returns on AI safety research investments
+sidebar:
+  order: 30
+quality: 3
+lastEdited: "2025-12-26"
+---
+
+import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+
+## Overview
+
+This model analyzes the expected value of marginal investments in AI safety research. The central question: **How much does additional safety research reduce catastrophic risk, and how does this compare to other uses of resources?**
+
+The analysis is complicated by deep uncertainty about:
+- The probability and magnitude of AI risks
+- The tractability of safety problems
+- Counterfactual outcomes (what happens without additional research)
+- Time horizons and discount rates
+
+## Basic Expected Value Framework
+
+### The Core Calculation
+
+**Expected Value of Safety Research:**
+
+```
+EV(safety research) = P(AI risk) × Reduction(risk | research) × Value(prevented harm) - Cost(research)
+
+Where:
+- P(AI risk) = Probability of catastrophic AI outcome without intervention
+- Reduction(risk | research) = Fractional reduction in risk from marginal research
+- Value(prevented harm) = Expected harm avoided (in utility or $)
+- Cost(research) = Direct and opportunity costs
+```
+
+### Parameter Estimates
+
+**P(AI risk) - Probability of Catastrophic Outcome:**
+
+| Estimate Source | P(existential risk) | P(catastrophic non-existential) |
+|-----------------|--------------------|---------------------------------|
+| Ord (2020) | 10% this century | Higher |
+| AI Impacts survey (2022) | ~5% median | ~15-20% |
+| Metaculus | ~3% | Variable |
+| Skeptical view | &lt;1% | ~5% |
+
+**Wide uncertainty:** 1-20% for existential risk is a reasonable range
+
+**Reduction(risk | research) - Marginal Impact:**
+
+| View | Reduction per $1B | Rationale |
+|------|-------------------|-----------|
+| Optimistic | 10-50% | Safety highly tractable, early work has high returns |
+| Moderate | 1-10% | Safety tractable but difficult, diminishing returns |
+| Pessimistic | &lt;1% | Safety problems fundamentally hard |
+
+**Value(prevented harm):**
+
+For existential risk:
+- Total future value: Astronomical (10^18+ lives under some frameworks)
+- Present value at 0% discount: ~10^18-10^30 utility units
+- Present value at 2% discount: Still enormous
+
+For catastrophic but non-existential:
+- 10-50% of world GDP over decades
+- $50-500 trillion present value
+
+## Comparative Analysis
+
+### Comparison to Other Interventions
+
+| Intervention | Cost per Life-Year | Uncertainty | Scale |
+|--------------|-------------------|-------------|-------|
+| GiveDirectly | ~$100-300 | Low | Medium |
+| Malaria nets | ~$50-100 | Low | Medium |
+| AI Safety (optimistic) | &lt;$0.01 | Very High | Unbounded |
+| AI Safety (moderate) | ~$1-10 | Very High | Unbounded |
+| AI Safety (pessimistic) | >$1000 | Very High | Unbounded |
+
+**Key insight:** Under expected value maximization with any significant existential risk probability, AI safety dominates most interventions—but this depends heavily on tractability assumptions.
+
+### Option Value Considerations
+
+Safety research may have value beyond direct risk reduction:
+
+**1. Information Value**
+- Reduces uncertainty about AI risk severity
+- Enables better resource allocation
+
+**2. Optionality**
+- Creates tools and knowledge for future decisions
+- Keeps options open as AI develops
+
+**3. Institutional Capacity**
+- Builds safety-focused research community
+- Creates regulatory knowledge base
+
+**4. Signal Value**
+- Demonstrates seriousness about safety
+- Influences AI lab behavior
+
+## Marginal Returns Analysis
+
+### Current Safety Spending (2024)
+
+| Actor | Estimated Annual Spending | Focus |
+|-------|--------------------------|-------|
+| Anthropic | $100M+ | Interpretability, alignment |
+| OpenAI | $50-100M | Alignment, evaluation |
+| DeepMind | $50-100M | Safety research |
+| Academia | $30-50M | Various |
+| Philanthropic | $100-200M | Grants, policy |
+| **Total** | **~$400-600M** | |
+
+**vs. Capabilities Spending:** $50-100B (100:1 ratio)
+
+### Diminishing Returns Curve
+
+```
+Returns(funding) = A × funding^(-α)
+
+Where α ≈ 0.3-0.5 (diminishing returns)
+
+At current funding levels (~$500M):
+- Next $100M: Potentially high returns
+- Next $1B: Moderate returns
+- Next $10B: Uncertain (may hit bottlenecks)
+```
+
+### Bottlenecks
+
+1. **Talent:** Limited number of researchers with relevant skills (~500-1000 FTE in safety)
+2. **Research Direction Clarity:** Uncertain which approaches are most valuable
+3. **Coordination with Capabilities:** Safety research needs access to frontier systems
+
+### Within Safety Research
+
+| Area | Current Funding | Marginal Returns | Uncertainty |
+|------|-----------------|------------------|-------------|
+| Interpretability | High | Medium | Medium |
+| Alignment theory | Medium | High? | Very High |
+| Evaluations/Red-teaming | Medium | High | Low |
+| Governance/Policy | Medium | High | Medium |
+| Field-building | Low | High | Medium |
+
+## Robustness Analysis
+
+### Scenario Analysis
+
+| Scenario | P(x-risk) | Tractability | Timeline | EV of Safety Research |
+|----------|-----------|--------------|----------|----------------------|
+| High risk, tractable | 15% | High | 10 years | Extremely high |
+| High risk, intractable | 15% | Low | 10 years | Low |
+| Low risk, tractable | 2% | High | 20 years | High |
+| Low risk, intractable | 2% | Low | 50 years | Low |
+
+**Robust conclusions:**
+1. If any significant risk AND tractable: Safety research very valuable
+2. If intractable: Need different interventions (governance, pause)
+3. Uncertainty itself argues for research (information value)
+
+### Value of Information
+
+**Research as Information Gathering:**
+
+```
+Value of Info = Σ P(world_i) × [Utility(optimal action | know world_i) - Utility(current action)]
+```
+
+**Estimate:** 10-30% of safety research value may be informational rather than direct risk reduction
+
+## Recommendations
+
+### Investment Levels
+
+**Current (2024):** ~$500M/year
+
+**Suggested Target:** $1-3B/year in next 5 years
+- 5-10x increase from current
+- Still small vs. capabilities
+- Focus on capacity building
+
+### Funding Priorities
+
+**Near-term (0-2 years):**
+1. Talent pipeline (fellowships, training programs)
+2. Evaluations and red-teaming
+3. Governance and policy research
+
+**Medium-term (2-5 years):**
+1. Scale proven approaches
+2. Build academic infrastructure
+3. International safety research cooperation
+
+## Model Limitations
+
+1. **Expected Value Framework May Be Wrong** - Risk aversion, bounded utility may apply
+2. **Tractability Estimates Are Guesses** - No empirical basis for reduction percentages
+3. **Neglects Political Economy** - Lab incentives, regulatory dynamics matter
+4. **Assumes Current Understanding** - May be focusing on wrong problems
+
+## Related Models
+
+- [Accident Cost Model](/knowledge-base/models/accident-cost-model) - Magnitude of harm to prevent
+- [Safety Investment Optimal](/knowledge-base/models/safety-investment-optimal) - Lab-level decisions
+- [Racing Dynamics](/knowledge-base/models/racing-dynamics) - Competitive pressures
+
+<Backlinks />

@@ -1,0 +1,304 @@
+---
+title: AI Safety Talent Supply/Demand Gap Model
+description: Analyzing the mismatch between AI safety researcher supply and organizational demand
+sidebar:
+  order: 30
+quality: 3
+lastEdited: "2025-12-26"
+---
+
+import { DataInfoBox, Backlinks, KeyQuestions } from '../../../../components/wiki';
+
+<DataInfoBox entityId="safety-researcher-gap" />
+
+## Overview
+
+This model analyzes the persistent gap between the supply of qualified AI safety researchers and the demand from organizations working on AI safety. The gap has significant implications for the field ability to make progress on technical alignment problems before advanced AI systems are deployed.
+
+**Central Question:** How large is the talent gap, what creates it, and how might it evolve under different scenarios?
+
+## Current State Assessment
+
+### Supply Estimates (2024-2025)
+
+**Narrow Definition (Technical AI Safety Researchers):**
+- Full-time technical safety researchers: 300-500 globally
+- PhD students in alignment-relevant programs: 200-400
+- Safety-focused engineers at labs: 500-1,000
+- **Total narrow supply:** around 1,000-2,000
+
+**Broader Definition (Safety-Adjacent Researchers):**
+- ML researchers with safety interest: 2,000-5,000
+- Interpretability/robustness researchers: 1,000-2,000
+- AI ethics/governance researchers: 500-1,000
+- **Total broad supply:** around 3,500-8,000
+
+### Demand Estimates
+
+**Current Organizational Demand:**
+
+| Organization Type | Estimated Demand | Current Fill Rate |
+|-------------------|------------------|-------------------|
+| Frontier Labs (safety teams) | 500-1,000 | 60-80% |
+| Academic AI safety groups | 200-400 | 40-60% |
+| Independent safety orgs | 100-200 | 50-70% |
+| Government/policy roles | 50-100 | 30-50% |
+| **Total current demand** | **850-1,700** | **50-70%** |
+
+**Projected Demand (if safety becomes priority):**
+
+| Scenario | Demand Multiple | Total Demand |
+|----------|-----------------|--------------|
+| Baseline (current trajectory) | 1.5x by 2027 | 1,300-2,500 |
+| Moderate scaling | 3x by 2027 | 2,500-5,000 |
+| Aggressive scaling | 5-10x by 2027 | 4,000-17,000 |
+
+### The Gap
+
+**Current Gap:**
+- Unfilled positions: 300-800 (30-50% of demand)
+- Quality gap: Many filled positions below optimal skill level
+
+**Quality-Adjusted Gap:**
+- A-tier researchers (can lead research agendas): 50-100
+- Demand for A-tier: 200-400
+- A-tier gap: 100-300 (50-75% of demand)
+
+## Bottleneck Analysis
+
+### Bottleneck 1: Training Pipeline
+
+**Problem:** Insufficient pathways to develop safety research skills
+
+**Quantitative Assessment:**
+
+| Training Pathway | Annual Throughput | Quality Level | Time to Competence |
+|------------------|-------------------|---------------|-------------------|
+| PhD programs (safety-focused) | 20-50 | High | 4-6 years |
+| MATS and similar programs | 50-100 | Medium-High | 6-12 months |
+| Self-study/independent | 100-200 | Variable | 1-3 years |
+| Industry transition | 50-100 | Medium | 1-2 years |
+| **Total pipeline** | **220-450/year** | Mixed | 1-6 years |
+
+**Gap Analysis:**
+- Pipeline output: 220-450/year
+- Attrition (leave field): 10-20%/year
+- Net addition: 180-400/year
+- Required to close gap by 2027: 500-1,500/year
+
+**Result:** Pipeline produces 30-50% of what is needed to meet projected demand
+
+### Bottleneck 2: Funding Constraints
+
+**Problem:** Available funding limits positions even when candidates exist
+
+**Funding Sources (2024):**
+
+| Source | Annual Amount | Positions Funded | Growth Rate |
+|--------|--------------|------------------|-------------|
+| Open Philanthropy | 50-100M | 200-400 | Stable |
+| Frontier labs (internal) | 100-300M | 500-1,500 | Growing 20-30%/year |
+| Government grants | 20-50M | 80-200 | Slow growth |
+| Other foundations | 10-30M | 40-120 | Variable |
+| **Total** | **180-480M** | **820-2,220** | around 15-25%/year |
+
+### Bottleneck 3: Coordination Failures
+
+**Problem:** Talent-organization matching is inefficient
+
+**Friction Points:**
+
+| Friction | Impact | Severity |
+|----------|--------|----------|
+| Information asymmetry | Candidates do not know about opportunities | Medium |
+| Credential requirements | Non-traditional paths disadvantaged | High |
+| Geographic concentration | Remote work limited at some orgs | Medium |
+| Security clearances | Government roles inaccessible | Low-Medium |
+| Visa constraints | International talent blocked | Medium-High |
+
+### Bottleneck 4: Competing Demand
+
+**Problem:** Capabilities labs compete for same talent pool
+
+**Compensation Comparison (2024):**
+
+| Role Level | Safety Org | Frontier Lab (Safety) | Frontier Lab (Capabilities) |
+|------------|------------|----------------------|----------------------------|
+| Junior researcher | 80-120K | 150-250K | 200-400K |
+| Senior researcher | 120-200K | 250-500K | 400-800K |
+| Research lead | 150-300K | 400-800K | 600K-2M+ |
+
+## Pipeline Dynamics Model
+
+### Inflow Channels
+
+**Channel 1: Academic Pipeline**
+
+Current estimates:
+- Programs with safety focus: 10-20
+- Students per program: 3-8
+- Completion rate: 70-80%
+- Safety focus maintained: 60-80%
+
+**Output:** 15-80 PhD graduates/year focused on safety
+
+**Channel 2: Upskilling Programs**
+
+Programs like MATS, SERI MATS, ARENA:
+- Applicants: 2,000-5,000/year
+- Acceptance rate: 3-10%
+- Completion rate: 80-90%
+- Placement rate: 60-80%
+
+**Output:** 30-120 researchers/year
+
+**Channel 3: Industry Transition**
+
+ML researchers transitioning to safety:
+- Pool of ML researchers: 50,000-100,000
+- Awareness of safety: 10-20%
+- Interest in transition: 5-10% of aware
+- Actual transition: 20-40% of interested
+
+**Output:** 50-400 transitions/year
+
+### Outflow Channels
+
+**Attrition Sources:**
+
+| Source | Annual Rate | Preventability |
+|--------|-------------|----------------|
+| Burnout | 5-10% | Medium |
+| Capabilities transition | 5-10% | Medium |
+| Career change | 3-5% | Low |
+| Retirement/end of career | 1-2% | None |
+| AI doom belief leading to exit | 2-5% | Low |
+| **Total attrition** | **16-32%** | Mixed |
+
+## Scenario Projections
+
+### Scenario 1: Baseline (Current Trajectory)
+
+| Metric | 2024 | 2027 | Gap |
+|--------|------|------|-----|
+| Supply (narrow) | 1,500 | 2,500 | - |
+| Demand | 1,300 | 2,800 | - |
+| Gap (percentage) | 20% | 11% | Improving |
+
+### Scenario 2: Safety Prioritization
+
+| Metric | 2024 | 2027 | Gap |
+|--------|------|------|-----|
+| Supply (narrow) | 1,500 | 4,000 | - |
+| Demand | 1,300 | 8,000 | - |
+| Gap (percentage) | 20% | 50% | Much worse |
+
+### Scenario 3: Crisis Response
+
+| Metric | 2024 | 2027 | Gap |
+|--------|------|------|-----|
+| Supply (narrow) | 1,500 | 6,000 | - |
+| Demand | 1,300 | 15,000 | - |
+| Gap (percentage) | 20% | 60% | Critical |
+
+## Intervention Analysis
+
+### Training Pipeline Interventions
+
+| Program Type | Current | 3x Scale Cost | Output Increase | Effectiveness |
+|--------------|---------|---------------|-----------------|---------------|
+| MATS-style | 100/year | 15-30M/year | +200/year | High |
+| PhD programs | 40/year | 40-80M/year | +80/year | Medium-High |
+| Online courses | Minimal | 5-10M/year | +100-300/year | Medium |
+| Bootcamps | Minimal | 10-20M/year | +100-200/year | Medium |
+
+### Funding Interventions
+
+| Scale | Annual Funding | Positions | Feasibility |
+|-------|---------------|-----------|-------------|
+| Modest | 100M | 400-600 | High |
+| Significant | 500M | 2,000-3,000 | Medium |
+| Major | 1-2B | 4,000-8,000 | Low |
+
+## Comparison with Historical Precedents
+
+### Manhattan Project Talent Mobilization
+
+| Metric | Manhattan | AI Safety (Current) | AI Safety (If Mobilized) |
+|--------|-----------|---------------------|--------------------------|
+| Starting pool | Around 100 nuclear physicists | Around 1,500 safety researchers | Around 1,500 |
+| End state | Around 6,000 | Around 2,000 (projected 2027) | Around 10,000 (potential) |
+| Scaling factor | 60x | 1.3x | 6.7x |
+| Time period | 3 years | 3 years | 3 years |
+| Government support | Total | Minimal | Hypothetical |
+
+## Feedback Loops
+
+### Positive Loops
+
+**Loop 1: Quality Attracts Quality**
+- High-quality research leads to field prestige
+- Field prestige attracts better candidates
+
+**Loop 2: Success Breeds Funding**
+- Visible safety progress builds funder confidence
+- More resources enable more researchers
+
+### Negative Loops
+
+**Loop 1: Capability Racing Drains Talent**
+- AI race intensifies, driving higher capability salaries
+- More safety researchers transition to capabilities
+
+**Loop 2: Pessimism Spiral**
+- Slow safety progress demoralizes field
+- Attrition increases as researchers leave
+
+## Key Uncertainties
+
+<KeyQuestions
+  questions={[
+    "How much does marginal talent actually contribute to safety research progress?",
+    "Can training time be compressed without significant quality loss?",
+    "Will capabilities labs genuinely prioritize safety hiring?",
+    "What government policy interventions are politically feasible?"
+  ]}
+/>
+
+## Model Limitations
+
+1. **Definition ambiguity:** What counts as AI safety research is contested
+2. **Quality measurement:** Difficult to objectively assess researcher quality
+3. **Hidden supply:** Some researchers work on safety without identifying as such
+4. **Rapidly changing:** Field dynamics shift faster than data collection
+
+## Policy Recommendations
+
+### Immediate (2025-2026)
+
+1. **Scale proven training programs** (MATS, SERI MATS, ARENA)
+2. **Create industry-to-safety transition program**
+3. **Establish safety researcher retention fund**
+
+### Medium-term (2026-2028)
+
+1. **Government safety research program**
+2. **International coordination**
+3. **Quality assurance systems**
+
+## Related Models
+
+- [Racing Dynamics Game Theory Model](/knowledge-base/models/racing-dynamics/)
+- [Expertise Atrophy Cascade Model](/knowledge-base/models/expertise-atrophy-cascade/)
+- [Proliferation Risk Model](/knowledge-base/models/proliferation-risk-model/)
+- [Capabilities-to-Safety Pipeline Model](/knowledge-base/models/capabilities-to-safety-pipeline/)
+
+## Sources
+
+- 80,000 Hours AI safety career reviews
+- Open Philanthropy grant data
+- Training program outcome data (MATS, SERI MATS)
+
+## Related Pages
+
+<Backlinks client:load entityId="safety-researcher-gap" />
