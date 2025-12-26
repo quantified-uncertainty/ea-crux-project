@@ -4,7 +4,7 @@ description: Analyzes how AI surveillance and control technologies spread from d
 sidebar:
   order: 30
 quality: 4
-lastEdited: 2025-12-26
+lastEdited: "2025-12-26"
 ratings:
   novelty: 3
   rigor: 4
@@ -12,7 +12,7 @@ ratings:
   completeness: 4
 ---
 
-import { DataInfoBox, Backlinks } from '../../../../components/wiki';
+import { DataInfoBox, Backlinks, Mermaid } from '../../../../components/wiki';
 
 <DataInfoBox entityId="authoritarian-tools-diffusion" ratings={frontmatter.ratings} />
 
@@ -28,23 +28,23 @@ Understanding these diffusion dynamics matters urgently because AI surveillance 
 
 The technology diffusion pipeline operates through a multi-stage process where capabilities flow from developers through intermediaries to end users, with each stage adding complexity and reducing the effectiveness of intervention attempts. Understanding this pipeline structure reveals both the systemic nature of diffusion and the specific nodes where intervention might be attempted.
 
-```mermaid
+<Mermaid client:load chart={`
 flowchart TD
-    A[Primary Developers<br/>Huawei, Hikvision, NSO, Palantir] --> B{Direct Sale?}
-    B -->|Yes| D[Authoritarian End Users<br/>China, Russia, Saudi Arabia]
-    B -->|No| C[Regional Intermediaries<br/>UAE, Singapore, Israel]
+    A[Primary Developers - Huawei, Hikvision, NSO, Palantir] --> B{Direct Sale?}
+    B -->|Yes| D[Authoritarian End Users - China, Russia, Saudi Arabia]
+    B -->|No| C[Regional Intermediaries - UAE, Singapore, Israel]
     C --> D
-    A --> E[Joint Ventures<br/>Technology Transfer]
+    A --> E[Joint Ventures - Technology Transfer]
     E --> F[Local Production Capability]
     F --> G[Regional Export]
     G --> D
-    D --> H[Deployment Against<br/>Target Populations]
-    H --> I{Effectiveness<br/>Demonstration}
+    D --> H[Deployment Against Target Populations]
+    H --> I{Effectiveness Demonstration}
     I -->|Success| J[Increased Demand]
     J --> A
-    I -->|Success| K[Indigenous Development<br/>Reverse Engineering]
+    I -->|Success| K[Indigenous Development - Reverse Engineering]
     K --> D
-```
+`} />
 
 ### Actor Categories
 
@@ -174,7 +174,7 @@ The trajectory of authoritarian tools diffusion over the next decade depends cri
 | Unrestricted Diffusion | 35% | 150+ countries with advanced surveillance | Export control failures, commercial incentives dominate, no coordination | Very Low |
 | Managed Proliferation | 30% | 100-120 countries, with capability tiers | Partial export controls, chip restrictions effective 5-7 years, limited coordination | Low-Medium |
 | Bifurcated World | 25% | Democratic-authoritarian tech spheres, 80-100 authoritarian adopters | US-China decoupling, allied coordination, sustained chip advantage | Medium |
-| Diffusion Reversal | 10% | <60 countries, some capability degradation | Major authoritarian setbacks, coordinated restrictions, technical barriers emerge | Medium-High |
+| Diffusion Reversal | 10% | &lt;60 countries, some capability degradation | Major authoritarian setbacks, coordinated restrictions, technical barriers emerge | Medium-High |
 
 ### Unrestricted Diffusion (35% probability)
 
