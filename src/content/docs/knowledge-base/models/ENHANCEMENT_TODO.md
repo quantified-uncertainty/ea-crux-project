@@ -79,14 +79,14 @@ Legend:
 
 ### Pending Enhancement
 - [~] bioweapons-ai-uplift.mdx
-- [~] bioweapons-timeline.mdx
+- [x] bioweapons-timeline.mdx
 - [ ] capabilities-to-safety-pipeline.mdx
 - [ ] compounding-risks-analysis.mdx
-- [~] concentration-of-power.mdx
+- [x] concentration-of-power.mdx
 - [ ] consensus-manufacturing-dynamics.mdx
 - [ ] cyber-psychosis-cascade.mdx
 - [ ] cyberweapons-attack-automation.mdx
-- [~] cyberweapons-offense-defense.mdx
+- [x] cyberweapons-offense-defense.mdx
 - [~] deepfakes-authentication-crisis.mdx
 - [ ] disinformation-detection-race.mdx
 - [ ] disinformation-electoral-impact.mdx
@@ -94,10 +94,10 @@ Legend:
 - [ ] economic-disruption-impact.mdx
 - [ ] expertise-atrophy-progression.mdx
 - [ ] flash-dynamics-threshold.mdx
-- [~] fraud-sophistication-curve.mdx
+- [x] fraud-sophistication-curve.mdx
 - [ ] institutional-adaptation-speed.mdx
 - [ ] intervention-effectiveness-matrix.mdx
-- [~] irreversibility-threshold.mdx
+- [x] irreversibility-threshold.mdx
 - [ ] lab-incentives-model.mdx
 - [ ] media-policy-feedback-loop.mdx
 - [ ] multipolar-trap.mdx

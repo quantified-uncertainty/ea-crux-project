@@ -18,48 +18,55 @@ import { DataInfoBox, Backlinks } from '../../../../components/wiki';
 
 ## Overview
 
-This model analyzes the conditions under which AI-related decisions, deployments, and developments become practically impossible to reverse. It maps the transition from reversible to irreversible states and quantifies the costs of reversal at different stages.
+The irreversibility threshold model provides a framework for understanding when AI-related decisions, deployments, and developments transition from reversible to permanently locked-in states. This analysis is crucial because many of the most consequential AI safety risks emerge not from any single decision but from the gradual accumulation of individually reversible choices that collectively cross thresholds of no return. Understanding these dynamics allows policymakers, researchers, and organizations to identify critical intervention windows and preserve optionality during the narrow periods when course correction remains feasible.
 
-**Central Question:** When do AI-related changes become locked in, and how can we identify and act before crossing irreversibility thresholds?
+The central question driving this model is: **When do AI-related changes become locked in, and how can we identify and act before crossing irreversibility thresholds?** This question matters enormously because irreversibility is rarely binary. Instead, reversal costs increase along a spectrum from trivial (early R&D decisions) to astronomically expensive (infrastructure lock-in) to infinite (existential outcomes). The model quantifies these costs across technical, economic, social, and political dimensions, revealing that the window for meaningful intervention is typically much narrower than decision-makers assume.
+
+The key insight emerging from this analysis is that irreversibility thresholds are frequently invisible until crossed. Unlike physical cliffs with clear edges, technological and social lock-in accumulates gradually through distributed decisions until reversal becomes prohibitively expensive. By the time an irreversibility threshold becomes obvious, the optimal intervention point has often passed by years or even decades. This temporal asymmetry between commitment and recognition creates a systematic bias toward lock-in, particularly in competitive environments where pausing to assess carries immediate costs while the benefits of preserved optionality remain distant and diffuse.
 
 ## Conceptual Framework
 
 ### The Irreversibility Spectrum
 
-```
-Fully Reversible → Costly but Possible → Practically Irreversible → Absolutely Irreversible
-      |                    |                       |                        |
-  Early R&D           Deployment            Lock-in               Existential
+The following state diagram illustrates how AI developments transition through stages of increasing irreversibility. Each transition represents a qualitative shift in reversal difficulty, with associated cost multipliers and typical time horizons.
+
+```mermaid
+stateDiagram-v2
+    [*] --> FullyReversible: Initial Decision
+
+    FullyReversible --> CostlyReversible: Deployment
+    note right of FullyReversible: R&D Phase\nCost: $K-$M\nTime: Days-Weeks
+
+    CostlyReversible --> PracticallyIrreversible: Lock-in Effects
+    note right of CostlyReversible: Deployment Phase\nCost: $M-$B\nTime: Months-Years
+
+    PracticallyIrreversible --> AbsolutelyIrreversible: Existential Threshold
+    note right of PracticallyIrreversible: Integration Phase\nCost: $B-$T\nTime: Years-Decades
+
+    AbsolutelyIrreversible --> [*]: No Return
+    note right of AbsolutelyIrreversible: Terminal State\nCost: Infinite\nTime: Permanent
+
+    CostlyReversible --> FullyReversible: Early Reversal
+    PracticallyIrreversible --> CostlyReversible: Costly Reversal
 ```
 
-**Key Insight:** Most AI developments are not binary reversible/irreversible but exist on a spectrum where reversal costs increase over time.
+Most AI developments are not binary reversible/irreversible but exist on a spectrum where reversal costs increase over time. The transitions between states are driven by accumulating dependencies, infrastructure integration, skills atrophy, and political consolidation. Critically, the arrows pointing leftward (toward reversal) become progressively harder to traverse, both in terms of direct costs and the coordination required to achieve them.
 
 ### Dimensions of Irreversibility
 
-**1. Technical Irreversibility**
-- Knowledge once created cannot be unlearned
-- Capabilities once demonstrated cannot be un-demonstrated
-- Models once trained exist indefinitely
+Irreversibility operates across five distinct but interacting dimensions, each with different dynamics, timescales, and intervention strategies.
 
-**2. Economic Irreversibility**
-- Infrastructure investments create sunk costs
-- Business models form around capabilities
-- Employment and skills lock into new patterns
+| Dimension | Mechanism | Typical Threshold | Reversal Barrier | Example |
+|-----------|-----------|-------------------|------------------|---------|
+| Technical | Knowledge/capability proliferation | Hours-days | Information cannot be unlearned | Open-source model weights |
+| Economic | Sunk costs, infrastructure investment | Months-years | ROI requirements, stranded assets | GPU datacenter buildout |
+| Social | Habit formation, skill atrophy | Years-decades | Behavioral inertia, training costs | AI-dependent workflows |
+| Political | Regulatory crystallization, power consolidation | Years-decades | Stakeholder resistance, capture | Surveillance normalization |
+| Existential | Permanent state changes | Instantaneous | Physical impossibility | Loss of control, extinction |
 
-**3. Social Irreversibility**
-- Behavioral changes become habitual
-- Skills atrophy removes alternatives
-- Cultural shifts alter expectations
+Technical irreversibility operates on the shortest timescales because information propagates rapidly once released. Once a capability has been demonstrated or model weights published, the knowledge exists independently of any single actor's decisions. Economic irreversibility follows as infrastructure investments create sunk costs that demand returns, while business models and employment patterns reorganize around new capabilities. Social irreversibility accumulates more slowly through behavioral habit formation and skills atrophy, but becomes deeply entrenched as entire generations develop expectations and competencies around AI-assisted modes of work.
 
-**4. Political Irreversibility**
-- Regulatory frameworks crystallize
-- Power structures form around technology
-- International agreements constrain options
-
-**5. Existential Irreversibility**
-- Extinction is permanent
-- Some value losses are permanent
-- Certain control losses are unrecoverable
+Political irreversibility often proves most decisive in determining long-term outcomes. Regulatory frameworks create legal path dependencies, while power structures that benefit from a technology resist changes that would undermine their position. When these political dynamics align with economic lock-in, the combination becomes extraordinarily resistant to change. Existential irreversibility represents the terminal category where reversal becomes physically impossible, whether through extinction events, permanent loss of human control over AI systems, or irretrievable destruction of irreplaceable values.
 
 ## Reversal Cost Model
 
@@ -269,32 +276,50 @@ Where:
 - Support transition capabilities
 - Challenge: Resources limited, alternatives may be inferior
 
-## Model Limitations
+## Limitations
 
-**1. Threshold Identification Challenges**
-- Thresholds often only recognizable after crossing
-- Multiple interacting thresholds complicate analysis
-- Context-dependence makes generalization difficult
+This model has significant limitations that users should consider when applying its framework to specific decisions.
 
-**2. Cost Estimation Uncertainty**
-- Reversal costs highly uncertain before attempt
-- Indirect and opportunity costs hard to quantify
-- Political and social costs especially uncertain
+**Threshold identification problem:** The model assumes thresholds can be identified before crossing, but empirically most irreversibility thresholds are only recognizable in retrospect. This creates a fundamental tension: the model is most useful precisely when its core assumption is most violated. Historical examples from technology adoption (QWERTY keyboards, VHS vs. Betamax, internal combustion engines) show that lock-in points were rarely anticipated at the time. The model provides no reliable method for distinguishing genuine thresholds from false alarms, and the cost of false positives (unnecessary caution) may be substantial.
 
-**3. Path Dependence**
-- Irreversibility depends on specific paths taken
-- Alternative histories hard to analyze
-- Counterfactuals uncertain
+**Cost estimation uncertainty:** Reversal cost estimates in this model carry uncertainty ranges of 1-2 orders of magnitude or more. The exponential growth parameters ($\alpha$, $\beta$) are not empirically grounded in AI-specific data but extrapolated from other technology domains that may have different dynamics. Indirect costs (opportunity costs, social disruption, political capital) are particularly difficult to quantify and may dominate direct costs. The model treats these as additive when they may have complex interactions.
 
-**4. Innovation Uncertainty**
-- Future technologies might enable reversal
-- Model may overestimate irreversibility
-- Breakthrough possibilities hard to predict
+**Assumption of continuity:** The mathematical framework assumes continuous growth in reversal costs, but empirical lock-in often proceeds through discrete jumps (regulatory decisions, major deployments, capability breakthroughs). The model cannot predict timing of discontinuous threshold crossings and may provide false confidence in intervention windows that close suddenly rather than gradually.
 
-**5. Political Economy Neglected**
-- Model focuses on technical and economic factors
-- Political dynamics often decisive
-- Power structures not fully modeled
+**Political economy blind spots:** The model treats political dynamics as one of several dimensions rather than recognizing that political factors often dominate technical and economic considerations. Reversal of technology deployment typically requires coordinated political action that faces collective action problems, regulatory capture, and vested interests not well-captured by cost curves. The model has no mechanism for representing how political coalitions form around technology or how political windows open and close independent of technical factors.
+
+**Limited empirical grounding:** No previous technology transition provides a direct analogue for transformative AI, making calibration difficult. Parameter estimates derive primarily from expert judgment and structural reasoning rather than observed data. The model should be treated as a thinking tool rather than a predictive instrument, with estimates taken as illustrative rather than authoritative.
+
+## Scenario Analysis
+
+The following analysis examines four archetypal trajectories for AI-related irreversibility over the 2025-2035 period, with probability-weighted assessments of outcomes and intervention feasibility.
+
+### Trajectory Scenarios
+
+| Scenario | Probability | Irreversibility Level by 2035 | Dominant Lock-in Type | Intervention Window |
+|----------|-------------|-------------------------------|----------------------|---------------------|
+| Managed Transition | 15% | Moderate (costly reversible) | Economic/regulatory | Broad (ongoing) |
+| Competitive Lock-in | 45% | High (practically irreversible) | Technical/economic | Narrow (2025-2028) |
+| Rapid Proliferation | 25% | Very High (near-absolute) | Technical/political | Minimal (2025-2026) |
+| Catastrophic Threshold | 15% | Absolute (existential) | Existential | None (prevention only) |
+
+**Managed Transition (15% probability):** International coordination succeeds in establishing meaningful governance frameworks before advanced AI capabilities proliferate widely. Under this scenario, key capability releases remain gated behind regulatory approval, safety testing requirements create genuine friction, and competitive pressures moderate due to credible enforcement of rules. Irreversibility develops primarily through regulatory crystallization rather than uncontrolled technical proliferation, preserving substantial optionality for future course correction. The expected cost of reversal in this scenario remains in the billions to tens of billions of dollars range, expensive but feasible for major economies.
+
+**Competitive Lock-in (45% probability):** The most likely scenario involves continued competitive dynamics driving rapid capability development and deployment without effective coordination. Labs race to deploy increasingly powerful systems, infrastructure investments lock in AI-dependent operations, and workforce skills atrophy accelerates. By 2030, major sectors become practically dependent on AI systems that cannot be easily replaced. Reversal becomes economically and politically prohibitive, though not physically impossible. This scenario features a critical intervention window of approximately three to four years during which meaningful governance could still alter the trajectory.
+
+**Rapid Proliferation (25% probability):** Advanced AI capabilities proliferate quickly through open-source releases, capability breakthroughs, or inadequate security at leading labs. Within two to three years of initial frontier capability development, multiple actors worldwide possess systems approaching transformative capability levels. Technical irreversibility dominates as knowledge spreads beyond any single point of control. Political responses fragment, with some jurisdictions attempting restriction while others embrace permissionless development. Expected intervention window is extremely narrow, measured in months rather than years.
+
+**Catastrophic Threshold (15% probability):** Some pathway to irreversibility crosses an existential threshold, whether through loss of human control over AI systems, AI-enabled extinction-level catastrophe, or other permanent negative transformation. This scenario encompasses various specific failure modes including deceptive alignment failures, rapid recursive improvement beyond human understanding, or AI-enabled catastrophic attacks. By definition, this scenario offers no reversal possibility after threshold crossing, making prevention the only viable strategy.
+
+### Probability-Weighted Outcome Summary
+
+| Metric | Weighted Estimate | 90% CI | Key Drivers |
+|--------|------------------|--------|-------------|
+| P(reversal feasible at $10B cost by 2035) | 35% | 20-55% | Coordination success, proliferation speed |
+| P(reversal feasible at $100B cost by 2035) | 55% | 35-75% | Infrastructure lock-in depth |
+| P(reversal infeasible at any cost by 2035) | 25% | 10-45% | Catastrophic threshold, rapid proliferation |
+| Expected years until major threshold crossed | 4.5 years | 2-10 years | Capability development speed |
+| Expected reversal cost in 2035 (USD) | $500B-2T | $50B-10T+ | Scenario distribution |
 
 ## Uncertainty Ranges
 
@@ -305,6 +330,23 @@ Where:
 | Workforce dependency threshold | 5-10 years | 3-15 years | Low |
 | Cost multiplier per year of delay in reversal | 2-5x | 1.5-10x | Low |
 | Fraction of AI decisions approaching irreversibility | 10-20% | 5-40% | Very Low |
+| Probability of crossing existential threshold by 2035 | 15% | 5-30% | Very Low |
+| Probability of effective international coordination | 15% | 5-35% | Very Low |
+
+### Sensitivity Analysis
+
+The model's outputs are differentially sensitive to key parameters. The following table ranks parameters by their impact on the core question of intervention window duration.
+
+| Parameter | Sensitivity | Direction | Implication |
+|-----------|-------------|-----------|-------------|
+| Capability development speed | Very High | Faster = shorter window | Uncertainty about AI timelines dominates other factors |
+| Open-source proliferation rate | High | Faster = shorter window | Single releases can collapse intervention windows to days |
+| International coordination success | High | Success = longer window | Political factors can substantially extend optionality |
+| Dependency growth rate ($\alpha$) | Medium | Higher = shorter window | Infrastructure lock-in compounds over time |
+| Cost threshold for "practical irreversibility" | Medium | Lower = shorter window | Definition-dependent; policy goal should define threshold |
+| Initial reversal cost ($R_0$) | Low | Higher = shorter window | Starting costs matter less than growth rates |
+
+The analysis reveals that the model is dominated by factors related to speed and coordination. Technical parameters (capability development, proliferation rate) determine the raw timeline, while political parameters (coordination success) determine whether that timeline can be extended. Economic parameters ($\alpha$, $R_0$) matter primarily for middle-range scenarios where reversal is expensive but potentially achievable. In scenarios where technical irreversibility or existential thresholds dominate, economic considerations become secondary.
 
 ## Key Insights
 
@@ -322,9 +364,12 @@ Where:
 
 ## Related Models
 
-- [Lock-in Irreversibility Model](/knowledge-base/models/lock-in/) - Deeper analysis of lock-in dynamics
-- [Proliferation Risk Model](/knowledge-base/models/proliferation-risk-model/) - Knowledge and capability spread
-- [Expertise Atrophy Cascade](/knowledge-base/models/expertise-atrophy-cascade/) - Skills loss dynamics
+- [Lock-in Irreversibility Model](/knowledge-base/models/lock-in-irreversibility/) - Provides deeper analysis of the specific mechanisms through which technological and institutional lock-in occurs, complementing this model's focus on threshold dynamics
+- [Proliferation Risk Model](/knowledge-base/models/proliferation-risk-model/) - Analyzes how dangerous capabilities spread between actors, representing the technical irreversibility dimension
+- [Expertise Atrophy Cascade](/knowledge-base/models/expertise-atrophy-cascade/) - Models the skills loss dynamics that drive social irreversibility as workforces become AI-dependent
+- [Surveillance Infrastructure Dynamics](/knowledge-base/models/surveillance-infrastructure/) - Examines how surveillance technologies create political irreversibility through power consolidation
+- [AI Capabilities Timeline Model](/knowledge-base/models/ai-capabilities-timeline/) - Provides context for when threshold-crossing capabilities may emerge
+- [Coordination Failure Dynamics](/knowledge-base/models/coordination-failure/) - Analyzes why collective action to prevent irreversibility often fails despite shared interests
 
 ## Sources
 
