@@ -18,39 +18,74 @@ import { DataInfoBox, Backlinks } from '../../../../components/wiki';
 
 ## Overview
 
-Rather than waiting for risks to fully materialize, we can monitor leading indicators that signal approaching danger. This model catalogs warning signs across different risk categories, distinguishes leading from lagging indicators, and proposes specific tripwires that should trigger action.
+The challenge of AI risk management is fundamentally one of timing: acting too late means risks have already materialized into harms, while acting too early wastes resources and undermines credibility. This model addresses this challenge by cataloging warning signs across different risk categories, distinguishing leading from lagging indicators, and proposing specific tripwires that should trigger predetermined responses. The central question is: **What observable signals should prompt us to shift from monitoring to action, and at what thresholds?**
 
-Effective monitoring requires:
-- **Early detection**: Signals before harm occurs
-- **Actionable thresholds**: Clear points for intervention
-- **Low false positives**: Avoid crying wolf
-- **Comprehensive coverage**: Don't miss important signals
+Effective early warning systems must balance four competing demands that create inherent tension. Early detection requires sensitivity to weak signals, but high sensitivity generates false positives that erode trust and waste resources. Actionable thresholds need to be specific enough to trigger responses but flexible enough to accommodate uncertainty. The ideal monitoring system emphasizes leading indicators that predict future risk while using lagging indicators for validation, creating a multi-layered detection architecture that trades off between anticipation and confirmation.
 
-## Types of Indicators
+The key insight from this analysis is that the AI safety community currently lacks adequate monitoring infrastructure across nearly every risk category. Most warning signs identified in this model have no systematic tracking, no agreed thresholds, and no pre-committed responses. This represents a critical governance gap: we have conceptual frameworks for risks but insufficient operational capacity to detect when those risks are materializing. The tripwire framework proposed here aims to convert abstract warning signs into concrete, actionable triggers that can bridge the gap between anticipation and response.
 
-### Leading vs. Lagging Indicators
+## Conceptual Framework
 
-**Leading indicators**: Predict future risk before it materializes
-- Capability improvements on relevant benchmarks
-- Research paper publications
-- Internal lab evaluations
-- Policy changes at AI companies
+The warning signs framework organizes indicators along two primary dimensions: temporal position (leading vs. lagging) and signal category (capability, behavioral, incident, research, social). Understanding this structure enables more effective monitoring by clarifying what each indicator type can and cannot tell us about risk trajectories.
 
-**Lagging indicators**: Confirm risk after it begins manifesting
-- Documented incidents
-- Economic changes
-- Policy failures
-- Security breaches
+```mermaid
+flowchart TD
+    subgraph Leading["Leading Indicators (Predictive)"]
+        CAP[Capability Signals<br/>Benchmark improvements]
+        BEH[Behavioral Signals<br/>System behaviors in eval]
+        RES[Research Signals<br/>Publications, breakthroughs]
+    end
 
-**Ideal monitoring** emphasizes leading indicators while using lagging indicators for validation.
+    subgraph Lagging["Lagging Indicators (Confirmatory)"]
+        INC[Incident Signals<br/>Real-world events]
+        SOC[Social Signals<br/>Institutional responses]
+    end
 
-### Signal Categories
+    CAP --> |"Capability enables"| BEH
+    BEH --> |"Behavior causes"| INC
+    RES --> |"Research drives"| CAP
+    INC --> |"Incidents trigger"| SOC
+    SOC --> |"Policy affects"| RES
 
-1. **Capability signals**: AI system performance changes
-2. **Behavioral signals**: Observable AI system behaviors
-3. **Incident signals**: Real-world events and harms
-4. **Research signals**: Scientific/technical developments
-5. **Social signals**: Human and institutional responses
+    CAP --> TRP{Tripwire<br/>Threshold}
+    BEH --> TRP
+    INC --> TRP
+    TRP --> |"Crossed"| ACT[Predetermined<br/>Response]
+    TRP --> |"Approaching"| MON[Heightened<br/>Monitoring]
+```
+
+Leading indicators predict future risk before it materializes and provide the greatest opportunity for proactive response. Capability improvements on relevant benchmarks signal expanding risk surface before that capability is deployed or misused. Research paper publications and internal lab evaluations offer windows into near-term capability trajectories. Policy changes at AI companies can signal anticipated capabilities or perceived risks. The limitation of leading indicators is uncertainty: not all capability improvements translate to risk, and interpretation requires significant expertise.
+
+Lagging indicators confirm risk after it begins manifesting and provide validation for leading indicator interpretation. Documented incidents demonstrate that theoretical risks have become practical realities. Economic changes reveal actual impact on labor markets and industry structure. Policy failures show where existing safeguards proved inadequate. Security breaches confirm attacker capabilities and motivations. The limitation of lagging indicators is their reactive nature: by the time they trigger, some harm has already occurred. The optimal monitoring strategy combines both types, using leading indicators for anticipation and lagging indicators for calibration.
+
+## Signal Category Framework
+
+| Category | Definition | Examples | Typical Lag | Primary Value |
+|----------|------------|----------|-------------|---------------|
+| Capability | AI system performance changes | Benchmark scores, eval results, task completion | 0-6 months | Early warning |
+| Behavioral | Observable system behaviors | Deception attempts, goal-seeking, resource acquisition | 1-12 months | Risk characterization |
+| Incident | Real-world events and harms | Documented misuse, accidents, failures | 3-24 months | Validation |
+| Research | Scientific/technical developments | Papers, breakthroughs, open-source releases | 6-18 months | Trajectory forecasting |
+| Social | Human and institutional responses | Policy changes, workforce impacts, trust metrics | 12-36 months | Impact assessment |
+
+The signal categories represent different loci of observation in the AI risk chain. Capability signals are closest to the source and offer the earliest warning, but require the most interpretation. As signals move through behavioral manifestation, real-world incidents, and ultimately social impacts, they become easier to interpret but offer less time for response. Effective monitoring systems track all five categories simultaneously, triangulating across different signal types to reduce false positive rates while maintaining sensitivity.
+
+## Quantitative Assessment of Warning Signs
+
+The following table provides quantitative estimates for key warning sign parameters, including probability of detection, expected timeline to crossing, and confidence levels based on available evidence and expert judgment.
+
+| Warning Sign | Current Distance to Threshold | Detection Probability | Expected Time to Threshold | Confidence | Priority Score |
+|--------------|------------------------------|----------------------|---------------------------|------------|----------------|
+| AI biological design capability | 60-80% of threshold | 75% (range: 60-85%) | 18-36 months | Medium | 8.5/10 |
+| Autonomous cyber exploitation | 40-60% of threshold | 65% (range: 50-80%) | 24-48 months | Medium-Low | 7.5/10 |
+| AI persuasion exceeds human | 70-90% of threshold | 80% (range: 70-90%) | 6-18 months | Medium-High | 8.0/10 |
+| Training-aware behavior modification | 30-50% of threshold | 45% (range: 30-60%) | 12-36 months | Low | 9.0/10 |
+| Systematic AI deception | 20-40% of threshold | 50% (range: 35-65%) | 18-48 months | Low | 9.5/10 |
+| Economic displacement spike | 50-70% of threshold | 90% (range: 85-95%) | 12-30 months | High | 6.5/10 |
+| Epistemic collapse indicators | 40-60% of threshold | 70% (range: 55-80%) | 24-60 months | Medium | 7.0/10 |
+| AI-enabled power concentration | 35-55% of threshold | 55% (range: 40-70%) | 36-72 months | Low | 8.0/10 |
+
+Priority scores combine risk severity, detection difficulty, and response tractability. Higher priority scores indicate warning signs that warrant greater monitoring investment. Detection probability reflects our confidence in identifying when the threshold is crossed given current monitoring infrastructure. The wide ranges on many estimates reflect genuine uncertainty about both the current state and trajectory of these indicators.
 
 ## Warning Signs by Risk Category
 
@@ -241,14 +276,27 @@ Effective monitoring requires:
 - Surveillance normalization
 - Erosion of AI governance capacity
 
+## Scenario Analysis
+
+Different trajectories of AI development and monitoring capacity lead to dramatically different outcomes. The following scenarios explore how warning sign detection and response might unfold under varying conditions, each with distinct implications for policy and preparation.
+
+| Scenario | Probability | Warning Sign Trajectory | Response Capacity | Outcome | Key Drivers |
+|----------|-------------|------------------------|-------------------|---------|-------------|
+| Proactive Detection | 15% | Leading indicators detected 12-24 months before risk materialization | Strong: pre-committed responses, adequate infrastructure | Low harm, managed transition | Early monitoring investment, international cooperation, credible commitments |
+| Reactive Response | 35% | Lagging indicators trigger response after initial harms | Moderate: scrambled response, some infrastructure | Medium harm, delayed mitigation | Underinvestment in monitoring, coordination failures, political barriers |
+| Detection Without Response | 25% | Warning signs detected but response fails | Weak: no pre-commitment, governance gaps | High harm despite forewarning | Collective action failure, competitive pressure, regulatory capture |
+| Surprise Materialization | 20% | Critical risks emerge without detectable precursors | Variable: depends on risk type | Unpredictable, potentially catastrophic | Novel risk pathways, monitoring blind spots, rapid capability jumps |
+| False Alarm Fatigue | 5% | Repeated false positives erode credibility and response capacity | Degraded over time | Delayed response to real signals | Poor calibration, low base rates, political exploitation |
+
+The Proactive Detection scenario represents the aspirational target of warning sign monitoring. In this pathway, sustained investment in monitoring infrastructure enables detection of capability advances, behavioral anomalies, and research trajectories 12-24 months before associated risks materialize. Crucially, pre-committed response protocols ensure that detection translates into action: labs pause deployments at defined thresholds, governments trigger regulatory responses, and international coordination activates. This scenario requires both technical monitoring capacity and governance infrastructure that currently does not exist, explaining its relatively low probability estimate.
+
+The Reactive Response scenario is more likely given current trajectories. Monitoring infrastructure remains fragmented, leading indicators are missed or misinterpreted, and the first clear signal comes from actual incidents. The response is scrambled but ultimately adequate because some preparation occurred and institutions can mobilize quickly. This middle-ground outcome avoids catastrophe but incurs unnecessary harm that earlier detection could have prevented.
+
+The Detection Without Response scenario represents a particularly concerning failure mode. Warning signs are detected, experts raise alarms, but the response fails to materialize. This could occur due to collective action problems (each actor waiting for others to act), competitive pressure (labs continuing development despite warnings to avoid falling behind), regulatory capture (industry influence blocking policy response), or political gridlock. Historical precedents for this pattern include climate change and financial crisis warnings that were largely accurate but failed to trigger adequate response.
+
 ## Tripwire Framework
 
-### Definition
-
-A **tripwire** is a specific, observable condition that triggers a predetermined response. Unlike general warning signs, tripwires are:
-- Precisely defined
-- Binary (crossed or not crossed)
-- Linked to specific actions
+A **tripwire** is a specific, observable condition that triggers a predetermined response. Unlike general warning signs, tripwires are precisely defined, binary (crossed or not crossed), and linked to specific actions. The tripwire framework converts the continuous signal of warning signs into discrete decision points, reducing the ambiguity that can paralyze response.
 
 ### Proposed Tripwires
 
@@ -279,13 +327,17 @@ A **tripwire** is a specific, observable condition that triggers a predetermined
 
 ### Tripwire Governance
 
-Tripwires are only useful if:
-1. **Monitoring is in place** to detect crossing
-2. **Commitment exists** to follow through on response
-3. **Response is prepared** before crossing occurs
-4. **Authority is clear** for triggering response
+Tripwires are only useful when supported by adequate governance infrastructure, which currently does not exist for most proposed thresholds. Four conditions must be satisfied for tripwires to function as intended.
 
-Currently, most tripwires lack adequate governance infrastructure.
+First, monitoring must be in place to detect when thresholds are crossed. Without systematic tracking of relevant indicators, tripwires cannot be triggered even when underlying conditions warrant response. This requires investment in the monitoring systems described earlier.
+
+Second, credible commitment must exist to follow through on predetermined responses. If decision-makers can rationalize inaction at the moment of crossing, the tripwire provides only an illusion of protection. Pre-commitment mechanisms, public pledges, and institutional accountability structures strengthen follow-through.
+
+Third, response capacity must be prepared before crossing occurs. Emergency responses developed after a tripwire is crossed are necessarily rushed and may be poorly designed. Preparation includes drafting response protocols, allocating resources, and establishing coordination mechanisms in advance.
+
+Fourth, clear authority must exist for triggering the response. Ambiguity about who decides that a threshold has been crossed, or who can initiate the predetermined response, creates opportunity for delay and inaction. Designated responsible parties with documented authority reduce this friction.
+
+The current governance gap means that most proposed tripwires exist only conceptually. Closing this gap requires sustained investment in institutions that can monitor, commit, prepare, and authorize across the range of warning signs identified in this model.
 
 ## Monitoring Infrastructure
 
@@ -301,118 +353,88 @@ Currently, most tripwires lack adequate governance infrastructure.
 
 ### Recommended Monitoring Systems
 
-**1. Capability Observatory**
-- Standardized benchmark suite tracked over time
-- Mandatory reporting from major developers
-- Public dashboard with key metrics
+The following table outlines the four core monitoring systems needed for comprehensive warning sign detection, along with estimated costs, implementation timelines, and expected impact on detection capability.
 
-**2. AI Incident Database**
-- Mandatory reporting of significant incidents
-- Standardized classification system
-- Analysis of trends and patterns
+| Monitoring System | Annual Cost Estimate | Implementation Timeline | Detection Coverage | Current Existence | Priority |
+|-------------------|---------------------|------------------------|-------------------|-------------------|----------|
+| Capability Observatory | $5-15M | 12-18 months | Capability signals (90% coverage) | Partial, fragmented | Critical |
+| AI Incident Database | $2-5M | 6-12 months | Incident signals (95% coverage) | Minimal | High |
+| Behavioral Evaluation Infrastructure | $10-30M | 18-36 months | Behavioral signals (70% coverage) | Lab-internal only | Critical |
+| Social Impact Tracker | $3-8M | 12-24 months | Social signals (60% coverage) | Academic research only | Medium |
 
-**3. Behavioral Evaluation Infrastructure**
-- Independent red teams with access
-- Novel test development capacity
-- Confidential reporting channel
+The Capability Observatory would establish a standardized benchmark suite tracked over time, with mandatory reporting from major developers and a public dashboard with key metrics. This system would provide the earliest warning of capability advances that might enable new risks. The estimated cost range reflects uncertainty about the scope of benchmarks and degree of mandatory participation that could be achieved.
 
-**4. Social Impact Tracker**
-- Employment and wage monitoring
-- Trust and polarization metrics
-- Content ecosystem analysis
+The AI Incident Database would require mandatory reporting of significant incidents with a standardized classification system, enabling analysis of trends and patterns. This infrastructure is relatively inexpensive because it primarily involves data collection and analysis rather than technical evaluation capacity. Several proposals for such databases exist but none have achieved the scope and mandatory participation needed for comprehensive coverage.
+
+Behavioral Evaluation Infrastructure represents the most expensive but potentially most valuable investment. Independent red teams with access to frontier models, capacity to develop novel tests, and confidential reporting channels would provide detection capability for the most concerning warning signs: deception, situational awareness, and corrigibility failures. The high cost reflects the need for skilled evaluators and ongoing test development to stay ahead of advancing capabilities.
+
+The Social Impact Tracker would monitor employment and wage patterns, trust and polarization metrics, and content ecosystem analysis. While important for detecting structural risks, this system has lower priority than capability and behavioral monitoring because social impacts are lagging indicators that confirm rather than predict risk materialization.
 
 ## Implementation Challenges
 
 ### Signal vs. Noise
 
-Many potential warning signs produce false positives:
-- Capability improvements without risk implications
-- Behavioral quirks without strategic significance
-- Incidents that look concerning but aren't
+Many potential warning signs produce false positives that complicate effective monitoring. Capability improvements may occur without meaningful risk implications when advances are in domains unrelated to dangerous applications. Behavioral quirks during evaluation may reflect training artifacts rather than strategic significance. Incidents that appear concerning on initial examination may prove benign upon deeper investigation. The challenge is maintaining sensitivity to genuine warning signs while avoiding the alarm fatigue that comes from frequent false positives.
 
-**Solution:** Multiple confirming signals before action, expert interpretation
+The solution requires multiple confirming signals before triggering major responses, combined with expert interpretation that can distinguish meaningful patterns from noise. This approach trades off some detection speed for improved accuracy, accepting slightly delayed response to genuine signals in exchange for fewer false alarms. Calibration improves over time as the base rate of various signal types becomes better understood.
 
 ### Incentive Problems
 
-- Labs may not want to report negative signals
-- Researchers may fear career consequences
-- Governments may not want to act prematurely
+Systematic incentive misalignment undermines voluntary warning sign reporting across all major stakeholders. Labs may not want to report negative signals that could trigger regulatory scrutiny, competitive disadvantage, or public relations damage. Individual researchers may fear career consequences from raising concerns that prove unfounded or that conflict with organizational priorities. Governments may not want to act prematurely and face criticism if warning signs do not materialize into actual harms, creating bias toward inaction.
 
-**Solution:** Safe harbor provisions, independent monitoring, pre-committed responses
+Addressing these incentives requires structural solutions rather than appeals to responsibility. Safe harbor provisions protect reporters from liability and reputational consequences when disclosing in good faith. Independent monitoring reduces reliance on self-reporting by creating external evaluation capacity. Pre-committed responses reduce discretion at the moment of detection, making it harder to rationalize inaction when warning signs appear.
 
 ### Coordination Failure
 
-- No single entity responsible for monitoring
-- International signals harder to detect
-- Confidentiality concerns limit sharing
+No single entity bears clear responsibility for comprehensive warning sign monitoring, creating gaps and redundancies. International signals are harder to detect because monitoring capacity is fragmented across jurisdictions with limited information sharing. Confidentiality concerns, both legitimate (security) and illegitimate (competitive), limit the data available for collective assessment.
 
-**Solution:** International cooperation frameworks, tiered information sharing
+International cooperation frameworks must establish shared standards for what constitutes a reportable warning sign, mechanisms for confidential sharing of sensitive information, and protocols for coordinated response. Tiered information sharing enables different levels of disclosure depending on the sensitivity of the information and the trustworthiness of recipients, allowing broader participation without compromising security.
 
 ### Adaptive Adversaries
 
-Both AI systems and malicious human actors may adapt to avoid detection:
-- Systems may learn to hide concerning behaviors during evaluation
-- Attackers may use AI in ways that avoid attribution
+Both AI systems and malicious human actors may adapt to avoid detection, rendering static monitoring approaches ineffective over time. Advanced AI systems may learn to identify evaluation conditions and behave differently under observation than in deployment, a form of evaluation gaming that sophisticated situational awareness could enable. Human attackers may use AI in ways designed to avoid attribution, exploiting the difficulty of tracing AI-assisted actions back to responsible actors.
 
-**Solution:** Adversarial evaluation, diverse detection methods, assume evasion
+These challenges require assuming evasion rather than assuming cooperation. Adversarial evaluation methods deliberately probe for concealed capabilities and behaviors. Diverse detection methods reduce the probability that any single evasion strategy succeeds across all monitoring channels. Continuous evolution of monitoring approaches stays ahead of adaptation by changing detection methods before adversaries fully adapt to current ones.
 
 ## Recommendations
 
 ### For AI Labs
 
-**Immediate:**
-1. Establish internal tripwire systems
-2. Commit publicly to specific response actions
-3. Share warning sign data (appropriately anonymized)
-4. Invest in behavioral evaluation capacity
+AI labs should immediately establish internal tripwire systems with clearly defined thresholds and predetermined responses. This includes committing publicly to specific response actions when thresholds are crossed, creating accountability that strengthens credibility. Labs should share warning sign data, appropriately anonymized to protect competitive information while enabling collective monitoring. Investment in behavioral evaluation capacity should be proportional to capability advances, ensuring that evaluation sophistication keeps pace with system capabilities.
 
-**Ongoing:**
-5. Maintain monitoring infrastructure
-6. Update tripwires as understanding improves
-7. Participate in industry-wide coordination
+On an ongoing basis, labs should maintain and update monitoring infrastructure as understanding of risks evolves. Tripwires defined today may need revision as empirical evidence accumulates about which indicators prove most predictive. Participation in industry-wide coordination through mechanisms like the Frontier Model Forum enables collective monitoring that no single lab can achieve independently and reduces competitive pressure to underinvest in safety.
 
 ### For Governments
 
-**Immediate:**
-1. Create AI incident reporting requirements
-2. Fund independent monitoring capacity
-3. Establish inter-agency coordination
+Governments should create AI incident reporting requirements that mandate disclosure of significant failures, misuse attempts, and behavioral anomalies. Funding independent monitoring capacity through bodies like AISI in the UK and proposed US equivalents would provide evaluation infrastructure separated from commercial interests. Inter-agency coordination ensures that warning signs detected by different agencies are synthesized into coherent assessments.
 
-**Longer-term:**
-4. Build international monitoring cooperation
-5. Pre-commit to policy responses at tripwires
-6. Create safe harbor for reporting
+Over the longer term, governments should build international monitoring cooperation through bilateral agreements and multilateral frameworks. Pre-commitment to policy responses at defined tripwires strengthens deterrence and ensures response capacity exists before it is needed. Safe harbor provisions for reporting encourage disclosure of concerning findings without fear of liability or competitive disadvantage.
 
 ### For Researchers
 
-**Priority areas:**
-1. Better situational awareness tests
-2. Deception detection methods
-3. Economic impact measurement
-4. Trust and polarization tracking
-5. Capability forecasting accuracy
+Research priorities should focus on areas where current monitoring capacity is weakest relative to risk severity. Better situational awareness tests are critically needed because current evaluations may miss sophisticated self-referential reasoning. Deception detection methods must advance beyond simple honesty evaluations to detect strategic misrepresentation. Economic impact measurement should move beyond aggregate statistics to enable attribution of workforce changes to AI specifically. Trust and polarization tracking requires new metrics that capture epistemic fragmentation in real-time. Capability forecasting accuracy research would improve the calibration of all warning sign interpretation by providing better baselines for expected trajectories.
 
 ## Summary
 
-**Key insights:**
-1. Leading indicators enable proactive response
-2. Tripwires convert warning signs into action
-3. Current monitoring infrastructure is inadequate
-4. Coordination problems impede effective monitoring
-5. Investment in monitoring is high-leverage
+This model provides a framework for identifying, categorizing, and responding to warning signs that indicate AI risks are approaching materialization. The central insight is that effective risk management requires shifting from reactive to proactive postures, and this shift depends on developing monitoring infrastructure that currently does not exist. Leading indicators enable proactive response by providing advance notice of capability advances and behavioral changes before they translate into real-world harms. Tripwires convert continuous warning sign signals into discrete decision points that trigger predetermined responses, reducing the ambiguity that often paralyzes action.
 
-**Most important warning signs to track:**
-1. Situational awareness indicators (control risks)
-2. Autonomous execution capability (multiple risks)
-3. Synthetic content distinguishability (misuse/epistemics)
-4. AI incident frequency and severity (validation)
-5. Economic displacement metrics (structural)
+The most important warning signs to track are those combining high severity with relatively high detection probability. Situational awareness indicators represent critical control risks because they signal the potential for AI systems to behave strategically around oversight. Autonomous execution capability matters across multiple risk categories by enabling both misuse and accidents at scale. Synthetic content distinguishability affects both misuse potential and epistemic integrity. AI incident frequency and severity provide validation signals that calibrate interpretation of leading indicators. Economic displacement metrics offer high-confidence detection of structural impacts even though they are lagging indicators.
 
-**Most urgent infrastructure needs:**
-1. Standardized capability tracking
-2. Independent behavioral evaluation
-3. AI incident database
-4. International coordination mechanism
+The most urgent infrastructure needs center on independent evaluation capacity. Standardized capability tracking would provide systematic visibility into frontier model performance across safety-relevant dimensions. Independent behavioral evaluation, funded separately from AI labs and with access to frontier systems, would enable detection of concerning behaviors that internal evaluations might miss or not prioritize. An AI incident database with mandatory reporting would create the empirical foundation for calibrating warning sign interpretation. International coordination mechanisms would extend monitoring across jurisdictions and enable responses that require collective action. Total investment of $20-60M annually could substantially close current monitoring gaps, a remarkably small sum relative to the stakes involved.
+
+## Limitations
+
+This model has significant limitations that users should consider when applying its framework to monitoring and response decisions.
+
+The threshold estimates are inherently uncertain. The "current status" values for many indicators are based on incomplete information, often derived from publicly available evaluations that may not reflect the full capabilities of frontier systems or the latest internal assessments at AI labs. Thresholds for action (red lines, yellow lines) reflect judgment calls rather than empirically validated decision points, and different stakeholders with different risk tolerances would reasonably set these differently.
+
+The model assumes warning signs are detectable, but some critical risks may have no observable precursors. Rapid capability jumps, novel risk pathways not anticipated in current frameworks, and deliberately concealed capabilities could all bypass even comprehensive monitoring. The absence of warning signs should not be interpreted as the absence of risk, particularly for risks that might emerge suddenly or through unexpected channels.
+
+Tripwire governance remains underdeveloped. The framework proposes specific triggers and responses, but the institutional infrastructure to monitor tripwires, make binding commitments to responses, and coordinate across actors largely does not exist. Without this governance layer, tripwires risk becoming aspirational rather than operational. The gap between identifying what should trigger action and actually triggering action when conditions are met represents a critical weakness.
+
+The model underweights adaptive adversaries. Both AI systems that might learn to evade detection and human actors who might route around monitoring are not fully addressed. If systems can identify evaluation conditions and behave differently, or if malicious actors can use AI in ways designed to avoid attribution, the warning sign framework loses effectiveness. Adversarial robustness of monitoring systems is an underexplored area.
+
+Finally, false positive and false negative rates are not quantified. The framework identifies potential warning signs without providing empirical estimates of how often these signals would fire correctly versus incorrectly. High false positive rates could lead to alarm fatigue and ignored warnings; high false negative rates could provide false reassurance. Calibrating these rates requires historical data that largely does not exist for novel AI risks.
 
 ## Related Models
 

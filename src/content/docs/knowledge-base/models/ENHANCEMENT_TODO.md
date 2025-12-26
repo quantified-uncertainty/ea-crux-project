@@ -78,7 +78,7 @@ Legend:
 - [x] autonomous-weapons-proliferation.mdx
 
 ### Pending Enhancement
-- [~] bioweapons-ai-uplift.mdx
+- [x] bioweapons-ai-uplift.mdx
 - [x] bioweapons-timeline.mdx
 - [ ] capabilities-to-safety-pipeline.mdx
 - [ ] compounding-risks-analysis.mdx
@@ -87,7 +87,7 @@ Legend:
 - [ ] cyber-psychosis-cascade.mdx
 - [ ] cyberweapons-attack-automation.mdx
 - [x] cyberweapons-offense-defense.mdx
-- [~] deepfakes-authentication-crisis.mdx
+- [x] deepfakes-authentication-crisis.mdx
 - [ ] disinformation-detection-race.mdx
 - [ ] disinformation-electoral-impact.mdx
 - [ ] economic-disruption.mdx
@@ -115,10 +115,10 @@ Legend:
 - [ ] safety-researcher-gap.mdx
 - [ ] surveillance-authoritarian-stability.mdx
 - [ ] surveillance-chilling-effects.mdx
-- [~] trust-cascade-model.mdx
+- [x] trust-cascade-model.mdx
 - [ ] trust-erosion-dynamics.mdx
-- [~] warning-signs-model.mdx
-- [~] whistleblower-dynamics.mdx
+- [x] warning-signs-model.mdx
+- [x] whistleblower-dynamics.mdx
 - [ ] winner-take-all.mdx
 
 ---
