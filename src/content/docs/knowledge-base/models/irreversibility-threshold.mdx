@@ -31,23 +31,22 @@ The key insight emerging from this analysis is that irreversibility thresholds a
 The following state diagram illustrates how AI developments transition through stages of increasing irreversibility. Each transition represents a qualitative shift in reversal difficulty, with associated cost multipliers and typical time horizons.
 
 <Mermaid client:load chart={`
-stateDiagram-v2
-    [*] --> FullyReversible: Initial Decision
+flowchart TD
+    subgraph Spectrum["Irreversibility Spectrum"]
+        S1["Fully Reversible<br/>R&D Phase<br/>Cost: $K-$M"]
+        S2["Costly Reversible<br/>Deployment Phase<br/>Cost: $M-$B"]
+        S3["Practically Irreversible<br/>Integration Phase<br/>Cost: $B-$T"]
+        S4["Absolutely Irreversible<br/>Terminal State<br/>Cost: Infinite"]
+    end
 
-    FullyReversible --> CostlyReversible: Deployment
-    note right of FullyReversible: R and D Phase Cost: $K-$M Time: Days-Weeks
+    Start([Initial Decision]) --> S1
+    S1 -->|Deployment| S2
+    S2 -->|Lock-in Effects| S3
+    S3 -->|Existential Threshold| S4
+    S4 --> End([No Return])
 
-    CostlyReversible --> PracticallyIrreversible: Lock-in Effects
-    note right of CostlyReversible: Deployment Phase Cost: $M-$B Time: Months-Years
-
-    PracticallyIrreversible --> AbsolutelyIrreversible: Existential Threshold
-    note right of PracticallyIrreversible: Integration Phase Cost: $B-$T Time: Years-Decades
-
-    AbsolutelyIrreversible --> [*]: No Return
-    note right of AbsolutelyIrreversible: Terminal State Cost: Infinite Time: Permanent
-
-    CostlyReversible --> FullyReversible: Early Reversal
-    PracticallyIrreversible --> CostlyReversible: Costly Reversal
+    S2 -.->|Early Reversal| S1
+    S3 -.->|Costly Reversal| S2
 `} />
 
 Most AI developments are not binary reversible/irreversible but exist on a spectrum where reversal costs increase over time. The transitions between states are driven by accumulating dependencies, infrastructure integration, skills atrophy, and political consolidation. Critically, the arrows pointing leftward (toward reversal) become progressively harder to traverse, both in terms of direct costs and the coordination required to achieve them.
